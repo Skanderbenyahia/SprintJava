@@ -54,14 +54,14 @@ public class Back_VentePageController implements Initializable {
         ModifierC.setDisable(true);
         SupprimerC.setDisable(true);
         Column_libelle.setCellValueFactory(new PropertyValueFactory<> ("libelle"));
-        
+        /*
         try {
                  CategorieService cs=new CategorieService();
                  CategorieView.setItems(cs.getObservableCategorie());
         } 
         catch (SQLException ex) {
             Logger.getLogger(Back_VentePageController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
 
     }    
 

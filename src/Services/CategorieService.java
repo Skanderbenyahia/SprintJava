@@ -53,7 +53,7 @@ public class CategorieService {
         }
         return categories;
     }
-    public void SupprimerCentreDressage(int id) throws SQLException   
+    public void SupprimerCategorie(int id) throws SQLException   
     {
         int count=0;
         String req="SELECT count(*) FROM produit where categorie='"+id+"'";
@@ -79,7 +79,7 @@ public class CategorieService {
             
     }
     
-    public void ModifierCentreDressage(Categorie c) throws SQLException
+    public void ModifierCategorie(Categorie c) throws SQLException
     {
         String req="UPDATE categorie SET libelle=(?) WHERE id=(?) ";
         PreparedStatement pre = con.prepareStatement(req);

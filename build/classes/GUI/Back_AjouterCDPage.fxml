@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1200.0" style="-fx-background-color: cfbfa6;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="Controllers.Back_AjouterCDPageController">
+   <children>
+      <Pane layoutX="86.0" layoutY="71.0" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: ffffff;" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="50.0">
+         <children>
+            <Label fx:id="titre" layoutX="203.0" layoutY="22.0" text="Ajouter un centre de dressage" textFill="#f67777">
+               <font>
+                  <Font name="System Bold" size="28.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="libelle" layoutX="204.0" layoutY="153.0" promptText="Libelle" />
+            <JFXTextField fx:id="adresse" layoutX="204.0" layoutY="225.0" promptText="Adresse" />
+            <JFXTextField fx:id="tel" layoutX="204.0" layoutY="281.0" promptText="Téléphone" />
+            <JFXTextField fx:id="description" layoutX="204.0" layoutY="339.0" promptText="Description" />
+            <JFXTextField fx:id="lan" layoutX="513.0" layoutY="153.0" promptText="Langitude" />
+            <JFXTextField fx:id="lat" layoutX="513.0" layoutY="225.0" promptText="Latitude" />
+            <JFXTextField fx:id="image" layoutX="520.0" layoutY="281.0" promptText="URL image" />
+            <JFXButton layoutX="546.0" layoutY="387.0" onAction="#AjouterCentreDressage" style="-fx-background-color: f67777;" text="Ajouter" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </Pane>
+      <Label layoutX="80.0" layoutY="14.0" prefHeight="46.0" prefWidth="82.0" text="Admin" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="60.0" fitWidth="70.0" layoutX="14.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Ressources/Images/dog%20(1).png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
