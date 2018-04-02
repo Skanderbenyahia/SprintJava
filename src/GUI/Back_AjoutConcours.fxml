@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane fx:id="mainContentPane" prefHeight="581.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Back_AjoutConcoursController">
+   <children>
+      <JFXTabPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="581.0" prefWidth="1200.0" rotateGraphic="true">
+         <tabs>
+            <Tab text="Ajout Concour">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <JFXButton fx:id="addBt" buttonType="RAISED" layoutX="552.0" layoutY="369.0" onAction="#addConcour" prefHeight="37.0" prefWidth="113.0" style="-fx-background-color: #dd6363;" text="Add" textFill="WHITE" />
+                        <JFXTextField fx:id="nbParticipants" alignment="CENTER" labelFloat="true" layoutX="507.0" layoutY="211.0" prefHeight="42.0" prefWidth="203.0" promptText="Nombre Participant" style="-fx-background-color: #dd6363;">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </JFXTextField>
+                        <JFXTextField fx:id="description" alignment="CENTER" labelFloat="true" layoutX="503.0" layoutY="132.0" prefHeight="43.0" prefWidth="210.0" promptText="Description" style="-fx-background-color: #dd6363;">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </JFXTextField>
+                        <Separator layoutX="503.0" layoutY="107.0" prefHeight="11.0" prefWidth="234.0" />
+                        <Label layoutX="482.0" layoutY="46.0" prefHeight="61.0" prefWidth="296.0" text="Nouveau Concour" textFill="#d05353">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Label>
+                        <DatePicker fx:id="dateConcour" layoutX="510.0" layoutY="286.0" prefHeight="50.0" prefWidth="203.0" promptText="Date de concour" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab onSelectionChanged="#afficherConcour" text="Afficher Concour">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="concourTable" layoutX="28.0" layoutY="104.0" prefHeight="369.0" prefWidth="338.0">
+                          <columns>
+                            <TableColumn prefWidth="75.0" text="#" />
+                          </columns>
+                        </TableView>
+                        <JFXTextField fx:id="concourDescriptionMod" layoutX="465.0" layoutY="133.0" prefHeight="39.0" prefWidth="190.0" promptText="Description" style="-fx-background-color: #dd6363;">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </JFXTextField>
+                        <Separator layoutX="388.0" layoutY="27.0" orientation="VERTICAL" prefHeight="445.0" prefWidth="31.0" />
+                        <Label layoutX="38.0" layoutY="14.0" prefHeight="54.0" prefWidth="176.0" text="Concours" textFill="#bf4444">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Label>
+                        <Separator layoutX="38.0" layoutY="67.0" prefWidth="200.0" />
+                        <JFXTextField fx:id="concourNbrePlaceMod" layoutX="465.0" layoutY="207.0" prefHeight="39.0" prefWidth="193.0" promptText="Nombre de place" style="-fx-background-color: #dd6363;">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </JFXTextField>
+                        <DatePicker fx:id="concourDateMod" layoutX="464.0" layoutY="289.0" prefHeight="44.0" prefWidth="196.0" promptText="Date de concour" />
+                        <JFXButton fx:id="concourModBt" layoutX="515.0" layoutY="363.0" onAction="#concourModifier" prefHeight="34.0" prefWidth="90.0" style="-fx-background-color: #dd6363;" text="Modifier" />
+                        <JFXTextField fx:id="concourIdMod" disable="true" editable="false" labelFloat="true" layoutX="419.0" layoutY="58.0" prefHeight="30.0" prefWidth="128.0" promptText="ID">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </JFXTextField>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Ajout Conseil">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <JFXButton fx:id="conseilAddBt" buttonType="RAISED" layoutX="645.0" layoutY="413.0" onAction="#addConseil" prefHeight="37.0" prefWidth="113.0" style="-fx-background-color: #dd6363;" text="Add" textFill="WHITE" />
+                        <JFXTextField fx:id="conseilText" alignment="CENTER" labelFloat="true" layoutX="596.0" layoutY="255.0" prefHeight="42.0" prefWidth="207.0" promptText="Text" style="-fx-background-color: #dd6363;">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </JFXTextField>
+                        <JFXTextField fx:id="conseilTitre" alignment="CENTER" labelFloat="true" layoutX="596.0" layoutY="176.0" prefHeight="43.0" prefWidth="210.0" promptText="Titre" style="-fx-background-color: #dd6363;">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </JFXTextField>
+                        <Separator layoutX="596.0" layoutY="151.0" prefHeight="11.0" prefWidth="234.0" />
+                        <Label layoutX="575.0" layoutY="90.0" prefHeight="61.0" prefWidth="296.0" text="Nouveau Conseil" textFill="#d05353">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Label>
+                        <JFXComboBox fx:id="conseilType" labelFloat="true" layoutX="594.0" layoutY="329.0" prefHeight="45.0" prefWidth="215.0" promptText="Type" style="-fx-background-color: #dd6363;" />
+                     </children></AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Afficher Conseil">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+         </tabs>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </JFXTabPane>
+   </children>
+</Pane>

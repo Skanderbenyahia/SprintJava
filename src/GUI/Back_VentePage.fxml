@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1200.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="Controllers.Back_VentePageController">
+   <children>
+      <Pane prefHeight="60.0" prefWidth="1209.0" style="-fx-background-color: cfbfa6;">
+         <children>
+            <ImageView fitHeight="60.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Ressources/Images/dog%20(1).png" />
+               </image>
+            </ImageView>
+            <Label layoutX="564.0" layoutY="1.0" text="Ventes Page" textFill="#f5f5f5">
+               <font>
+                  <Font name="System Bold" size="41.0" />
+               </font>
+            </Label>
+            <Hyperlink layoutX="1104.0" layoutY="19.0" text="Déconnexion" textFill="#f2f2f2" />
+            <Button layoutX="-8.0" layoutY="1.0" mnemonicParsing="false" onAction="#Back_AdminLayout" opacity="0.0" prefHeight="59.0" prefWidth="77.0" text="Button" />
+         </children>
+      </Pane>
+      <JFXTabPane layoutY="59.0" prefHeight="656.0" prefWidth="1209.0" stylesheets="@../Ressources/css/tabpane_back.css">
+         <tabs>
+            <Tab text="Catégorie">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="CategorieView" layoutX="447.0" layoutY="191.0" onMouseClicked="#selected" prefHeight="138.0" prefWidth="462.0">
+                          <columns>
+                            <TableColumn fx:id="Column_libelle" prefWidth="461.0" text="Libelle" />
+                          </columns>
+                        </TableView>
+                        <Label layoutX="528.0" layoutY="65.0" text="Liste des catégories" textFill="#cfbfa6">
+                           <font>
+                              <Font name="System Bold" size="26.0" />
+                           </font>
+                        </Label>
+                        <HBox layoutX="353.0" layoutY="367.0" prefHeight="60.0" prefWidth="686.0" spacing="10.0">
+                           <children>
+                              <Button fx:id="AjouterC" mnemonicParsing="false" onAction="#AjouterCategorie" style="-fx-background-color: cfbfa6;" text="Ajouter une catégorie" />
+                              <Button fx:id="ModifierC" mnemonicParsing="false" onAction="#ModifierCategorie" style="-fx-background-color: cfbfa6;" text="Modifier une catégorie" />
+                              <Button fx:id="SupprimerC" mnemonicParsing="false" style="-fx-background-color: cfbfa6;" text="Supprimer une catégorie" />
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Produit">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="1200.0" />
+              </content>
+            </Tab>
+         </tabs>
+      </JFXTabPane>
+   </children>
+</AnchorPane>
