@@ -5,6 +5,7 @@
  */
 package Services;
 
+import Entity.CentreDressage;
 import Entity.User;
 import Technique.DataSource;
 import java.io.Console;
@@ -13,8 +14,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -71,7 +76,7 @@ public class UserService {
     
     public void loggin(User u, int id) 
     {
-       String req="UPDATE `user` SET `enabled`=1 WHERE `id`=? AND enabled=0 ";
+       String req="UPDATE `user` SET `enabled`=0 WHERE `id`=? AND enabled=1 ";
         try {
             PreparedStatement prepared= con.prepareStatement(req);
             prepared.setInt(1,id);
@@ -101,23 +106,29 @@ public class UserService {
         }
     }
     
-     public void Desactivate(int id) {
-
-        try {
-            String req = "UPDATE `user` SET `enabled`=0 WHERE `id`=?";
-
-            PreparedStatement ste = con.prepareStatement(req);
-
-            ste.setInt(1, id);
-            ste.executeUpdate();
-
-        } catch (SQLException ex) {
-            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
-
+    
+    public List<User> AfficherUser()throws SQLException
+    {
+        String req="SELECT * FROM user";
+        ResultSet r =statement.executeQuery(req);
+        List<User> users =new ArrayList<>();
+        while(r.next())
+        {
+             users.add(new User(r.getString("nom"),r.getString("prenom"),r.getString("adresse"),r.getString("email"),r.getInt("telephone"),r.getString("roles")));
         }
+        return users;
     }
     
-    
+    public ObservableList<User> getObservableUser () throws SQLException
+        {
+          ObservableList<User> Listuser = FXCollections.observableArrayList();
+          List<User> user=  AfficherUser();
+             for (User   u : user)
+               {
+                 Listuser.add(u);
+               }
+                 return Listuser;    
+        }
     
     
     

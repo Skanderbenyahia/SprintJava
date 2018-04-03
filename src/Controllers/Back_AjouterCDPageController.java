@@ -18,6 +18,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 
 /**
@@ -58,6 +59,7 @@ public class Back_AjouterCDPageController implements Initializable,ControllerCla
     private void AjouterCentreDressage(ActionEvent event) throws SQLException, IOException {
         
         CentreDressageService cd= new CentreDressageService();
+        if(ValidateFields()){
         if(d!=null)
         {
             updateCentre();
@@ -78,6 +80,7 @@ public class Back_AjouterCDPageController implements Initializable,ControllerCla
          FXMLLoader loader= new FXMLLoader(getClass().getResource("../GUI/Back_ServicePage.fxml"));
         Parent root =loader.load();
         tel.getScene().setRoot(root);
+        }
     }
 
     @Override
@@ -104,6 +107,31 @@ public class Back_AjouterCDPageController implements Initializable,ControllerCla
     d.setImage(image.getText());
     }
 
+     private boolean ValidateFields()
+     {
+         if(libelle.getText().isEmpty() | adresse.getText().isEmpty() | description.getText().isEmpty() 
+                 | image.getText().isEmpty() |tel.getText().isEmpty()|lat.getText().isEmpty()|lan.getText().isEmpty())
+         {
+                Alert alert= new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Validation Champs");
+                alert.setHeaderText(null);
+                alert.setContentText("Veuillez remplir tout les champs !");
+                alert.showAndWait();
+         return false;
+         }
+         
+          if((Integer.parseInt(tel.getText()) | Integer.parseInt(lan.getText()) |Integer.parseInt(lat.getText()))<0)
+         {
+                Alert alert= new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Validation Champs");
+                alert.setHeaderText(null);
+                alert.setContentText("Veuillez Vérifier le numéro de téléphone !");
+                alert.showAndWait();
+         return false;
+         }
+        return true;
+     
+     }
     @Override
     public void preloadData(Categorie c) {
     }

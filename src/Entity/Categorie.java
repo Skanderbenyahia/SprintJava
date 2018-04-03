@@ -13,7 +13,6 @@ import java.util.List;
 public class Categorie {
    private int id;
    private String libelle;
-   List<Produit> produits;
 
     public Categorie(int id, String libelle) {
         this.id = id;
@@ -25,12 +24,11 @@ public class Categorie {
     }
 
     public Categorie() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public String toString() {
-        return "Categorie{" + "libelle=" + libelle + ", produits=" + produits + '}';
+        return "Categorie{" + "libelle=" + libelle + '}';
     }
 
     public int getId() {
@@ -49,16 +47,8 @@ public class Categorie {
         this.libelle = libelle;
     }
 
-    public List<Produit> getProduits() {
-        return produits;
+    public Categorie(int id) {
+        this.id = id;
     }
-
-    public void setProduits(List<Produit> produits) {
-        this.produits = produits;
-    }
-   
-   
   
-    
-    
 }
