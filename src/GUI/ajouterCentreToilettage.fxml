@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AjouterCentreToilettageController">
+   <children>
+      <JFXButton fx:id="AjouterCentreTBT" layoutX="302.0" layoutY="510.0" onAction="#AjouterCentreToilettage" style="-fx-background-color: #FE2EF7;" text="Ajouter" />
+      <JFXTextField fx:id="libelleTXT" layoutX="265.0" layoutY="60.0" />
+      <JFXTextField fx:id="adresseTXT" layoutX="262.0" layoutY="119.0" />
+      <JFXTextField fx:id="telephoneTXT" layoutX="262.0" layoutY="175.0" />
+      <JFXTextField fx:id="descriptionTXT" layoutX="265.0" layoutY="234.0" />
+      <Label layoutX="177.0" layoutY="77.0" text="libelle" />
+      <Label layoutX="173.0" layoutY="136.0" text="adresse" />
+      <Label layoutX="167.0" layoutY="192.0" text="telephone" />
+      <Label layoutX="164.0" layoutY="251.0" text="description" />
+      <Label layoutX="178.0" layoutY="315.0" text="image" />
+      <JFXButton fx:id="loadBTN" layoutX="443.0" layoutY="387.0" onAction="#load" text="Charger image" />
+      <ImageView fx:id="imageviewcentre" fitHeight="150.0" fitWidth="148.0" layoutX="259.0" layoutY="324.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="label1" layoutX="451.0" layoutY="77.0" prefHeight="17.0" prefWidth="148.0" text="ce champs est obligatoire" />
+      <Label fx:id="label2" layoutX="443.0" layoutY="128.0" prefHeight="17.0" prefWidth="148.0" text="ce champs est obligatoire" />
+      <Label fx:id="label3" layoutX="443.0" layoutY="184.0" prefHeight="17.0" prefWidth="148.0" text="ce champs est obligatoire" />
+      <Label fx:id="label4" layoutX="443.0" layoutY="243.0" prefHeight="17.0" prefWidth="148.0" text="ce champs est obligatoire" />
+      <Label fx:id="label5" layoutX="443.0" layoutY="324.0" prefHeight="20.0" prefWidth="148.0" text="ce champs est obligatoire" />
+   </children>
+</AnchorPane>

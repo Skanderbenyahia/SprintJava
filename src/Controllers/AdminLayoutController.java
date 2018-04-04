@@ -16,6 +16,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -40,6 +41,8 @@ public class AdminLayoutController implements Initializable {
     @FXML
     private Pane contentPane;
     Pane addConcourPane;
+    @FXML
+    private Label hygieneEtSoin;
 
     /**
      * Initializes the controller class.
@@ -72,6 +75,24 @@ public class AdminLayoutController implements Initializable {
     addConcourPane = FXMLLoader.load(getClass().getResource("/GUI/Back_AjoutConcours.fxml"));
     contentPane.getChildren().clear();
     contentPane.getChildren().add(addConcourPane);
+    }
+
+    private void afficheBackCentreT(ActionEvent event) throws IOException {
+         Parent vente= FXMLLoader.load((getClass().getResource("../GUI/Back_ListeVeterinaire.fxml")));
+         Scene ventePage= new Scene (vente);
+         Stage window=(Stage) ((Node)event.getSource()).getScene().getWindow();
+         window.setScene(ventePage);
+         window.show();
+    }
+
+    @FXML
+    private void CentreT_veterinaire(ActionEvent event) throws IOException 
+    {
+         Parent vente= FXMLLoader.load((getClass().getResource("/GUI/Back_HygienePage.fxml")));
+         Scene ventePage= new Scene (vente);
+         Stage window=(Stage) ((Node)event.getSource()).getScene().getWindow();
+         window.setScene(ventePage);
+         window.show();
     }
     
 }

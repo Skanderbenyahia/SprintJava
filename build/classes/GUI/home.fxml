@@ -75,7 +75,7 @@
                   <Image url="@../Ressources/Images/walking-with-dog.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="30.0" fitWidth="50.0" layoutX="27.0" layoutY="331.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="veterinaire" fitHeight="30.0" fitWidth="50.0" layoutX="27.0" layoutY="331.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Ressources/Images/syringe.png" />
                </image>

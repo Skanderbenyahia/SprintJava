@@ -58,12 +58,7 @@
                   <Font size="23.0" />
                </font>
             </Label>
-            <Button fx:id="hygiene_button" layoutX="727.0" mnemonicParsing="false" opacity="0.0" prefHeight="60.0" prefWidth="214.0" text="Hygiène &amp; soin" textFill="WHITE">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Button>
-            <Label layoutX="774.0" layoutY="13.0" text="Hygiène &amp; soin" textFill="WHITE">
+            <Label fx:id="hygieneEtSoin" layoutX="774.0" layoutY="13.0" text="Hygiène &amp; soin" textFill="WHITE">
                <font>
                   <Font size="23.0" />
                </font>
@@ -103,6 +98,11 @@
                   <Image url="@../Ressources/Images/animal-paw-print.png" />
                </image>
             </ImageView>
+            <Button fx:id="hygiene_button" layoutX="727.0" mnemonicParsing="false" onAction="#CentreT_veterinaire" opacity="0.0" prefHeight="60.0" prefWidth="214.0" text="Hygiène &amp; soin" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
          </children>
       </Pane>
       <Pane fx:id="contentPane" layoutY="118.0" />

@@ -88,7 +88,7 @@ public class InscriptionController implements Initializable {
         us.signIn(p);
         Stage stage;
 
-        Parent page2 = FXMLLoader.load(getClass().getResource("start.fxml"));
+        Parent page2 = FXMLLoader.load(getClass().getResource("../GUI/start.fxml"));
         Scene scene = new Scene(page2);
         stage = (Stage) inscrire.getScene().getWindow();
         stage.hide();
