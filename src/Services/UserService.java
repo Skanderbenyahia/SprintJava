@@ -131,7 +131,21 @@ public class UserService {
         }
     
     
-    
+    public void Desactivate(int id) {
+
+        try {
+            String req = "UPDATE `user` SET `enabled`=0 WHERE `id`=?";
+
+            PreparedStatement ste = con.prepareStatement(req);
+
+            ste.setInt(1, id);
+            ste.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+        }
     
 }
 

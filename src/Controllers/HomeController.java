@@ -7,8 +7,11 @@ package Controllers;
 
 import Entity.Session;
 import Entity.User;
+import Services.UserService;
 import Technique.DataSource;
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXToggleButton;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -20,14 +23,18 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
-import javafx.scene.control.Tab;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -42,30 +49,10 @@ private Connection con= DataSource.getInstance().getConnexion();
     @FXML
     private Button location;
     @FXML
-    private Hyperlink deconnexion;
-    @FXML
-    private Hyperlink profil;
+    private Button deconnexion;
     @FXML
     private Label bienvenue;
-    @FXML
-    private AnchorPane acceuil;
-    @FXML
-    private AnchorPane adoption;
-    @FXML
-    private AnchorPane ventes;
-    @FXML
-    private AnchorPane typevente;
-    @FXML
-    private JFXToggleButton toggle;
-    @FXML
-    private AnchorPane content;
-    @FXML
-    private AnchorPane services;
-    @FXML
-    private AnchorPane soins;
-    @FXML
-    private AnchorPane events;
-
+    
     /**
      * Initializes the controller class.
      */
@@ -92,7 +79,41 @@ private Connection con= DataSource.getInstance().getConnexion();
     }    
 
     @FXML
-    private void afficherAccessoires(MouseEvent event) {
+    private void afficherAcceuil(ActionEvent event) {     
+    }
+
+    @FXML
+    private void afficherAdoption(ActionEvent event) {
+    }
+
+    @FXML
+    private void afficherVentes(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/Ventes.fxml"));
+        Parent root=loader.load();
+        bienvenue.getScene().setRoot(root);
+        
+    }
+
+    @FXML
+    private void afficherServices(ActionEvent event) {
+    }
+
+    @FXML
+    private void afficherSoins(ActionEvent event) {
+    }
+
+    @FXML
+    private void afficherEvents(ActionEvent event) {
+    }
+
+
+    @FXML
+    private void deconnexion(ActionEvent event) throws IOException {
+        UserService us = new UserService();
+        us.Desactivate(Session.getCurrentSession());
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/Start.fxml"));
+        Parent root=loader.load();
+        bienvenue.getScene().setRoot(root);
     }
     
 }
