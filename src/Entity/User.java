@@ -174,6 +174,17 @@ public class User {
         return "User{" + "nom=" + nom + ", prenom=" + prenom + ", adresse=" + adresse + ", email=" + email + ", tel=" + tel + ", roles=" + roles + ", username=" + username + ", password=" + password + ", etat=" + etat + '}';
     }
 
+<<<<<<< HEAD
+=======
+    public User(String nom, String prenom, String adresse, String email, int tel, String roles) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.adresse = adresse;
+        this.email = email;
+        this.tel = tel;
+        this.roles = roles;
+    }
+>>>>>>> 9072e5acd28a168bfdd81d8a50a755af7234be3f
 
     
 

@@ -5,6 +5,7 @@
  */
 package Services;
 
+import Entity.CentreDressage;
 import Entity.User;
 import Technique.DataSource;
 import java.io.Console;
@@ -17,6 +18,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -73,7 +76,7 @@ public class UserService {
     
     public void loggin(User u, int id) 
     {
-       String req="UPDATE `user` SET `enabled`=1 WHERE `id`=? AND enabled=0 ";
+       String req="UPDATE `user` SET `enabled`=0 WHERE `id`=? AND enabled=1 ";
         try {
             PreparedStatement prepared= con.prepareStatement(req);
             prepared.setInt(1,id);
@@ -103,7 +106,32 @@ public class UserService {
         }
     }
     
-     public void Desactivate(int id) {
+    
+    public List<User> AfficherUser()throws SQLException
+    {
+        String req="SELECT * FROM user";
+        ResultSet r =statement.executeQuery(req);
+        List<User> users =new ArrayList<>();
+        while(r.next())
+        {
+             users.add(new User(r.getString("nom"),r.getString("prenom"),r.getString("adresse"),r.getString("email"),r.getInt("telephone"),r.getString("roles")));
+        }
+        return users;
+    }
+    
+    public ObservableList<User> getObservableUser () throws SQLException
+        {
+          ObservableList<User> Listuser = FXCollections.observableArrayList();
+          List<User> user=  AfficherUser();
+             for (User   u : user)
+               {
+                 Listuser.add(u);
+               }
+                 return Listuser;    
+        }
+    
+    
+    public void Desactivate(int id) {
 
         try {
             String req = "UPDATE `user` SET `enabled`=0 WHERE `id`=?";
@@ -117,6 +145,7 @@ public class UserService {
             Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
 
         }
+<<<<<<< HEAD
     }
      
      
@@ -161,6 +190,9 @@ public class UserService {
     
     
     
+=======
+        }
+>>>>>>> 9072e5acd28a168bfdd81d8a50a755af7234be3f
     
 }
 

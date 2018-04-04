@@ -3,6 +3,8 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -21,49 +23,38 @@
             </ImageView>
             <Label layoutX="84.0" layoutY="6.0" text="ADMIN" textFill="WHITE">
                <font>
-                  <Font size="32.0" />
+                  <Font name="System Bold" size="32.0" />
                </font>
             </Label>
          </children>
       </Pane>
       <Pane layoutY="59.0" prefHeight="60.0" prefWidth="1200.0" style="-fx-background-color: f67777;">
          <children>
-            <Button fx:id="Adoption_button" layoutX="128.0" layoutY="-3.0" mnemonicParsing="false" opacity="0.0" prefHeight="60.0" prefWidth="156.0" text="Adoption" textFill="WHITE">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Button>
             <Label layoutX="184.0" layoutY="17.0" text="Adoption" textFill="WHITE">
                <font>
                   <Font size="23.0" />
                </font>
             </Label>
-            <Button fx:id="Ventes_button" layoutX="336.0" layoutY="7.0" mnemonicParsing="false" onAction="#VentePage" opacity="0.0" prefHeight="47.0" prefWidth="156.0" text="Ventes" textFill="WHITE">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Button>
             <Label layoutX="391.0" layoutY="13.0" text="Ventes" textFill="WHITE">
                <font>
                   <Font size="23.0" />
                </font>
             </Label>
-            <Button fx:id="Services_button" layoutX="528.0" layoutY="-4.0" mnemonicParsing="false" onAction="#ServicePage" opacity="0.0" prefHeight="60.0" prefWidth="164.0" text="Services" textFill="WHITE">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Button>
             <Label layoutX="584.0" layoutY="16.0" text="Services" textFill="WHITE">
                <font>
                   <Font size="23.0" />
                </font>
             </Label>
+<<<<<<< HEAD
             <Label fx:id="hygieneEtSoin" layoutX="774.0" layoutY="13.0" text="Hygiène &amp; soin" textFill="WHITE">
+=======
+            <Label layoutX="774.0" layoutY="13.0" text="Hygiène &amp; soin" textFill="WHITE">
+>>>>>>> 9072e5acd28a168bfdd81d8a50a755af7234be3f
                <font>
                   <Font size="23.0" />
                </font>
             </Label>
-            <Button fx:id="event_button" layoutX="986.0" mnemonicParsing="false" onAction="#showEvents" opacity="0.0" prefHeight="60.0" prefWidth="214.0" text="Evènements" textFill="WHITE">
+            <Button fx:id="event_button" layoutX="986.0" mnemonicParsing="false" opacity="0.0" prefHeight="60.0" prefWidth="214.0" text="Evènements" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
@@ -98,13 +89,46 @@
                   <Image url="@../Ressources/Images/animal-paw-print.png" />
                </image>
             </ImageView>
+<<<<<<< HEAD
             <Button fx:id="hygiene_button" layoutX="727.0" mnemonicParsing="false" onAction="#CentreT_veterinaire" opacity="0.0" prefHeight="60.0" prefWidth="214.0" text="Hygiène &amp; soin" textFill="WHITE">
+=======
+            <Button fx:id="Adoption_button" layoutX="128.0" layoutY="-3.0" mnemonicParsing="false" opacity="0.0" prefHeight="60.0" prefWidth="156.0" text="Adoption" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="Ventes_button" layoutX="336.0" layoutY="7.0" mnemonicParsing="false" onAction="#VentePage" opacity="0.0" prefHeight="47.0" prefWidth="156.0" text="Ventes" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="Services_button" layoutX="528.0" layoutY="-4.0" mnemonicParsing="false" onAction="#ServicePage" opacity="0.0" prefHeight="60.0" prefWidth="164.0" text="Services" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="hygiene_button" layoutX="727.0" mnemonicParsing="false" opacity="0.0" prefHeight="60.0" prefWidth="214.0" text="Hygiène &amp; soin" textFill="WHITE">
+>>>>>>> 9072e5acd28a168bfdd81d8a50a755af7234be3f
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
          </children>
       </Pane>
-      <Pane fx:id="contentPane" layoutY="118.0" />
+      <TableView fx:id="UserView" layoutX="254.0" layoutY="295.0" prefHeight="294.0" prefWidth="754.0" stylesheets="@../Ressources/css/tabpane_back.css">
+        <columns>
+          <TableColumn fx:id="nom" prefWidth="120.0" text="Nom" />
+          <TableColumn fx:id="prenom" prefWidth="120.0" text="Prenom" />
+            <TableColumn fx:id="adresse" prefWidth="120.0" text="Adresse" />
+            <TableColumn fx:id="email" prefWidth="120.0" text="Email" />
+            <TableColumn fx:id="tel" prefWidth="120.0" text="Telephone" />
+            <TableColumn fx:id="role" prefWidth="150.0" text="Role" />
+        </columns>
+      </TableView>
+      <Label layoutX="465.0" layoutY="195.0" text="Liste des utilisateurs" textFill="#cfbfa6">
+         <font>
+            <Font name="System Bold" size="33.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

@@ -6,6 +6,7 @@
 package Services;
 
 import Entity.Categorie;
+import Entity.CentreDressage;
 import Technique.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,6 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 
 /**
@@ -53,9 +56,21 @@ public class CategorieService {
         }
         return categories;
     }
+    
+     public ObservableList<Categorie> getObservableCategorie () throws SQLException
+        {
+          ObservableList<Categorie> ListCategorie = FXCollections.observableArrayList();
+          List<Categorie> categorie =  AfficherCategorie();
+             for (Categorie   c : categorie)
+               {
+                 ListCategorie.add(c);
+               }
+                 return ListCategorie;    
+        }
+    
     public void SupprimerCategorie(int id) throws SQLException   
     {
-        int count=0;
+        /*int count=0;
         String req="SELECT count(*) FROM produit where categorie='"+id+"'";
         ResultSet r =ste.executeQuery(req); 
         while(r.next())
@@ -63,11 +78,11 @@ public class CategorieService {
              count=r.getInt(1);
         }
         if(count==0)
-        {
+        {*/
            String req2="DELETE FROM categorie WHERE id='"+id+"' ";
            PreparedStatement pre = con.prepareStatement(req2);
            pre.executeUpdate();    
-        }
+        /*}
         else
         {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -75,17 +90,29 @@ public class CategorieService {
             alert.setHeaderText("Categorie existante dans un produit");
             alert.setContentText("Veuillez supprimer les produits qui contient cette categorie");
             alert.showAndWait();
-        }
+        }*/
             
     }
     
     public void ModifierCategorie(Categorie c) throws SQLException
     {
-        String req="UPDATE categorie SET libelle=(?) WHERE id=(?) ";
+        String req="UPDATE categorie SET libelle=(?) WHERE id=(?)";
         PreparedStatement pre = con.prepareStatement(req);
         pre.setString(1,c.getLibelle());
         pre.setInt(2,c.getId());
         pre.executeUpdate();    
     }
-    
+  
+      public ObservableList<Integer> IDCategorie () throws SQLException
+      {
+       String req="SELECT id FROM categorie";
+        ResultSet r =ste.executeQuery(req);
+           final ObservableList<Integer> ListIDCategorie = FXCollections.observableArrayList();
+
+        while(r.next())
+        {
+            ListIDCategorie.add(r.getInt("id"));
+        }
+        return ListIDCategorie;
+      }
 }

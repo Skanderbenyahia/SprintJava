@@ -12,15 +12,15 @@ package Entity;
 
 public class Produit {
     private int id;
-    private String categorie;
+    private int categorie;
     private String libelle;
     private String description;
-    private float prix;
+    private int prix;
     private String animal;
     private String image;
     private int quantite;
 
-    public Produit(int id, String categorie, String libelle, String description, float prix, String animal, String image, int quantite) {
+    public Produit(int id, int categorie, String libelle, String description, int prix, String animal, String image, int quantite) {
         this.id = id;
         this.categorie = categorie;
         this.libelle = libelle;
@@ -31,7 +31,7 @@ public class Produit {
         this.quantite = quantite;
     }
 
-    public Produit(String categorie, String libelle, String description, float prix, String animal, String image, int quantite) {
+    public Produit(int categorie, String libelle, String description, int prix, String animal, String image, int quantite) {
         this.categorie = categorie;
         this.libelle = libelle;
         this.description = description;
@@ -57,11 +57,11 @@ public class Produit {
         this.id = id;
     }
 
-    public String getCategorie() {
+    public int getCategorie() {
         return categorie;
     }
 
-    public void setCategorie(String categorie) {
+    public void setCategorie(int categorie) {
         this.categorie = categorie;
     }
 
@@ -81,11 +81,11 @@ public class Produit {
         this.description = description;
     }
 
-    public float getPrix() {
+    public int getPrix() {
         return prix;
     }
 
-    public void setPrix(float prix) {
+    public void setPrix(int prix) {
         this.prix = prix;
     }
 

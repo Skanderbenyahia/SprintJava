@@ -21,6 +21,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
@@ -64,6 +65,8 @@ public class InscriptionController implements Initializable {
     private void inscription(ActionEvent event) throws IOException {
         UserService us = new UserService();
         User p = new User();
+        if(ValidateFields())
+        {
         p.setNom(nom.getText());
         p.setPrenom(prenom.getText());
         p.setAdresse(adresse.getText());
@@ -84,7 +87,6 @@ public class InscriptionController implements Initializable {
             p.setRoles("ROLE_VETERINAIRE");
         }
         
-        
         us.signIn(p);
         Stage stage;
 
@@ -94,9 +96,25 @@ public class InscriptionController implements Initializable {
         stage.hide();
         stage.setScene(scene);
         stage.show();
+        }
     }
     
-    
+     private boolean ValidateFields()
+     {
+         if(nom.getText().isEmpty() | prenom.getText().isEmpty() | adresse.getText().isEmpty() 
+                 | email.getText().isEmpty() |username.getText().isEmpty()|password.getText().isEmpty())
+         {
+                Alert alert= new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Validation Champs");
+                alert.setHeaderText(null);
+                alert.setContentText("Veuillez remplir tout les champs !");
+                alert.showAndWait();
+         return false;
+         }
+  
+        return true;
+     
+     }
     
     
 }

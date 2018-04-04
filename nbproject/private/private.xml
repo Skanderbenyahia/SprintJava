@@ -3,10 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/Mimouna/Desktop/Git/SprintJava/</file>
             <file>file:/C:/Users/Mimouna/Desktop/Git/SprintJava/src/main/FXMain.java</file>
             <file>file:/C:/Users/Mimouna/Desktop/Git/SprintJava/src/Controllers/Back_HygienePageController.java</file>
             <file>file:/C:/Users/Mimouna/Desktop/Git/SprintJava/src/Controllers/AjouterCentreToilettageController.java</file>
+=======
+            <file>file:/C:/Users/bn-sk/Desktop/Git/SprintJava/src/Services/UserService.java</file>
+            <file>file:/C:/Users/bn-sk/Desktop/Git/SprintJava/src/Controllers/VentesController.java</file>
+            <file>file:/C:/Users/bn-sk/Desktop/Git/SprintJava/src/Controllers/HomeController.java</file>
+>>>>>>> 9072e5acd28a168bfdd81d8a50a755af7234be3f
         </group>
     </open-files>
 </project-private>
