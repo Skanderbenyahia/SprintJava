@@ -145,15 +145,16 @@ public class UserService {
             Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
 
         }
-<<<<<<< HEAD
     }
+
      
      
      
      
      /* liste veterinaire back */
      
-     public List<User>  listeVeterinaire () throws SQLException
+   
+    public List<User> listeVeterinaire () throws SQLException
     {
         String req = "SELECT *  FROM user where roles = 'ROLE_VETERINAIRE' ";
         ResultSet rs = statement.executeQuery(req);        
@@ -186,13 +187,6 @@ public class UserService {
     }
 
     
-    
-    
-    
-    
-=======
-        }
->>>>>>> 9072e5acd28a168bfdd81d8a50a755af7234be3f
     
 }
 

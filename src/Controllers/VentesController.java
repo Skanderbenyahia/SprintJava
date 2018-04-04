@@ -5,14 +5,19 @@
  */
 package Controllers;
 
+import Entity.Session;
+import Entity.User;
 import Services.ProduitService;
 import Technique.DataSource;
 import com.jfoenix.controls.JFXButton;
 import java.io.File;
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,6 +37,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
@@ -56,8 +62,8 @@ private Connection con= DataSource.getInstance().getConnexion();
     @FXML
     private Button location;
     
-    public String pathImage="C:\\Users\\bn-sk\\Documents\\NetBeansProjects\\Java\\SprintJava\\src\\Ressources\\Images\\";
-    public String pathButton="C:\\Users\\bn-sk\\Documents\\NetBeansProjects\\Java\\SprintJava\\src\\Ressources\\Images\\add-square-button.png";
+    public String pathImage="C:\\Users\\jabou\\Desktop\\SprintJava\\src\\Ressources\\Images\\";
+    public String pathButton="C:\\Users\\jabou\\Desktop\\SprintJava\\src\\Ressources\\Images\\add-square-button.png";
     @FXML
     private AnchorPane an;
     
@@ -67,6 +73,24 @@ private Connection con= DataSource.getInstance().getConnexion();
     enum animal{chien};
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        List currentUser = new ArrayList();
+        String req="select nom,prenom from user where id=(?)";
+        try {
+            PreparedStatement prepared= con.prepareStatement(req);
+            prepared.setInt(1,Session.getCurrentSession());
+            ResultSet resultat=prepared.executeQuery();
+        
+            while (resultat.next()) {
+                String nom=resultat.getString(1);
+                String prenom=resultat.getString(2);
+               currentUser.add(nom);
+               currentUser.add(prenom);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        bienvenue.setText("Connecté en tant que : "+currentUser.get(0)+" "+currentUser.get(1));
     try {
         AffichageProduit();
     } catch (SQLException ex) {
@@ -95,38 +119,45 @@ private Connection con= DataSource.getInstance().getConnexion();
                  File fileimage=new File(pathImage+rs.getString(7));
                  Image preimage=new Image(fileimage.toURI().toString());
                  ImageView image=new ImageView(preimage);
-                 image.setLayoutX(0);
-                 image.setLayoutY(0);
-                 image.setFitWidth(182);
-                 image.setFitHeight(203);
+                 image.setLayoutX(240);
+                 image.setLayoutY(37);
+                 image.setFitWidth(150);
+                 image.setFitHeight(180);
                  
                  Label libelle=new Label(rs.getString(3));
-                 libelle.setLayoutX(208);
-                 libelle.setLayoutY(58);
+                 Font font = new Font("Arial",24);
+                 libelle.setStyle("-fx-font-weight: bold");
+                 libelle.setFont(font);
+                 libelle.setTextFill(Color.web("cfbfa6"));
+                 libelle.setLayoutX(410);
+                 libelle.setLayoutY(48);
                  
-                 
-                 Label description=new Label(rs.getString(4));
-                 libelle.setLayoutX(193);
-                 libelle.setLayoutY(90);
-                 
+                 Label description=new Label("Ceci est un produit "+rs.getString(4));
+                 Font font2 = new Font("Arial",18);
+                 description.setFont(font2);
+                 description.setLayoutX(410);
+                 description.setLayoutY(90);
                  
                  Label prix=new Label(String.valueOf(rs.getInt(5))+" DT");
-                 libelle.setLayoutX(508);
-                 libelle.setLayoutY(51);
-                 
+                 prix.setTextFill(Color.web("f67777"));
+                 Font font3 = new Font("Arial",16);
+                 prix.setStyle("-fx-font-weight: bold");
+                 prix.setFont(font3);
+                 prix.setLayoutX(410);
+                 prix.setLayoutY(190);
                  
                  File file=new File(pathButton);
                  Image preimagebutton=new Image(file.toURI().toString());
                  ImageView imagebutton=new ImageView(preimagebutton);
                  
                  Button ajoutButton=new Button();
-                 ajoutButton.setLayoutX(493);
-                 ajoutButton.setLayoutY(85);
-                 ajoutButton.setPrefWidth(44);
-                 ajoutButton.setPrefHeight(31);
+                 ajoutButton.setLayoutX(480);
+                 ajoutButton.setLayoutY(170);
+                 ajoutButton.setPrefWidth(30);
+                 ajoutButton.setPrefHeight(20);
                  ajoutButton.setGraphic(imagebutton);
                  
-                 vbox.setSpacing(30.0);
+                  vbox.setSpacing(30.0);
                   separtor.setLayoutX(3.0);
                   separtor.setLayoutY(55.0);
                   separtor.setPrefHeight(4.0);

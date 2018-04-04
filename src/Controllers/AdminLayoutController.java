@@ -21,15 +21,12 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-<<<<<<< HEAD
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-=======
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
->>>>>>> 9072e5acd28a168bfdd81d8a50a755af7234be3f
 import javafx.stage.Stage;
 
 /**
@@ -50,12 +47,11 @@ public class AdminLayoutController implements Initializable {
     @FXML
     private Button event_button;
     @FXML
-<<<<<<< HEAD
     private Pane contentPane;
     Pane addConcourPane;
     @FXML
     private Label hygieneEtSoin;
-=======
+
     private TableView<User> UserView;
     @FXML
     private TableColumn<User, String> nom;
@@ -69,7 +65,6 @@ public class AdminLayoutController implements Initializable {
     private TableColumn<User, Integer> tel;
     @FXML
     private TableColumn<User, String> role;
->>>>>>> 9072e5acd28a168bfdd81d8a50a755af7234be3f
 
     /**
      * Initializes the controller class.
@@ -109,7 +104,6 @@ public class AdminLayoutController implements Initializable {
          window.setScene(ventePage);
          window.show();
     }
-<<<<<<< HEAD
 
     @FXML
     private void showEvents(ActionEvent event) throws IOException {
@@ -135,7 +129,5 @@ public class AdminLayoutController implements Initializable {
          window.setScene(ventePage);
          window.show();
     }
-=======
->>>>>>> 9072e5acd28a168bfdd81d8a50a755af7234be3f
-    
+
 }
