@@ -10,6 +10,7 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AdminLayoutController">
+<<<<<<< HEAD
    <children>
       <Pane layoutY="-1.0" prefHeight="60.0" prefWidth="1200.0" style="-fx-background-color: cfbfa6;">
          <children>
@@ -107,4 +108,116 @@
       </Pane>
       <Pane fx:id="contentPane" layoutY="118.0" />
    </children>
+=======
+    <children>
+        <Pane layoutY="-1.0" prefHeight="60.0" prefWidth="1200.0" style="-fx-background-color: cfbfa6;">
+            <children>
+                <Hyperlink layoutX="1089.0" layoutY="16.0" text="Déconnexion" />
+                <ImageView fitHeight="60.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../Ressources/Images/dog%20(1).png" />
+                    </image>
+                </ImageView>
+                <Label layoutX="84.0" layoutY="6.0" text="ADMIN" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="32.0" />
+                    </font>
+                </Label>
+            </children>
+        </Pane>
+        <Pane layoutY="59.0" prefHeight="60.0" prefWidth="1200.0" style="-fx-background-color: f67777;">
+            <children>
+                <Label layoutX="184.0" layoutY="17.0" text="Adoption" textFill="WHITE">
+                    <font>
+                        <Font size="23.0" />
+                    </font>
+                </Label>
+                <Label layoutX="391.0" layoutY="13.0" text="Ventes" textFill="WHITE">
+                    <font>
+                        <Font size="23.0" />
+                    </font>
+                </Label>
+                <Label layoutX="584.0" layoutY="16.0" text="Services" textFill="WHITE">
+                    <font>
+                        <Font size="23.0" />
+                    </font>
+                </Label>
+                <Label fx:id="hygieneEtSoin" layoutX="774.0" layoutY="13.0" text="Hygiène ; soin" textFill="WHITE">
+   
+                    <font>
+                        <Font size="23.0" />
+                    </font>
+                </Label>
+                <Button fx:id="event_button" layoutX="986.0" mnemonicParsing="false" opacity="0.0" prefHeight="60.0" prefWidth="214.0" text="Evènements" textFill="WHITE">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Button>
+                <Label layoutX="1045.0" layoutY="11.0" text="Evènements" textFill="WHITE">
+                    <font>
+                        <Font size="23.0" />
+                    </font>
+                </Label>
+                <ImageView fitHeight="30.0" fitWidth="50.0" layoutX="1010.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../Ressources/Images/election-event-on-a-calendar-with-star-symbol.png" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="30.0" fitWidth="50.0" layoutX="738.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../Ressources/Images/syringe.png" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="30.0" fitWidth="50.0" layoutX="550.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../Ressources/Images/walking-with-dog.png" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="30.0" fitWidth="50.0" layoutX="354.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../Ressources/Images/dog-dish.png" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="30.0" fitWidth="50.0" layoutX="150.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../Ressources/Images/animal-paw-print.png" />
+                    </image>
+                </ImageView>
+                <Button fx:id="hygiene_button" layoutX="727.0" mnemonicParsing="false" onAction="#CentreT_veterinaire" opacity="0.0" prefHeight="60.0" prefWidth="214.0" text="Hygiène &amp; soin" textFill="WHITE">
+                </Button>
+                <Button fx:id="Adoption_button" layoutX="128.0" layoutY="-3.0" mnemonicParsing="false" opacity="0.0" prefHeight="60.0" prefWidth="156.0" text="Adoption" textFill="WHITE">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Button>
+                <Button fx:id="Ventes_button" layoutX="336.0" layoutY="7.0" mnemonicParsing="false" onAction="#VentePage" opacity="0.0" prefHeight="47.0" prefWidth="156.0" text="Ventes" textFill="WHITE">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Button>
+                <Button fx:id="Services_button" layoutX="528.0" layoutY="-4.0" mnemonicParsing="false" onAction="#ServicePage" opacity="0.0" prefHeight="60.0" prefWidth="164.0" text="Services" textFill="WHITE">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Button>
+                
+            </children>
+        </Pane>
+        <TableView fx:id="UserView" layoutX="254.0" layoutY="295.0" prefHeight="294.0" prefWidth="754.0" stylesheets="@../Ressources/css/tabpane_back.css">
+            <columns>
+                <TableColumn fx:id="nom" prefWidth="120.0" text="Nom" />
+                <TableColumn fx:id="prenom" prefWidth="120.0" text="Prenom" />
+                <TableColumn fx:id="adresse" prefWidth="120.0" text="Adresse" />
+                <TableColumn fx:id="email" prefWidth="120.0" text="Email" />
+                <TableColumn fx:id="tel" prefWidth="120.0" text="Telephone" />
+                <TableColumn fx:id="role" prefWidth="150.0" text="Role" />
+            </columns>
+        </TableView>
+        <Label layoutX="465.0" layoutY="195.0" text="Liste des utilisateurs" textFill="#cfbfa6">
+            <font>
+                <Font name="System Bold" size="33.0" />
+            </font>
+        </Label>
+    </children>
+>>>>>>> parent of 814ff19... Revert "pdf working"
 </AnchorPane>

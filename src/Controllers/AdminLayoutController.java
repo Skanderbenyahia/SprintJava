@@ -37,9 +37,28 @@ public class AdminLayoutController implements Initializable {
     private Button hygiene_button;
     @FXML
     private Button event_button;
-    @FXML
     private Pane contentPane;
     Pane addConcourPane;
+<<<<<<< HEAD
+=======
+    @FXML
+    private Label hygieneEtSoin;
+
+    @FXML
+    private TableView<User> UserView;
+    @FXML
+    private TableColumn<User, String> nom;
+    @FXML
+    private TableColumn<User, String> prenom;
+    @FXML
+    private TableColumn<User, String> adresse;
+    @FXML
+    private TableColumn<User, String> email;
+    @FXML
+    private TableColumn<User, Integer> tel;
+    @FXML
+    private TableColumn<User, String> role;
+>>>>>>> parent of 814ff19... Revert "pdf working"
 
     /**
      * Initializes the controller class.
@@ -67,7 +86,6 @@ public class AdminLayoutController implements Initializable {
          window.show();
     }
 
-    @FXML
     private void showEvents(ActionEvent event) throws IOException {
     addConcourPane = FXMLLoader.load(getClass().getResource("/GUI/Back_AjoutConcours.fxml"));
     contentPane.getChildren().clear();
