@@ -7,7 +7,6 @@ package Controllers;
 
 import Entity.Categorie;
 import Entity.CentreDressage;
-import Entity.Produit;
 import Services.CategorieService;
 import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
@@ -19,7 +18,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 
 /**
@@ -27,7 +25,7 @@ import javafx.scene.control.Label;
  *
  * @author jabou
  */
-public class Back_AjouterCategoriePageController implements Initializable,VenteControllerClass {
+public class Back_AjouterCategoriePageController implements Initializable,ControllerClass {
 
     @FXML
     private JFXTextField libelle;
@@ -47,12 +45,10 @@ public class Back_AjouterCategoriePageController implements Initializable,VenteC
     private void AjouterCategorie(ActionEvent event) throws SQLException, IOException {
                 
         CategorieService cs= new CategorieService();
-        if(ValidateFields())
-        {
          if(c!=null)
         {
-          updateProduit();
-          cs.ModifierCategorie(c);
+            updateCentre();
+            cs.ModifierCategorie(c);
         }
          else
          {
@@ -63,7 +59,7 @@ public class Back_AjouterCategoriePageController implements Initializable,VenteC
         FXMLLoader loader= new FXMLLoader(getClass().getResource("../GUI/Back_VentePage.fxml"));
         Parent root =loader.load();
         libelle.getScene().setRoot(root);
-        }  
+        
     }
 
     @FXML
@@ -72,40 +68,22 @@ public class Back_AjouterCategoriePageController implements Initializable,VenteC
         Parent root =loader.load();
         libelle.getScene().setRoot(root);
     }
-    
-   @Override
-    public void preloadData(Categorie c) {
+
+     @Override
+    public void preloadData(Categorie c) 
+    {
         this.c=c;
         this.libelle.setText(c.getLibelle());
-        this.titre.setText("Modifier Categorie");
     }
     
-     public void updateProduit()
-    {
-      c.setLibelle(libelle.getText());
-    }
-    
-       private boolean ValidateFields()
-     {
-         if(libelle.getText().isEmpty() )
-         {
-                Alert alert= new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Validation Champs");
-                alert.setHeaderText(null);
-                alert.setContentText("Veuillez remplir tout les champs !");
-                alert.showAndWait();
-         return false;
-         }
-         
-         
-        return true;
-     
-     }
-     
     @Override
-    public void preloadData(Produit p) {
+    public void preloadData(CentreDressage d) {
     }
-
     
-
+     public void updateCentre()
+    {
+        c.setLibelle(libelle.getText());
+    }
+   
+    
 }

@@ -10,21 +10,14 @@ import Entity.ReservationPetsitter;
 import Services.CentreDressageService;
 import Services.ReservationPetsitterService;
 import com.jfoenix.controls.JFXTabPane;
-import com.jfoenix.controls.JFXTextField;
-import com.sun.deploy.util.SearchPath;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import java.util.function.Predicate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -42,7 +35,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 /**
@@ -96,13 +88,7 @@ public class Back_ServicePageController implements Initializable {
     private TableColumn<ReservationPetsitter, Integer> Column_Petsitter;
     @FXML
     private TableColumn<ReservationPetsitter, Integer> Column_Utilisateur;
-    @FXML
-    private JFXTextField search;
-    private ObservableList data= FXCollections.observableArrayList();
-    private ObservableList dataR= FXCollections.observableArrayList();
-    @FXML
-    private JFXTextField searchR;
-  
+   
   
 
     /**
@@ -128,8 +114,7 @@ public class Back_ServicePageController implements Initializable {
         
         try {
             CentreDressageService cd = new CentreDressageService();
-            data=cd.getObservableCentreDressage();
-            CentreDressageView.setItems(data);
+            CentreDressageView.setItems(cd.getObservableCentreDressage());
         } catch (SQLException ex) {
             Logger.getLogger(Back_ServicePageController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -147,71 +132,10 @@ public class Back_ServicePageController implements Initializable {
 
             try {
                 ReservationPetsitterService rs = new ReservationPetsitterService();
-                dataR=rs.getObservableReservationPetsitter();
-                ReservationPetsitterView.setItems(dataR);
+                ReservationPetsitterView.setItems(rs.getObservableReservationPetsitter());
         } catch (SQLException ex) {
             Logger.getLogger(Back_ServicePageController.class.getName()).log(Level.SEVERE, null, ex);
         }
-            
-            FilteredList<CentreDressage> filteredList= new FilteredList<>(data, e -> true);
-            search.setOnKeyReleased(e-> {
-                search.textProperty().addListener((observable, oldValue, newValue) -> {
-                    filteredList.setPredicate((Predicate<? super CentreDressage>) centre-> {
-                        if((newValue==null)|(newValue.isEmpty()))
-                    {
-                    return true;
-                    }
-                        String miniscule= newValue.toLowerCase();
-                        if(centre.getLibelle().toLowerCase().contains(miniscule))
-                            {
-                            return true; 
-                            }
-                           else  if(centre.getAdresse().toLowerCase().contains(miniscule))
-                            {
-                            return true; 
-                            }
-                            else  if(centre.getDescription().toLowerCase().contains(miniscule))
-                             {
-                                  return true; 
-                             }
-                      
-                        return false;
-                    });
-                });
-                SortedList<CentreDressage> sortedDate= new SortedList<>(filteredList);
-                sortedDate.comparatorProperty().bind(CentreDressageView.comparatorProperty());
-                CentreDressageView.setItems(sortedDate);
-            });
-            
-           
-                                              /* recherche*/
-                            //********************************************************//
-            FilteredList<ReservationPetsitter> filteredListR= new FilteredList<>(dataR, e -> true);
-            searchR.setOnKeyReleased(e-> {
-                searchR.textProperty().addListener((observable, oldValue, newValue) -> {
-                    filteredListR.setPredicate((Predicate<? super ReservationPetsitter>) reservation-> {
-                        if((newValue==null)|(newValue.isEmpty()))
-                    {
-                    return true;
-                    }
-                        String miniscule= newValue.toLowerCase();
-                        if(reservation.getDateD().toString().contains(newValue))
-                            {
-                            return true; 
-                            }
-                       else if(reservation.getDateF().toString().contains(newValue))
-                            {
-                            return true; 
-                            }
-                      
-                        return false;
-                    });
-                });
-                SortedList<ReservationPetsitter> sortedDateR= new SortedList<>(filteredListR);
-                sortedDateR.comparatorProperty().bind(ReservationPetsitterView.comparatorProperty());
-                ReservationPetsitterView.setItems(sortedDateR);
-            });
-            
          
     }    
 

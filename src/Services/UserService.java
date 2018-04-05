@@ -5,7 +5,6 @@
  */
 package Services;
 
-import Entity.CentreDressage;
 import Entity.User;
 import Technique.DataSource;
 import java.io.Console;
@@ -14,12 +13,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 
 /**
  *
@@ -76,7 +71,7 @@ public class UserService {
     
     public void loggin(User u, int id) 
     {
-       String req="UPDATE `user` SET `enabled`=0 WHERE `id`=? AND enabled=1 ";
+       String req="UPDATE `user` SET `enabled`=1 WHERE `id`=? AND enabled=0 ";
         try {
             PreparedStatement prepared= con.prepareStatement(req);
             prepared.setInt(1,id);
@@ -106,32 +101,7 @@ public class UserService {
         }
     }
     
-    
-    public List<User> AfficherUser()throws SQLException
-    {
-        String req="SELECT * FROM user";
-        ResultSet r =statement.executeQuery(req);
-        List<User> users =new ArrayList<>();
-        while(r.next())
-        {
-             users.add(new User(r.getString("nom"),r.getString("prenom"),r.getString("adresse"),r.getString("email"),r.getInt("telephone"),r.getString("roles")));
-        }
-        return users;
-    }
-    
-    public ObservableList<User> getObservableUser () throws SQLException
-        {
-          ObservableList<User> Listuser = FXCollections.observableArrayList();
-          List<User> user=  AfficherUser();
-             for (User   u : user)
-               {
-                 Listuser.add(u);
-               }
-                 return Listuser;    
-        }
-    
-    
-    public void Desactivate(int id) {
+     public void Desactivate(int id) {
 
         try {
             String req = "UPDATE `user` SET `enabled`=0 WHERE `id`=?";
@@ -146,46 +116,10 @@ public class UserService {
 
         }
     }
-
-     
-     
-     
-     
-     /* liste veterinaire back */
-     
-   
-    public List<User> listeVeterinaire () throws SQLException
-    {
-        String req = "SELECT *  FROM user where roles = 'ROLE_VETERINAIRE' ";
-        ResultSet rs = statement.executeQuery(req);        
-        List<User>  liste = new ArrayList<>();
-        while (rs.next())
-        {
-        
-            liste.add(new User( rs.getString("nom"),rs.getString("prenom"),rs.getString("adresse"),rs.getString("email"),rs.getInt("telephone")));
-        }
-        return liste ;
-       
-         
-    }
-     public List<User> getStat() {
-        String req = "select count(*) as nb,u.username from reservation_veterinaire r join user u on r.id_veterinaire_id=u.id GROUP BY id_veterinaire_id";
-        List<User> liste = new ArrayList<User>();
-        try {
-            PreparedStatement pst = con.prepareStatement(req);
-            ResultSet rs = pst.executeQuery();
-            while (rs.next()) {
-                User re = new User(rs.getString(2),rs.getDouble(1));
-                
-                liste.add(re);
-
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return liste;
-    }
-
+    
+    
+    
+    
     
     
 }

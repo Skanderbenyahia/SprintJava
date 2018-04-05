@@ -20,7 +20,6 @@ public class User {
     private String password;
     private String roles;
     private int etat;
-    private Double stat;
 
     public User(int id, String nom, String prenom, String adresse, String email, int tel, String username, String password, String roles, int etat) {
         this.id = id;
@@ -34,15 +33,6 @@ public class User {
         this.roles = roles;
         this.etat = etat;
     }
-
-    public User(String nom, String prenom, String adresse, String email, int tel) {
-        this.nom = nom;
-        this.prenom = prenom;
-        this.adresse = adresse;
-        this.email = email;
-        this.tel = tel;
-    }
-    
 
     public User() {
     }
@@ -72,11 +62,6 @@ public class User {
         this.password = password;
         this.roles = roles;
         this.etat = etat;
-    }
-
-    public User(String username, double stat) {
-        this.username=username;
-        this.stat=stat;
     }
 
     public int getId() {
@@ -159,29 +144,10 @@ public class User {
         this.etat = etat;
     }
 
-    public Double getStat() {
-        return stat;
-    }
-
-    public void setStat(Double stat) {
-        this.stat = stat;
-    }
-    
-
    
     @Override
     public String toString() {
         return "User{" + "nom=" + nom + ", prenom=" + prenom + ", adresse=" + adresse + ", email=" + email + ", tel=" + tel + ", roles=" + roles + ", username=" + username + ", password=" + password + ", etat=" + etat + '}';
-    }
-
-
-    public User(String nom, String prenom, String adresse, String email, int tel, String roles) {
-        this.nom = nom;
-        this.prenom = prenom;
-        this.adresse = adresse;
-        this.email = email;
-        this.tel = tel;
-        this.roles = roles;
     }
 
     
