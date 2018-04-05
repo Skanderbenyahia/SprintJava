@@ -46,12 +46,12 @@ public class AdminLayoutController implements Initializable {
     private Button hygiene_button;
     @FXML
     private Button event_button;
+    @FXML
     private Pane contentPane;
     Pane addConcourPane;
     @FXML
     private Label hygieneEtSoin;
 
-    @FXML
     private TableView<User> UserView;
     @FXML
     private TableColumn<User, String> nom;
@@ -105,6 +105,7 @@ public class AdminLayoutController implements Initializable {
          window.show();
     }
 
+    @FXML
     private void showEvents(ActionEvent event) throws IOException {
     addConcourPane = FXMLLoader.load(getClass().getResource("/GUI/Back_AjoutConcours.fxml"));
     contentPane.getChildren().clear();
