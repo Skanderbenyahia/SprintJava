@@ -17,7 +17,7 @@
 
 <Pane fx:id="mainContentPane" prefHeight="581.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Back_AjoutConcoursController">
    <children>
-      <JFXTabPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="581.0" prefWidth="1200.0" rotateGraphic="true">
+      <JFXTabPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="581.0" prefWidth="1200.0" rotateGraphic="true" stylesheets="@../Ressources/css/tabpaneeventback.css">
          <tabs>
             <Tab text="Ajout Concour">
               <content>
@@ -109,7 +109,42 @@
             </Tab>
             <Tab text="Afficher Conseil">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Separator layoutX="386.0" layoutY="37.0" orientation="VERTICAL" prefHeight="445.0" prefWidth="31.0" />
+                        <Label layoutX="491.0" layoutY="64.0" prefHeight="54.0" prefWidth="176.0" text="    Conseils" textFill="#bf4444">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Label>
+                        <Separator prefWidth="200.0" />
+                        <JFXTextField fx:id="conseilid" disable="true" editable="false" labelFloat="true" layoutX="419.0" layoutY="18.0" prefHeight="30.0" prefWidth="128.0" promptText="ID">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </JFXTextField>
+                        <JFXTextField fx:id="titre" layoutX="483.0" layoutY="146.0" prefHeight="39.0" prefWidth="193.0" style="-fx-background-color: #dd6363;" text="titre">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </JFXTextField>
+                        <JFXButton fx:id="conseilsModBt" layoutX="523.0" layoutY="336.0" onAction="#conseilsModifier" prefHeight="40.0" prefWidth="126.0" style="-fx-background-color: #dd6363;" text="Modifier" />
+                        <JFXTextField fx:id="type" layoutX="483.0" layoutY="274.0" prefHeight="39.0" prefWidth="193.0" promptText="Nombre de place" style="-fx-background-color: #dd6363;" text="type">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </JFXTextField>
+                        <JFXTextField fx:id="text" layoutX="484.0" layoutY="209.0" prefHeight="39.0" prefWidth="190.0" promptText="Description" style="-fx-background-color: #dd6363;" text="text">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </JFXTextField>
+                        <TableView fx:id="conseilTable" layoutX="23.0" layoutY="64.0" prefHeight="369.0" prefWidth="338.0">
+                           <columns>
+                              <TableColumn prefWidth="75.0" text="#" />
+                           </columns>
+                        </TableView>
+                     </children></AnchorPane>
               </content>
             </Tab>
          </tabs>

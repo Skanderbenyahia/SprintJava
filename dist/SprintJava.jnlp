@@ -8,20 +8,13 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <jar href="SprintJava.jar" size="1185395" download="eager" />
+    <jar href="SprintJava.jar" size="2153454" download="eager" />
     <jar href="lib\GMapsFX-2.0.8-SNAPSHOT-javadoc.jar" size="604183" download="eager" />
     <jar href="lib\GMapsFX-2.0.8-SNAPSHOT.jar" size="137318" download="eager" />
     <jar href="lib\GMapsFX-2.12.0.jar" size="207618" download="eager" />
     <jar href="lib\TrayTester.jar" size="52070" download="eager" />
+    <jar href="lib\itextpdf-5.1.0.jar" size="1614453" download="eager" />
     <jar href="lib\javax.mail.jar" size="654100" download="eager" />
-=======
-    <jar href="SprintJava.jar" size="1112875" download="eager" />
->>>>>>> 9072e5acd28a168bfdd81d8a50a755af7234be3f
-=======
-    <jar href="SprintJava.jar" size="2103579" download="eager" />
->>>>>>> b15034b94707e4308408017ea7eca3d1857e19f7
     <jar href="lib\jfoenix-8.0.1.jar" size="2405715" download="eager" />
     <jar href="lib\jfoenix.jar" size="2454308" download="eager" />
     <jar href="lib\jfreechart-1.0.19-demo.jar" size="1437338" download="eager" />

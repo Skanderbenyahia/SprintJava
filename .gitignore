@@ -3,3 +3,7 @@ nbproject/private/private.properties
 nbproject/project.properties
 *.properties
 *.properties
+*.properties
+*.properties
+*.properties
+build/*
