@@ -95,7 +95,11 @@ private Connection con= DataSource.getInstance().getConnexion();
     }
 
     @FXML
-    private void afficherServices(ActionEvent event) {
+    private void afficherServices(ActionEvent event) throws IOException {
+         FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/Service.fxml"));
+        Parent root=loader.load();
+        bienvenue.getScene().setRoot(root);
+        
     }
 
     @FXML

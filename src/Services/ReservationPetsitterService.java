@@ -5,6 +5,7 @@
  */
 package Services;
 
+import Entity.Produit;
 import Entity.ReservationPetsitter;
 import Technique.DataSource;
 import java.sql.Connection;
@@ -14,6 +15,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -94,7 +97,19 @@ public class ReservationPetsitterService {
            
        }
         return apport;
-    
     }
     
+      public ResultSet selectRservationPetsitter() 
+    {
+        ResultSet result = null;
+       
+        String req = "SELECT * FROM user where roles='ROLE_PETSITTER' OR roles='a:1:{i:0;s:14:\"ROLE_PETSITTER\";}' ";
+        try {
+            PreparedStatement ste = con.prepareStatement(req);
+            result = ste.executeQuery();
+        } catch (SQLException ex) {
+            Logger.getLogger(Produit.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return result;
+    }
 }

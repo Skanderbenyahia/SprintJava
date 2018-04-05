@@ -5,6 +5,7 @@
  */
 package Controllers;
 
+import Entity.Session;
 import Entity.User;
 import Services.UserService;
 import java.io.IOException;
@@ -21,9 +22,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -46,11 +44,6 @@ public class AdminLayoutController implements Initializable {
     private Button hygiene_button;
     @FXML
     private Button event_button;
-    private Pane contentPane;
-    Pane addConcourPane;
-    @FXML
-    private Label hygieneEtSoin;
-
     @FXML
     private TableView<User> UserView;
     @FXML
@@ -105,28 +98,13 @@ public class AdminLayoutController implements Initializable {
          window.show();
     }
 
-    private void showEvents(ActionEvent event) throws IOException {
-    addConcourPane = FXMLLoader.load(getClass().getResource("/GUI/Back_AjoutConcours.fxml"));
-    contentPane.getChildren().clear();
-    contentPane.getChildren().add(addConcourPane);
-    }
-
-    private void afficheBackCentreT(ActionEvent event) throws IOException {
-         Parent vente= FXMLLoader.load((getClass().getResource("../GUI/Back_ListeVeterinaire.fxml")));
-         Scene ventePage= new Scene (vente);
-         Stage window=(Stage) ((Node)event.getSource()).getScene().getWindow();
-         window.setScene(ventePage);
-         window.show();
-    }
-
     @FXML
-    private void CentreT_veterinaire(ActionEvent event) throws IOException 
-    {
-         Parent vente= FXMLLoader.load((getClass().getResource("/GUI/Back_HygienePage.fxml")));
-         Scene ventePage= new Scene (vente);
-         Stage window=(Stage) ((Node)event.getSource()).getScene().getWindow();
-         window.setScene(ventePage);
-         window.show();
+    private void logout(ActionEvent event) throws IOException {
+        UserService us = new UserService();
+        us.Desactivate(Session.getCurrentSession());
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/Start.fxml"));
+        Parent root=loader.load();
+        UserView.getScene().setRoot(root);
     }
-
+    
 }

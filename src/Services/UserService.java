@@ -145,48 +145,7 @@ public class UserService {
             Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
 
         }
-    }
-
-     
-     
-     
-     
-     /* liste veterinaire back */
-     
-   
-    public List<User> listeVeterinaire () throws SQLException
-    {
-        String req = "SELECT *  FROM user where roles = 'ROLE_VETERINAIRE' ";
-        ResultSet rs = statement.executeQuery(req);        
-        List<User>  liste = new ArrayList<>();
-        while (rs.next())
-        {
-        
-            liste.add(new User( rs.getString("nom"),rs.getString("prenom"),rs.getString("adresse"),rs.getString("email"),rs.getInt("telephone")));
         }
-        return liste ;
-       
-         
-    }
-     public List<User> getStat() {
-        String req = "select count(*) as nb,u.username from reservation_veterinaire r join user u on r.id_veterinaire_id=u.id GROUP BY id_veterinaire_id";
-        List<User> liste = new ArrayList<User>();
-        try {
-            PreparedStatement pst = con.prepareStatement(req);
-            ResultSet rs = pst.executeQuery();
-            while (rs.next()) {
-                User re = new User(rs.getString(2),rs.getDouble(1));
-                
-                liste.add(re);
-
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return liste;
-    }
-
-    
     
 }
 

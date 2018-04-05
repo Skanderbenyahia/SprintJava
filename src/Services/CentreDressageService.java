@@ -6,6 +6,7 @@
 package Services;
 
 import Entity.CentreDressage;
+import Entity.Produit;
 import Technique.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,6 +15,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -91,6 +94,18 @@ public class CentreDressageService
         pre.setInt(8,d.getId());
         pre.executeUpdate();    
     }
-      
+      public ResultSet selectCentreD() 
+    {
+        ResultSet result = null;
+       
+        String req = "SELECT * FROM centre_dressage";
+        try {
+            PreparedStatement ste = con.prepareStatement(req);
+            result = ste.executeQuery();
+        } catch (SQLException ex) {
+            Logger.getLogger(Produit.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return result;
+    }
     
 }
