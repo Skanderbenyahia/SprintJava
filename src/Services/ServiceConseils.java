@@ -71,7 +71,7 @@ public class ServiceConseils {
           
             prepared.setString(1,p.getTitre());
             prepared.setString(2,p.getTexte());
-            prepared.setString(3,p.getType());
+             prepared.setString(3,p.getType());
             prepared.executeUpdate();
         
     }

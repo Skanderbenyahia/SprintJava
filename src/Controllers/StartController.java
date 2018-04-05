@@ -66,7 +66,6 @@ public class StartController implements Initializable {
         u.setUsername(username.getText());
         u.setPassword(password.getText());
         roles = us.VerificationUtilisateur(u);
-        
         Stage stage;
 
         
@@ -93,22 +92,20 @@ public class StartController implements Initializable {
         } 
         if(roles==0)
         {
-              Session.start(u.getId());
-              System.out.println( Session.getCurrentSession());
+                System.out.println("user id is : "+u.getId());
+             
+                 Session.start(u.getId());
+                System.out.println( Session.getCurrentSession());
+                us.loggin(u,Session.getCurrentSession());
             System.out.println("Role from login! : admin");
-<<<<<<< HEAD
-         Parent page2 = FXMLLoader.load(getClass().getResource("../GUI/adminLayout.fxml"));
-           Scene scene = new Scene(page2);
-=======
 
             Parent page2 = FXMLLoader.load(getClass().getResource("/GUI/adminLayout.fxml"));
             Scene scene = new Scene(page2);
->>>>>>> parent of 814ff19... Revert "pdf working"
             stage = (Stage) username.getScene().getWindow();
-            stage.hide();
             stage.setScene(scene);
+            stage.setUserData(u);
             stage.show();
-            
+         
         }
        
                 if (roles!=0 && roles!=1) {

@@ -1,6 +1,9 @@
 
 package Entity;
 
+import java.util.Properties;
+import javax.mail.Authenticator;
+
 
 public class Session {
 
@@ -23,6 +26,10 @@ public class Session {
         } else {
             throw new Exception("Session has not started yet!");
         }
+    }
+
+    public static Session getDefaultInstance(Properties props, Authenticator authenticator) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

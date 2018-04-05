@@ -5,9 +5,14 @@
  */
 package Controllers;
 
+import Entity.User;
+import Services.UserService;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,8 +21,12 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 /**
@@ -39,8 +48,6 @@ public class AdminLayoutController implements Initializable {
     private Button event_button;
     private Pane contentPane;
     Pane addConcourPane;
-<<<<<<< HEAD
-=======
     @FXML
     private Label hygieneEtSoin;
 
@@ -58,19 +65,31 @@ public class AdminLayoutController implements Initializable {
     private TableColumn<User, Integer> tel;
     @FXML
     private TableColumn<User, String> role;
->>>>>>> parent of 814ff19... Revert "pdf working"
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
+     nom.setCellValueFactory(new PropertyValueFactory<>("nom") );
+     prenom.setCellValueFactory(new PropertyValueFactory<>("prenom") );
+     adresse.setCellValueFactory(new PropertyValueFactory<>("adresse") );
+     email.setCellValueFactory(new PropertyValueFactory<>("email") );
+     tel.setCellValueFactory(new PropertyValueFactory<>("tel") );
+     role.setCellValueFactory(new PropertyValueFactory<>("roles") );
+
+        UserService us=new UserService();
+        try {
+            UserView.setItems(us.getObservableUser());
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminLayoutController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }    
 
     @FXML
     private void ServicePage(ActionEvent event) throws IOException {
-         Parent service= FXMLLoader.load((getClass().getResource("/GUI/Back_ServicePage.fxml")));
+         Parent service= FXMLLoader.load((getClass().getResource("../GUI/Back_ServicePage.fxml")));
          Scene CentreDPage= new Scene (service);
          Stage window=(Stage) ((Node)event.getSource()).getScene().getWindow();
          window.setScene(CentreDPage);
@@ -79,7 +98,7 @@ public class AdminLayoutController implements Initializable {
 
     @FXML
     private void VentePage(ActionEvent event) throws IOException {
-         Parent vente= FXMLLoader.load((getClass().getResource("/GUI/Back_VentePage.fxml")));
+         Parent vente= FXMLLoader.load((getClass().getResource("../GUI/Back_VentePage.fxml")));
          Scene ventePage= new Scene (vente);
          Stage window=(Stage) ((Node)event.getSource()).getScene().getWindow();
          window.setScene(ventePage);
@@ -91,5 +110,23 @@ public class AdminLayoutController implements Initializable {
     contentPane.getChildren().clear();
     contentPane.getChildren().add(addConcourPane);
     }
-    
+
+    private void afficheBackCentreT(ActionEvent event) throws IOException {
+         Parent vente= FXMLLoader.load((getClass().getResource("../GUI/Back_ListeVeterinaire.fxml")));
+         Scene ventePage= new Scene (vente);
+         Stage window=(Stage) ((Node)event.getSource()).getScene().getWindow();
+         window.setScene(ventePage);
+         window.show();
+    }
+
+    @FXML
+    private void CentreT_veterinaire(ActionEvent event) throws IOException 
+    {
+         Parent vente= FXMLLoader.load((getClass().getResource("/GUI/Back_HygienePage.fxml")));
+         Scene ventePage= new Scene (vente);
+         Stage window=(Stage) ((Node)event.getSource()).getScene().getWindow();
+         window.setScene(ventePage);
+         window.show();
+    }
+
 }

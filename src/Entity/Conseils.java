@@ -58,7 +58,6 @@ public class Conseils {
         this.texte = texte;
     }
 
-   
     public String getType() {
         return type;
     }
