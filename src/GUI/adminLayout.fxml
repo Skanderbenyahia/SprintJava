@@ -11,6 +11,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AdminLayoutController">
 <<<<<<< HEAD
+<<<<<<< HEAD
    <children>
       <Pane layoutY="-1.0" prefHeight="60.0" prefWidth="1200.0" style="-fx-background-color: cfbfa6;">
          <children>
@@ -109,6 +110,8 @@
       <Pane fx:id="contentPane" layoutY="118.0" />
    </children>
 =======
+=======
+>>>>>>> parent of 814ff19... Revert "pdf working"
     <children>
         <Pane layoutY="-1.0" prefHeight="60.0" prefWidth="1200.0" style="-fx-background-color: cfbfa6;">
             <children>
@@ -219,5 +222,8 @@
             </font>
         </Label>
     </children>
+<<<<<<< HEAD
+>>>>>>> parent of 814ff19... Revert "pdf working"
+=======
 >>>>>>> parent of 814ff19... Revert "pdf working"
 </AnchorPane>
