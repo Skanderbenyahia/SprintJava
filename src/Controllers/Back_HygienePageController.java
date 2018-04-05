@@ -49,6 +49,11 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.swing.JOptionPane;
 import Services.centreToilettageServices;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import javax.swing.text.Document;
 import sun.plugin2.message.transport.Transport;
 
@@ -116,6 +121,8 @@ public class Back_HygienePageController implements Initializable {
     
     public centreToilettage selectedcentre;
     centreToilettageServices centreSRV ;
+    @FXML
+    private JFXButton pdfBtn;
 
     /**
      * Initializes the controller class.
@@ -410,6 +417,15 @@ public class Back_HygienePageController implements Initializable {
         
         
         
+    }
+
+    @FXML
+    private void createPdf(ActionEvent event) throws FileNotFoundException, DocumentException {
+        com.itextpdf.text.Document pdf = new com.itextpdf.text.Document();
+        PdfWriter.getInstance(pdf, new FileOutputStream("listVet.pdf"));
+        pdf.open();
+        pdf.add(new Paragraph(listeViewVeterinaire.getItems().toString()));
+        pdf.close();
     }
    
     

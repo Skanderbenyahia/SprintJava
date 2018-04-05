@@ -99,7 +99,7 @@ public class StartController implements Initializable {
                 us.loggin(u,Session.getCurrentSession());
             System.out.println("Role from login! : admin");
 
-            Parent page2 = FXMLLoader.load(getClass().getResource("../GUI/adminLayout.fxml"));
+            Parent page2 = FXMLLoader.load(getClass().getResource("/GUI/adminLayout.fxml"));
             Scene scene = new Scene(page2);
             stage = (Stage) username.getScene().getWindow();
             stage.setScene(scene);
