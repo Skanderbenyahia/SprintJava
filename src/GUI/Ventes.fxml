@@ -49,6 +49,7 @@
             </ImageView>
          </children>
       </Pane>
+<<<<<<< HEAD
       <HBox fx:id="h1" layoutY="93.0" prefHeight="206.0" prefWidth="1214.0">
          <children>
             <Pane fx:id="p1" prefHeight="191.0" prefWidth="1214.0">
@@ -60,5 +61,12 @@
                   </ImageView>
                </children></Pane>
          </children></HBox>
+=======
+      <ScrollPane layoutY="93.0" prefHeight="606.0" prefWidth="1214.0">
+         <content>
+          <AnchorPane fx:id="an" minHeight="0.0" minWidth="0.0" prefHeight="603.0" prefWidth="1211.0" />
+         </content>
+      </ScrollPane>
+>>>>>>> parent of b15034b... Affichage front vente
    </children>
 </AnchorPane>

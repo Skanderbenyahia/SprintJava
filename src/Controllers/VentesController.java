@@ -25,7 +25,11 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+<<<<<<< HEAD
 import javafx.scene.paint.Color;
+=======
+import javafx.scene.layout.VBox;
+>>>>>>> parent of b15034b... Affichage front vente
 
 /**
  * FXML Controller class
@@ -66,6 +70,7 @@ private Connection con= DataSource.getInstance().getConnexion();
 
     public void AffichageProduit() throws SQLException
     {
+<<<<<<< HEAD
         
         ProduitService ps=new ProduitService();
         ResultSet rs = ps.selectProduits();
@@ -123,6 +128,67 @@ private Connection con= DataSource.getInstance().getConnexion();
             
             
            
+=======
+              
+              FlowPane f = new FlowPane();
+              ProduitService ps = new ProduitService();
+              ResultSet rs= ps.selectProduits();
+              
+              
+              while(rs.next())
+              {
+                  
+                  AnchorPane anchorpane1 = new AnchorPane();
+                  anchorpane1.setPrefHeight(250.0);
+                  anchorpane1.setPrefWidth(504.0);
+                  Separator separtor = new Separator();
+                  VBox vbox = new VBox();
+                  
+                  
+                 File fileimage=new File(pathImage+rs.getString(7));
+                 Image preimage=new Image(fileimage.toURI().toString());
+                 ImageView image=new ImageView(preimage);
+                 image.setLayoutX(0);
+                 image.setLayoutY(0);
+                 image.setFitWidth(182);
+                 image.setFitHeight(203);
+                 
+                 Label libelle=new Label(rs.getString(3));
+                 libelle.setLayoutX(208);
+                 libelle.setLayoutY(58);
+                 
+                 
+                 Label description=new Label(rs.getString(4));
+                 libelle.setLayoutX(193);
+                 libelle.setLayoutY(90);
+                 
+                 
+                 Label prix=new Label(String.valueOf(rs.getInt(5))+" DT");
+                 libelle.setLayoutX(508);
+                 libelle.setLayoutY(51);
+                 
+                 
+                 File file=new File(pathButton);
+                 Image preimagebutton=new Image(file.toURI().toString());
+                 ImageView imagebutton=new ImageView(preimagebutton);
+                 
+                 Button ajoutButton=new Button();
+                 ajoutButton.setLayoutX(493);
+                 ajoutButton.setLayoutY(85);
+                 ajoutButton.setPrefWidth(44);
+                 ajoutButton.setPrefHeight(31);
+                 ajoutButton.setGraphic(imagebutton);
+                 
+                 vbox.setSpacing(30.0);
+                  separtor.setLayoutX(3.0);
+                  separtor.setLayoutY(55.0);
+                  separtor.setPrefHeight(4.0);
+                  separtor.setPrefWidth(1213.0);
+                 
+                  anchorpane1.getChildren().addAll(image,libelle,description,prix,ajoutButton);
+                  vbox.getChildren().add(anchorpane1);
+                  f.getChildren().addAll(vbox);
+>>>>>>> parent of b15034b... Affichage front vente
   
         }
             

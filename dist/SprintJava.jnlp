@@ -8,6 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+<<<<<<< HEAD
     <jar href="SprintJava.jar" size="2153454" download="eager" />
     <jar href="lib\GMapsFX-2.0.8-SNAPSHOT-javadoc.jar" size="604183" download="eager" />
     <jar href="lib\GMapsFX-2.0.8-SNAPSHOT.jar" size="137318" download="eager" />
@@ -15,6 +16,9 @@
     <jar href="lib\TrayTester.jar" size="52070" download="eager" />
     <jar href="lib\itextpdf-5.1.0.jar" size="1614453" download="eager" />
     <jar href="lib\javax.mail.jar" size="654100" download="eager" />
+=======
+    <jar href="SprintJava.jar" size="1112875" download="eager" />
+>>>>>>> parent of b15034b... Affichage front vente
     <jar href="lib\jfoenix-8.0.1.jar" size="2405715" download="eager" />
     <jar href="lib\jfoenix.jar" size="2454308" download="eager" />
     <jar href="lib\jfreechart-1.0.19-demo.jar" size="1437338" download="eager" />
