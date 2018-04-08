@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Back_AdoptionPageController">
+   <children>
+      <JFXTabPane layoutX="-10.0" layoutY="9.0" prefHeight="701.0" prefWidth="1125.0" stylesheets="@../Ressources/css/tabpane_moataz.css">
+         <tabs>
+            <Tab text="Animal">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="AnimalView" layoutX="222.0" layoutY="185.0" onMouseClicked="#selected" prefHeight="264.0" prefWidth="862.0">
+                           <columns>
+                              <TableColumn fx:id="Column_nom" minWidth="120.0" prefWidth="75.0" text="Nom" />
+                              <TableColumn fx:id="Column_race" minWidth="120.0" prefWidth="75.0" text="Race" />
+                              <TableColumn fx:id="Column_espece" minWidth="120.0" prefWidth="75.0" text="Espece" />
+                              <TableColumn fx:id="Column_age" minWidth="120.0" prefWidth="75.0" text="Age" />
+                              <TableColumn fx:id="Column_taille" minWidth="120.0" prefWidth="75.0" text="Taille" />
+                              <TableColumn fx:id="Column_description" minWidth="120.0" prefWidth="75.0" text="Description" />
+                              <TableColumn fx:id="Column_etat" minWidth="120.0" prefWidth="75.0" text="Etat" />
+                           </columns>
+                        </TableView>
+                        <Label layoutX="423.0" layoutY="136.0" prefHeight="38.0" prefWidth="184.0" text="Liste des Animaux" />
+                        <HBox layoutX="160.0" layoutY="465.0" prefHeight="66.0" prefWidth="860.0" spacing="10.0">
+                           <children>
+                              <Button fx:id="AjouterAnimal" mnemonicParsing="false" onAction="#AjouterAnimal" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: cfbfa6;" text="Ajouter un animal" />
+                              <Button fx:id="ModifierAnimal" mnemonicParsing="false" onAction="#ModifierAnimal" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: cfbfa6;" text="Modifier un animal" />
+                              <Button fx:id="SupprimerAnimal1" mnemonicParsing="false" onAction="#SupprimerAnimal" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: cfbfa6;" text="Supprimer un animal" />
+                              <Button fx:id="ChangerEtat" mnemonicParsing="false" onAction="#ChangerEtat" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: cfbfa6;" text="Changer etat" />
+                           </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Refuge">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="RefugeView" layoutX="222.0" layoutY="185.0" onMouseClicked="#selected" prefHeight="264.0" prefWidth="862.0">
+                           <columns>
+                              <TableColumn fx:id="Column_libelle_refuge" minWidth="120.0" prefWidth="75.0" text="Libelle" />
+                              <TableColumn fx:id="Column_email_refuge" minWidth="120.0" prefWidth="75.0" text="Email" />
+                              <TableColumn fx:id="Column_adresse_refuge" minWidth="120.0" prefWidth="75.0" text="Adresse" />
+                              <TableColumn fx:id="Column_num_refuge" minWidth="120.0" prefWidth="184.0" text="Numero de telephone" />
+                              <TableColumn fx:id="Column_region_refuge" minWidth="49.0" prefWidth="87.0" text="Region" />
+                              <TableColumn fx:id="Column_description_refuge" minWidth="79.0" prefWidth="146.0" text="Description" />
+                              <TableColumn fx:id="Column_image_refuge" minWidth="51.0" prefWidth="63.0" text="Image" />
+                           </columns>
+                        </TableView>
+                        <Label layoutX="529.0" layoutY="135.0" prefHeight="38.0" prefWidth="184.0" text="Liste des Refuges" />
+                        <HBox layoutX="160.0" layoutY="465.0" prefHeight="66.0" prefWidth="860.0" spacing="10.0">
+                           <children>
+                              <Button fx:id="AjouterRefuge" mnemonicParsing="false" onAction="#AjouterRefuge" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: cfbfa6;" text="Ajouter un Refuge" />
+                              <Button fx:id="ModifierRefuge" mnemonicParsing="false" onAction="#ModifierRefuge" prefHeight="40.0" prefWidth="215.0" style="-fx-background-color: cfbfa6;" text="Modifier un Refuge" />
+                              <Button fx:id="SupprimerRefuge" mnemonicParsing="false" onAction="#SupprimerRefuge" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: cfbfa6;" text="Supprimer un Refuge" />
+                           </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                </AnchorPane>
+              </content>
+            </Tab>
+         </tabs>
+      </JFXTabPane>
+   </children>
+</AnchorPane>

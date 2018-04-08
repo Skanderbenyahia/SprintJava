@@ -1,4 +1,4 @@
-/*
+﻿/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -84,6 +84,9 @@ private Connection con= DataSource.getInstance().getConnexion();
 
     @FXML
     private void afficherAdoption(ActionEvent event) {
+	FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/Adoption.fxml"));
+        Parent root=loader.load();
+        bienvenue.getScene().setRoot(root);
     }
 
     @FXML

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AdoptionController">
+   <children>
+      <Pane prefHeight="48.0" prefWidth="1200.0" style="-fx-background-color: f67777;" />
+      <ScrollPane fx:id="scroll" layoutY="58.0" prefHeight="651.0" prefWidth="1200.0">
+         <content>
+            <JFXTabPane prefHeight="611.0" prefWidth="866.0" stylesheets="@../Ressources/css/tabpane_moataz.css">
+               <tabs>
+                  <Tab text="Animal">
+                    <content>
+                      <AnchorPane fx:id="tabanimal" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                    </content>
+                  </Tab>
+                  <Tab text="Refuge">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="1197.0" />
+                    </content>
+                  </Tab>
+               </tabs>
+            </JFXTabPane>
+         </content></ScrollPane>
+   </children>
+</AnchorPane>
