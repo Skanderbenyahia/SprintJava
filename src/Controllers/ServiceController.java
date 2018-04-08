@@ -5,6 +5,7 @@
  */
 package Controllers;
 
+import Entity.ReservationPetsitter;
 import Entity.Session;
 import Entity.User;
 import Services.CentreDressageService;
@@ -12,6 +13,14 @@ import Services.ProduitService;
 import Services.ReservationPetsitterService;
 import Services.UserService;
 import Technique.DataSource;
+import com.lynden.gmapsfx.GoogleMapView;
+import com.lynden.gmapsfx.MapComponentInitializedListener;
+import com.lynden.gmapsfx.javascript.object.GoogleMap;
+import com.lynden.gmapsfx.javascript.object.LatLong;
+import com.lynden.gmapsfx.javascript.object.MapOptions;
+import com.lynden.gmapsfx.javascript.object.MapTypeIdEnum;
+import com.lynden.gmapsfx.javascript.object.Marker;
+import com.lynden.gmapsfx.javascript.object.MarkerOptions;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -19,8 +28,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,13 +43,16 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Separator;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
@@ -47,8 +64,11 @@ import javafx.scene.text.Font;
  *
  * @author jabou
  */
-public class ServiceController implements Initializable {
+public class ServiceController implements Initializable,MapComponentInitializedListener {
 
+  GoogleMapView mapView;
+GoogleMap map;
+    
     @FXML
     private Label bienvenue;
     public String pathImage="C:\\Users\\jabou\\Desktop\\SprintJava\\src\\Ressources\\Images\\";
@@ -56,9 +76,13 @@ public class ServiceController implements Initializable {
     @FXML
     private AnchorPane an;
     @FXML
-    private GridPane grid;
-    @FXML
     private AnchorPane anP;
+    
+    int idUser;
+    @FXML
+    private ScrollPane scroll;
+    @FXML
+    private ScrollPane scrollP;
 
 
     /**
@@ -137,6 +161,15 @@ public class ServiceController implements Initializable {
               
               while(rs.next())
               {
+                  BorderPane map_container= new BorderPane();
+                  /*mapView = new GoogleMapView();
+                  mapView = new GoogleMapView(Locale.ENGLISH.getLanguage(), "AIzaSyDmK68Bq5oD_6YfMsK-Nh848i5KLRpO61Y&libraries=places&language=en");
+                  mapView.addMapInializedListener(this);
+                  map_container.setCenter(mapView);
+                  map_container.setVisible(true);
+                */
+                /////////////////////////////
+                  
                   AnchorPane anchorpane1 = new AnchorPane();
                   anchorpane1.setPrefHeight(250.0);
                   anchorpane1.setPrefWidth(504.0);
@@ -190,7 +223,8 @@ public class ServiceController implements Initializable {
                   f.getChildren().addAll(vbox);
                   
               }
-             an.getChildren().addAll(f);
+              scroll.setContent(f);
+             an.getChildren().addAll(scroll);
     }
     
      public void AffichageRservationP() throws SQLException
@@ -198,17 +232,19 @@ public class ServiceController implements Initializable {
             FlowPane f = new FlowPane();
               
               ReservationPetsitterService ps= new ReservationPetsitterService();
-              ResultSet rs= ps.selectRservationPetsitter();
+              List<User> petsitter= ps.ListPetsitter();
               
-              while(rs.next())
+              
+             for(User rs:petsitter)
               {
+                  
                   AnchorPane anchorpane1 = new AnchorPane();
                   anchorpane1.setPrefHeight(250.0);
                   anchorpane1.setPrefWidth(504.0);
                   Separator separtor = new Separator();
                   VBox vbox = new VBox();
                   
-                 File fileimage=new File(pathImage+rs.getInt(1)+".jpeg");
+                 File fileimage=new File(pathImage+rs.getId()+".jpeg");
                  Image preimage=new Image(fileimage.toURI().toString());
                  ImageView image=new ImageView(preimage);
                  image.setLayoutX(120);
@@ -216,7 +252,7 @@ public class ServiceController implements Initializable {
                  image.setFitWidth(150);
                  image.setFitHeight(180);
                  
-                 Label nom=new Label(rs.getString(13));
+                 Label nom=new Label(rs.getNom());
                  Font font = new Font("Arial",24);
                  nom.setStyle("-fx-font-weight: bold");
                  nom.setFont(font);
@@ -224,21 +260,21 @@ public class ServiceController implements Initializable {
                  nom.setLayoutX(290);
                  nom.setLayoutY(48);
                  
-                 Label prenom=new Label(rs.getString(14));
+                 Label prenom=new Label(rs.getPrenom());
                  Font font6 = new Font("Arial",24);
                  prenom.setStyle("-fx-font-weight: bold");
                  prenom.setFont(font6);
                  prenom.setTextFill(Color.web("cfbfa6"));
-                 prenom.setLayoutX(350);
+                 prenom.setLayoutX(450);
                  prenom.setLayoutY(48);
                  
-                 Label adresse=new Label("Ce est un petsitter habite à "+rs.getString(15));
+                 Label adresse=new Label("Ce est un petsitter habite à "+rs.getAdresse());
                  Font font2 = new Font("Arial",18);
                  adresse.setFont(font2);
                  adresse.setLayoutX(290);
                  adresse.setLayoutY(90);
                  
-                 Label tel=new Label("Numero: "+String.valueOf(rs.getInt(16)));
+                 Label tel=new Label("Numero: "+String.valueOf(rs.getTel()));
                  tel.setTextFill(Color.web("f67777"));
                  Font font3 = new Font("Arial",16);
                  tel.setStyle("-fx-font-weight: bold");
@@ -253,18 +289,76 @@ public class ServiceController implements Initializable {
                   DatePicker dateF=new DatePicker();
                   dateF.setLayoutX(550);
                   dateF.setLayoutY(170);
-                  
-                  
+                 
                   Button reserver= new Button();
+                  reserver.setPrefHeight(40);
+                  reserver.setPrefWidth(150);
                   reserver.setLayoutX(850);
                   Label re=new Label();
                   re.setText("Réserver");
-
                   re.setTextFill(Color.web("ffffff"));
                   reserver.setLayoutY(150);
                   reserver.setGraphic(re);
 
+                  reserver.setOnAction((e) -> {
+                      try {
+                          float prix=0;
+                          float encaisser=0;
+                          prix = rs.getId()*10;
+                          encaisser=(float) (prix*0.2);
+                          idUser=Session.getCurrentSession();
 
+                          LocalDate Dated=dateD.getValue();
+                          Instant i= Instant.from(Dated.atStartOfDay(ZoneId.systemDefault()));
+                          java.util.Date date=Date.from(i);
+                          java.sql.Date dsql = new java.sql.Date(date.getTime());
+                          
+                          LocalDate Datef=dateF.getValue();
+                          Instant i2= Instant.from(Datef.atStartOfDay(ZoneId.systemDefault()));
+                          java.util.Date date2=Date.from(i2);
+                          java.sql.Date fsql = new java.sql.Date(date2.getTime());
+                          
+                          ReservationPetsitter r= new ReservationPetsitter(dsql, fsql,prix,encaisser, rs.getId(),idUser);
+
+                          List<ReservationPetsitter> existe=ps.existance(dsql, rs.getId());
+                         if(fsql.before(dsql))
+                                {
+                                     Alert alert= new Alert(Alert.AlertType.WARNING);
+                                     alert.setTitle("Warning Dialog");
+                                     alert.setHeaderText(null);
+                                     alert.setContentText("Date Debut doit etre supérieur à la date fin ");
+                                     alert.showAndWait();  
+                                }
+
+                         else if(existe.isEmpty()==true)
+                          {
+                                    ps.ReserverPetsitter(r);
+                                    Alert alert= new Alert(Alert.AlertType.CONFIRMATION);
+                                    alert.setTitle("Confirmation Dialog");
+                                    alert.setHeaderText(null);
+                                    alert.setContentText("Votre réservation à été faites");
+                                    alert.showAndWait();
+                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/Service.fxml"));
+                                    Parent root=loader.load();
+                                    bienvenue.getScene().setRoot(root);             
+                          }
+                          else{
+                              Alert alert= new Alert(Alert.AlertType.WARNING);
+                              alert.setTitle("Warning Dialog");
+                              alert.setHeaderText(null);
+                              alert.setContentText("La date est déja prise choisir une autre date");
+                              alert.showAndWait();
+                              
+                          }
+                      } catch (SQLException ex) {
+                          Logger.getLogger(ServiceController.class.getName()).log(Level.SEVERE, null, ex);
+                      } catch (IOException ex) {
+                          Logger.getLogger(ServiceController.class.getName()).log(Level.SEVERE, null, ex);
+                      }
+                      
+                  });
+                  
+                 
                  vbox.setSpacing(30.0);
                  separtor.setLayoutX(3.0);
                  separtor.setLayoutY(55.0);
@@ -274,8 +368,47 @@ public class ServiceController implements Initializable {
                   anchorpane1.getChildren().addAll(image,nom,prenom,adresse,tel,dateD,dateF,reserver);
                   vbox.getChildren().add(anchorpane1);
                   f.getChildren().addAll(vbox);
-                  
               }
+              //scrollP.setContent(f);
              anP.getChildren().addAll(f);
+   }
+
+    @Override
+    public void mapInitialized() {
+             
+              /*  MapOptions mapOptions = new MapOptions();
+                CentreDressageService cs;        
+                ResultSet rs = null;
+                try {
+                    cs = new CentreDressageService();
+                       rs= cs.selectCentreD();
+                } catch (SQLException ex) {
+                }
+
+                try {
+                    while(rs.next())
+                    {
+                       mapOptions.center(new LatLong(rs.getDouble(5), rs.getDouble(6)))
+                       .mapMarker(true)
+                        .zoom(12)
+                        .overviewMapControl(false)
+                        .panControl(false)
+                        .rotateControl(false)
+                        .scaleControl(true)
+                        .streetViewControl(false)
+                        .zoomControl(true)
+                        .mapType(MapTypeIdEnum.ROADMAP);
+                    map = mapView.createMap(mapOptions);
+                    //Add a marker to the map
+                    MarkerOptions markerOptions = new MarkerOptions();
+                    markerOptions.position( new LatLong(rs.getDouble(5), rs.getDouble(6)) )
+                                 .visible(Boolean.TRUE)
+                                 .title(rs.getString(2));
+                    Marker marker = new Marker( markerOptions );
+                    map.addMarker(marker);
+          }
+      } catch (SQLException ex) {
+      }*/
     }
+  
 }

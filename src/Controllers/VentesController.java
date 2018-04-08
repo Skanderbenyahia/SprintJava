@@ -5,7 +5,6 @@
  */
 package Controllers;
 
-import Entity.Produit;
 import Entity.Session;
 import Entity.User;
 import Services.ProduitService;
@@ -28,7 +27,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.Pagination;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Separator;
 import javafx.scene.image.Image;
 
@@ -64,12 +62,10 @@ private Connection con= DataSource.getInstance().getConnexion();
     @FXML
     private Button location;
     
-    public String pathImage="C:\\Users\\bn-sk\\Desktop\\Git\\SprintJava\\src\\Ressources\\Images\\";
-    public String pathButton="C:\\Users\\bn-sk\\Desktop\\Git\\SprintJava\\src\\Ressources\\Images\\add-square-button.png";
+    public String pathImage="C:\\Users\\jabou\\Desktop\\SprintJava\\src\\Ressources\\Images\\";
+    public String pathButton="C:\\Users\\jabou\\Desktop\\SprintJava\\src\\Ressources\\Images\\add-square-button.png";
     @FXML
     private AnchorPane an;
-    @FXML
-    private ScrollPane scroll;
     
     /**
      * Initializes the controller class.
@@ -109,7 +105,7 @@ private Connection con= DataSource.getInstance().getConnexion();
               ProduitService ps = new ProduitService();
               ResultSet rs= ps.selectProduits();
               
-       
+              
               while(rs.next())
               {
                   
@@ -170,29 +166,9 @@ private Connection con= DataSource.getInstance().getConnexion();
                   anchorpane1.getChildren().addAll(image,libelle,description,prix,ajoutButton);
                   vbox.getChildren().add(anchorpane1);
                   f.getChildren().addAll(vbox);
-                  
-                  ResultSet r=ps.selectProduitsdistinct(rs.getInt(1));
-                  while(r.next())
-                  {
-                      Produit p=new Produit(r.getInt(1),r.getInt(2), r.getString(3),r.getString(4), r.getInt(5), r.getString(6), r.getString(7), 1);
-                  ajoutButton.setOnAction(e->{
-                      
-                      try {
-                          System.out.println(p.toString());
-                          ps.ajoutpanier(p, Session.getCurrentSession());
-                          
-                      } catch (SQLException ex) {
-                          Logger.getLogger(VentesController.class.getName()).log(Level.SEVERE, null, ex);
-                      }
-                  
-                  });
-                  }
-                  
   
               }
-             scroll.setContent(f);
-             
-             
+             an.getChildren().addAll(f);
 
             
     }

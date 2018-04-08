@@ -92,7 +92,7 @@ public class Back_AjouterCDPageController implements Initializable,ControllerCla
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        mapComponent = new GoogleMapView(Locale.ENGLISH.getLanguage(), "AIzaSyDmK68Bq5oD_6YfMsK-Nh848i5KLRpO61Y&libraries=places&language=en");
+       mapComponent = new GoogleMapView(Locale.ENGLISH.getLanguage(), "AIzaSyDmK68Bq5oD_6YfMsK-Nh848i5KLRpO61Y&libraries=places&language=en");
        mapComponent.addMapInializedListener((MapComponentInitializedListener) this);
        map_container.setCenter(mapComponent);
        map_container.setVisible(true);

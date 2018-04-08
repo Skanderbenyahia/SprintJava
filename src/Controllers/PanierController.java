@@ -47,8 +47,13 @@ public class PanierController implements Initializable {
 
     static String lib = "";
     static String desc = "";
+<<<<<<< HEAD
+    public String pathImage = "C:\\Users\\jabou\\Desktop\\Git\\SprintJava\\src\\Ressources\\Images\\";
+    public String pathButton = "C:\\Users\\jabou\\Desktop\\Git\\SprintJava\\src\\Ressources\\Images\\minus.png";
+=======
     public String pathImage = "C:\\Users\\bn-sk\\Desktop\\Git\\SprintJava\\src\\Ressources\\Images\\";
     public String pathButton = "C:\\Users\\bn-sk\\Desktop\\Git\\SprintJava\\src\\Ressources\\Images\\minus.png";
+>>>>>>> 0b0018725b00f31ff1dac26b9e2a6c2361723976
     @FXML
     private AnchorPane anp;
     @FXML

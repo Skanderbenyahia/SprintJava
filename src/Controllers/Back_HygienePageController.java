@@ -157,14 +157,22 @@ public class Back_HygienePageController implements Initializable {
            
 
       
+<<<<<<< HEAD
+        /*try {
+=======
         try {
+>>>>>>> 0b0018725b00f31ff1dac26b9e2a6c2361723976
             ListeV = userSR.listeVeterinaire();
              listeCentreT = centreSRV.afficherCentreT();
             centreSRV.afficherCentreT().forEach(e -> System.out.println(e));
         } catch (SQLException ex) {
             Logger.getLogger(Back_HygienePageController.class.getName()).log(Level.SEVERE, null, ex);
         }
+<<<<<<< HEAD
+           */
+=======
            
+>>>>>>> 0b0018725b00f31ff1dac26b9e2a6c2361723976
         try {
             afficherLaListeDesCentreToilettage();
         } catch (SQLException ex) {
@@ -263,12 +271,20 @@ public class Back_HygienePageController implements Initializable {
  
         List<User> liste = new ArrayList<User>();
         //a.getStat() hedhi fergha tekhou feha wini requete eli tjib menha..?
+<<<<<<< HEAD
+        //liste=a.getStat();
+=======
         liste=a.getStat();
+>>>>>>> 0b0018725b00f31ff1dac26b9e2a6c2361723976
         ObservableList<PieChart.Data> pieChartData
                 = FXCollections.observableArrayList();
         for (int i = 0; i < liste.size(); i++) 
         {
+<<<<<<< HEAD
+           // pieChartData.add(new PieChart.Data(liste.get(i).getUsername(),liste.get(i).getStat()));
+=======
             pieChartData.add(new PieChart.Data(liste.get(i).getUsername(),liste.get(i).getStat()));
+>>>>>>> 0b0018725b00f31ff1dac26b9e2a6c2361723976
 
         }
         final PieChart chart = new PieChart(pieChartData);

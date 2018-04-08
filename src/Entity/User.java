@@ -49,6 +49,15 @@ public class User {
         this.etat = etat;
     }
 
+    public User(int id,String nom, String prenom, String adresse, String email, int tel) {
+        this.id=id;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.adresse = adresse;
+        this.email = email;
+        this.tel = tel;
+    }
+
     public User(int id, String username, String password, String roles, int etat) {
         this.id = id;
         this.username = username;

@@ -7,8 +7,10 @@ package Services;
 
 import Entity.Produit;
 import Entity.ReservationPetsitter;
+import Entity.User;
 import Technique.DataSource;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -112,4 +114,29 @@ public class ReservationPetsitterService {
         }
         return result;
     }
+      
+          public List<User> ListPetsitter ()throws SQLException
+    {
+        String req="SELECT * FROM user where roles='ROLE_PETSITTER' OR roles='a:1:{i:0;s:14:\"ROLE_PETSITTER\";}' ";
+        ResultSet r =ste.executeQuery(req);
+        List<User> petsitter =new ArrayList<>();
+        while(r.next())
+        {
+             petsitter.add(new User(r.getInt("id"),r.getString("nom"),r.getString("prenom"),r.getString("adresse"),r.getString("email"),r.getInt("telephone")));
+        }
+        return petsitter;
+    }
+          
+          public List<ReservationPetsitter> existance(Date date,int id) throws SQLException
+          {
+           String req = "SELECT * FROM reservation_petsitter where idPetsitter='"+id+"' and '"+date+"' BETWEEN dateD and dateF ";
+           ResultSet r =ste.executeQuery(req);
+           List<ReservationPetsitter> reservationExistante =new ArrayList<>();
+           while(r.next())
+             {
+               reservationExistante.add(new ReservationPetsitter(r.getInt("id"),r.getDate("dateD"),r.getDate("dateF"),r.getDouble("prix"),r.getDouble("encaisser"),r.getInt("idPetsitter"),r.getInt("iduser")));
+              }
+        return  reservationExistante;
+          }
+      
 }
