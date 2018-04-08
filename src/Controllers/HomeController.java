@@ -120,4 +120,11 @@ private Connection con= DataSource.getInstance().getConnexion();
         bienvenue.getScene().setRoot(root);
     }
     
+    @FXML
+    private void affichePanier(ActionEvent event) throws SQLException, IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/Panier.fxml"));
+        Parent root=loader.load();
+        bienvenue.getScene().setRoot(root);
+    }
+    
 }
