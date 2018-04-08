@@ -7,6 +7,7 @@ package Controllers;
 
 import Entity.Session;
 import Entity.User;
+import Services.ProduitService;
 import Services.UserService;
 import Technique.DataSource;
 import com.jfoenix.controls.JFXButton;
@@ -95,11 +96,7 @@ private Connection con= DataSource.getInstance().getConnexion();
     }
 
     @FXML
-    private void afficherServices(ActionEvent event) throws IOException {
-         FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/Service.fxml"));
-        Parent root=loader.load();
-        bienvenue.getScene().setRoot(root);
-        
+    private void afficherServices(ActionEvent event) {
     }
 
     @FXML
@@ -116,6 +113,13 @@ private Connection con= DataSource.getInstance().getConnexion();
         UserService us = new UserService();
         us.Desactivate(Session.getCurrentSession());
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/Start.fxml"));
+        Parent root=loader.load();
+        bienvenue.getScene().setRoot(root);
+    }
+
+    @FXML
+    private void affichePanier(ActionEvent event) throws SQLException, IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/Panier.fxml"));
         Parent root=loader.load();
         bienvenue.getScene().setRoot(root);
     }
