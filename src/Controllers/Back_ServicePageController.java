@@ -7,8 +7,10 @@ package Controllers;
 
 import Entity.CentreDressage;
 import Entity.ReservationPetsitter;
+import Entity.Session;
 import Services.CentreDressageService;
 import Services.ReservationPetsitterService;
+import Services.UserService;
 import com.jfoenix.controls.JFXTabPane;
 import com.jfoenix.controls.JFXTextField;
 import com.sun.deploy.util.SearchPath;
@@ -279,9 +281,7 @@ public class Back_ServicePageController implements Initializable {
         Back_AjouterCDPageController controllerC=new Back_AjouterCDPageController();
         changeScene(event, "../GUI/Back_AjouterCDPage.fxml", "Modifier le Centre", d, controllerC);
     }
-    
-    
-    
+
                                             /* ReservationPetsitter*/
                             //********************************************************//
 
@@ -296,5 +296,13 @@ public class Back_ServicePageController implements Initializable {
         alert.setContentText("Les Petsitters ont apporté : "+ apport +" DT");
         alert.showAndWait();
     }
-   
+
+    @FXML
+    private void Logout(ActionEvent event) throws IOException {
+        UserService us = new UserService();
+        us.Desactivate(Session.getCurrentSession());
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/Start.fxml"));
+        Parent root=loader.load();
+        CentreDressageView.getScene().setRoot(root);
+    }
 }

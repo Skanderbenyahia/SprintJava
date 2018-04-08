@@ -23,6 +23,9 @@ public class CentreDressage {
     private double lng;
     private String description;
     private String image;
+    private String ville;
+    private String gouvernerat;
+    private int code_psotale;
     
        public CentreDressage(String libelle, String adresse, int tel, double lat, double lng, String description, String image) 
        {
@@ -35,11 +38,25 @@ public class CentreDressage {
         this.image = image;
     }
 
+
     public CentreDressage()
     {
     }
 
-    public CentreDressage(int id, String libelle, String adresse, int tel, double lat, double lng, String description, String image) {
+    public CentreDressage(String libelle, String adresse, int tel, double lat, double lng, String description, String image, String ville, String gouvernerat, int code_psotale) {
+        this.libelle = libelle;
+        this.adresse = adresse;
+        this.tel = tel;
+        this.lat = lat;
+        this.lng = lng;
+        this.description = description;
+        this.image = image;
+        this.ville = ville;
+        this.gouvernerat = gouvernerat;
+        this.code_psotale = code_psotale;
+    }
+
+    public CentreDressage(int id, String libelle, String adresse, int tel, double lat, double lng, String description, String image, String ville, String gouvernerat, int code_psotale) {
         this.id = id;
         this.libelle = libelle;
         this.adresse = adresse;
@@ -48,7 +65,12 @@ public class CentreDressage {
         this.lng = lng;
         this.description = description;
         this.image = image;
+        this.ville = ville;
+        this.gouvernerat = gouvernerat;
+        this.code_psotale = code_psotale;
     }
+    
+    
 
     public int getId() {return id;}
     public void setId(int id) {this.id = id;}
@@ -73,11 +95,19 @@ public class CentreDressage {
 
     public String getImage() {return image;}
     public void setImage(String image) {this.image = image;}
+    
+    public String getVille() {return ville;}
+    public void setVille(String ville) {this.ville = ville;}
+
+    public String getGouvernerat() {return gouvernerat;}
+    public void setGouvernerat(String gouvernerat) {this.gouvernerat = gouvernerat;}
+
+    public int  getCode_psotale() {return code_psotale;}
+    public void setCode_psotale(int  code_psotale) {this.code_psotale = code_psotale;}
 
     @Override
-    public String toString() 
-    {
-        return "CentreDressage{" + "id=" + id + ", libelle=" + libelle + ", adresse=" + adresse + ", tel=" + tel + ", lat=" + lat + ", lng=" + lng + ", description=" + description + ", image=" + image + '}';
+    public String toString() {
+        return "CentreDressage{" + "id=" + id + ", libelle=" + libelle + ", adresse=" + adresse + ", tel=" + tel + ", lat=" + lat + ", lng=" + lng + ", description=" + description + ", image=" + image + ", ville=" + ville + ", gouvernerat=" + gouvernerat + ", code_psotale=" + code_psotale + '}';
     }
 
     @Override

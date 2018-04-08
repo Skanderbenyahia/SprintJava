@@ -262,7 +262,7 @@ public class ServiceController implements Initializable {
 
                   re.setTextFill(Color.web("ffffff"));
                   reserver.setLayoutY(150);
-                reserver.setGraphic(re);
+                  reserver.setGraphic(re);
 
 
                  vbox.setSpacing(30.0);

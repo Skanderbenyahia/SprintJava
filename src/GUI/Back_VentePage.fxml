@@ -4,7 +4,6 @@
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TableColumn?>
@@ -30,8 +29,13 @@
                   <Font name="System Bold" size="41.0" />
                </font>
             </Label>
-            <Hyperlink layoutX="1104.0" layoutY="19.0" text="Déconnexion" textFill="#f2f2f2" />
             <Button layoutX="-8.0" layoutY="1.0" mnemonicParsing="false" onAction="#Back_AdminLayout" opacity="0.0" prefHeight="59.0" prefWidth="77.0" text="Button" />
+            <Label layoutX="1098.0" layoutY="18.0" text="Déconnexion" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Button layoutX="1072.0" layoutY="9.0" mnemonicParsing="false" onAction="#logout" opacity="0.0" prefHeight="44.0" prefWidth="135.0" text="Button" />
          </children>
       </Pane>
       <JFXTabPane layoutY="59.0" prefHeight="656.0" prefWidth="1209.0" stylesheets="@../Ressources/css/tabpane_back.css">

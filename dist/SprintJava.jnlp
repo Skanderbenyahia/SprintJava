@@ -8,7 +8,10 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="SprintJava.jar" size="2433448" download="eager" />
+    <jar href="SprintJava.jar" size="2438496" download="eager" />
+    <jar href="lib\GMapsFX-2.0.8-SNAPSHOT-javadoc.jar" size="604183" download="eager" />
+    <jar href="lib\GMapsFX-2.0.8-SNAPSHOT.jar" size="137318" download="eager" />
+    <jar href="lib\GMapsFX-2.12.0.jar" size="207618" download="eager" />
     <jar href="lib\jfoenix-8.0.1.jar" size="2405715" download="eager" />
     <jar href="lib\mysql-connector-java-5.1.23-bin.jar" size="834126" download="eager" />
   </resources>

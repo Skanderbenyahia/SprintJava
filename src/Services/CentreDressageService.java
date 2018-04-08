@@ -37,7 +37,7 @@ public class CentreDressageService
     
     public void AjouterCentreDressage(CentreDressage d) throws SQLException
     {
-        String req="INSERT INTO centre_dressage (libelle,adresse,tel,lat,lng,description,image) VALUES (?,?,?,?,?,?,?)";
+        String req="INSERT INTO centre_dressage (libelle,adresse,tel,lat,lng,description,image,ville,gouvernerat,code_postal) VALUES (?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement pre = con.prepareStatement(req);
         pre.setString(1,d.getLibelle());
         pre.setString(2,d.getAdresse());
@@ -46,6 +46,9 @@ public class CentreDressageService
         pre.setDouble(5,d.getLng());
         pre.setString(6, d.getDescription());
         pre.setString(7,d.getImage());
+         pre.setString(8, d.getVille());
+        pre.setString(9, d.getGouvernerat());
+        pre.setInt(10, d.getCode_psotale());
         pre.executeUpdate();     
     }
     
@@ -56,7 +59,7 @@ public class CentreDressageService
         List<CentreDressage> centresD =new ArrayList<>();
         while(r.next())
         {
-             centresD.add(new CentreDressage(r.getInt("id"),r.getString("libelle"),r.getString("adresse"),r.getInt("tel"),r.getDouble("lat"),r.getDouble("lng"),r.getString("description"),r.getString("image")));
+             centresD.add(new CentreDressage(r.getInt("id"),r.getString("libelle"),r.getString("adresse"),r.getInt("tel"),r.getDouble("lat"),r.getDouble("lng"),r.getString("description"),r.getString("image"),r.getString("ville"),r.getString("gouvernerat"),r.getInt("code_postal")));
         }
         return centresD;
     }

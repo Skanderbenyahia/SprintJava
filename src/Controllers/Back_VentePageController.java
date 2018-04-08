@@ -9,9 +9,11 @@ import Entity.Categorie;
 import Entity.CentreDressage;
 import Entity.Produit;
 import Entity.ReservationPetsitter;
+import Entity.Session;
 import Services.CategorieService;
 import Services.CentreDressageService;
 import Services.ProduitService;
+import Services.UserService;
 import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.net.URL;
@@ -297,6 +299,15 @@ private ObservableList dataR= FXCollections.observableArrayList();
     private void SelectedP(MouseEvent event) {
          ModifierP.setDisable(false);
          SupprimerP.setDisable(false);
+    }
+
+    @FXML
+    private void logout(ActionEvent event) throws IOException {
+             UserService us = new UserService();
+        us.Desactivate(Session.getCurrentSession());
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/Start.fxml"));
+        Parent root=loader.load();
+        ProduitView.getScene().setRoot(root);
     }
 
   
