@@ -285,7 +285,7 @@ GoogleMap map;
                   DatePicker dateD=new DatePicker();
                   dateD.setLayoutX(290);
                   dateD.setLayoutY(170);
-                  
+                                    
                   DatePicker dateF=new DatePicker();
                   dateF.setLayoutX(550);
                   dateF.setLayoutY(170);

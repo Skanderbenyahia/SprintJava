@@ -9,9 +9,11 @@ import Entity.Produit;
 import Entity.Session;
 import Entity.User;
 import Services.ProduitService;
+import Services.UserService;
 import Technique.DataSource;
 import com.jfoenix.controls.JFXButton;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -25,8 +27,10 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
@@ -60,15 +64,9 @@ public class VentesController implements Initializable {
 
     private Connection con = DataSource.getInstance().getConnexion();
     @FXML
-    private Hyperlink deconnexion;
-    @FXML
-    private Hyperlink profil;
-    @FXML
     private Label bienvenue;
     @FXML
     private Button panier;
-    @FXML
-    private Button location;
 
     public String pathImage = "C:\\Users\\bn-sk\\Desktop\\Git\\SprintJava\\src\\Ressources\\Images\\";
     public String pathButton = "C:\\Users\\bn-sk\\Desktop\\Git\\SprintJava\\src\\Ressources\\Images\\add-square-button.png";
@@ -76,6 +74,51 @@ public class VentesController implements Initializable {
     private AnchorPane an;
     @FXML
     private ScrollPane scroll;
+
+    @FXML
+    private void Afficherpanier(ActionEvent event) throws IOException {
+             FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/Panier.fxml"));
+        Parent root = loader.load();
+        bienvenue.getScene().setRoot(root);
+    }
+
+    @FXML
+    private void EventPage(ActionEvent event) {
+    }
+
+    @FXML
+    private void SoinPage(ActionEvent event) {
+    }
+
+    @FXML
+    private void ServicePage(ActionEvent event) throws IOException {
+              FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/Service.fxml"));
+        Parent root = loader.load();
+        bienvenue.getScene().setRoot(root);
+    }
+
+    @FXML
+    private void HomePage(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/home.fxml"));
+        Parent root = loader.load();
+        bienvenue.getScene().setRoot(root);
+    }
+
+    @FXML
+    private void AdoptionPage(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/Adoption.fxml"));
+        Parent root = loader.load();
+        bienvenue.getScene().setRoot(root);
+    }
+
+    @FXML
+    private void Logout(ActionEvent event) throws IOException {
+         UserService us = new UserService();
+        us.Desactivate(Session.getCurrentSession());
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/Start.fxml"));
+        Parent root = loader.load();
+        bienvenue.getScene().setRoot(root);
+    }
 
     /**
      * Initializes the controller class.
@@ -128,7 +171,7 @@ public class VentesController implements Initializable {
             File fileimage = new File(pathImage + rs.getString(7));
             Image preimage = new Image(fileimage.toURI().toString());
             ImageView image = new ImageView(preimage);
-            image.setLayoutX(240);
+            image.setLayoutX(120);
             image.setLayoutY(37);
             image.setFitWidth(150);
             image.setFitHeight(180);
@@ -138,22 +181,22 @@ public class VentesController implements Initializable {
             libelle.setStyle("-fx-font-weight: bold");
             libelle.setFont(font);
             libelle.setTextFill(Color.web("cfbfa6"));
-            libelle.setLayoutX(410);
+            libelle.setLayoutX(290);
             libelle.setLayoutY(48);
 
-            Label description = new Label("Ceci est un produit " + rs.getString(4));
-            Font font2 = new Font("Arial", 18);
+            Label description = new Label("Ce produit est" + rs.getString(4));
+            Font font2 = new Font("Arial", 20);
             description.setFont(font2);
-            description.setLayoutX(410);
+            description.setLayoutX(290);
             description.setLayoutY(90);
 
             Label prix = new Label(String.valueOf(rs.getInt(5)) + " DT");
             prix.setTextFill(Color.web("f67777"));
-            Font font3 = new Font("Arial", 16);
+            Font font3 = new Font("Arial", 18);
             prix.setStyle("-fx-font-weight: bold");
             prix.setFont(font3);
-            prix.setLayoutX(410);
-            prix.setLayoutY(190);
+            prix.setLayoutX(290);
+            prix.setLayoutY(130);
 
             File file = new File(pathButton);
             Image preimagebutton = new Image(file.toURI().toString());
@@ -161,7 +204,7 @@ public class VentesController implements Initializable {
 
             Button ajoutButton = new Button();
             ajoutButton.setLayoutX(480);
-            ajoutButton.setLayoutY(170);
+            ajoutButton.setLayoutY(130);
             ajoutButton.setPrefWidth(30);
             ajoutButton.setPrefHeight(20);
             ajoutButton.setGraphic(imagebutton);
@@ -208,7 +251,6 @@ public class VentesController implements Initializable {
                 });
             }
 
-            System.out.println("skan ya bhim");
         }
         scroll.setContent(f);
 

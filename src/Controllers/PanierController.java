@@ -58,7 +58,7 @@ import org.controlsfx.control.Notifications;
  * @author bn-sk
  */
 public class PanierController implements Initializable {
-
+    public static double total=0; 
     static String lib = "";
     static String desc = "";
     public String pathImage = "C:\\Users\\bn-sk\\Desktop\\Git\\SprintJava\\src\\Ressources\\Images\\";
@@ -185,9 +185,18 @@ public class PanierController implements Initializable {
         
         valider.setOnAction((c) -> {
           
-            
             try {
-                ps.CommanderPanier(Session.getCurrentSession());
+                
+                total=ps.totalpanier(Session.getCurrentSession());
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/Stripe.fxml"));
+                    Parent root = loader.load();
+                    valider.getScene().setRoot(root);
+                    
+                    
+                } catch (IOException ex) {
+                    Logger.getLogger(PanierController.class.getName()).log(Level.SEVERE, null, ex);
+                }
             } catch (SQLException ex) {
                 Logger.getLogger(PanierController.class.getName()).log(Level.SEVERE, null, ex);
             }

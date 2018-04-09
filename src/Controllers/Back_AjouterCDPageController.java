@@ -57,10 +57,7 @@ public class Back_AjouterCDPageController implements Initializable,ControllerCla
     private JFXTextField tel;
     @FXML
     private JFXTextField description;
-   /* @FXML
-    private JFXTextField lan;
-    @FXML
-    private JFXTextField lat;*/
+
     @FXML
     private JFXTextField image;
     
@@ -72,7 +69,7 @@ public class Back_AjouterCDPageController implements Initializable,ControllerCla
 
     protected GoogleMapView mapComponent;
     private GoogleMap map;
-     int count = 0;
+    int count = 0;
     @FXML
     private BorderPane map_container;
  

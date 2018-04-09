@@ -267,11 +267,11 @@ public class Back_ServicePageController implements Initializable {
         controllerC=loader.getController();
         controllerC.preloadData(d);
         
-         Scene CentreDPage= new Scene (parent);
-         Stage window=(Stage) ((Node)event.getSource()).getScene().getWindow();
-         window.setTitle(title);
-         window.setScene(CentreDPage);
-         window.show();
+        Scene CentreDPage= new Scene (parent);
+        Stage window=(Stage) ((Node)event.getSource()).getScene().getWindow();
+        window.setTitle(title);
+        window.setScene(CentreDPage);
+        window.show();
    }
     
     
