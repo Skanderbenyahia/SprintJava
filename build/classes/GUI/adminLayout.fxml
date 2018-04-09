@@ -89,7 +89,7 @@
                   <Image url="@../Ressources/Images/animal-paw-print.png" />
                </image>
             </ImageView>
-            <Button fx:id="Adoption_button" layoutX="128.0" layoutY="-3.0" mnemonicParsing="false" opacity="0.0" prefHeight="60.0" prefWidth="156.0" text="Adoption" textFill="WHITE">
+            <Button fx:id="Adoption_button" layoutX="128.0" layoutY="-3.0" mnemonicParsing="false" onAction="#adoptionPage" opacity="0.0" prefHeight="60.0" prefWidth="156.0" text="Adoption" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>

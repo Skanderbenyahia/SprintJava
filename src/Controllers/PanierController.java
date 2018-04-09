@@ -5,10 +5,13 @@
  */
 package Controllers;
 
+import Entity.CentreDressage;
 import Entity.Ligne;
 import Entity.Produit;
 import Entity.Session;
+import Services.CentreDressageService;
 import Services.ProduitService;
+import com.jfoenix.controls.JFXPopup;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -16,6 +19,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,8 +28,11 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -37,6 +44,13 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
+import javafx.stage.Popup;
+import javafx.stage.Stage;
+import javafx.util.Duration;
+import org.controlsfx.control.NotificationPane;
+import org.controlsfx.control.Notifications;
 
 /**
  * FXML Controller class
@@ -146,7 +160,7 @@ public class PanierController implements Initializable {
             suppressonButton.setOnAction(e -> {
 
                 try {
-                    
+
                     try {
                         ps.SupprimerProduitPanier(ligne.getId());
                     } catch (SQLException ex) {
@@ -155,7 +169,7 @@ public class PanierController implements Initializable {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/Panier.fxml"));
                     Parent root = loader.load();
                     suppressonButton.getScene().setRoot(root);
-                    
+
                 } catch (IOException ex) {
                     Logger.getLogger(PanierController.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -163,13 +177,16 @@ public class PanierController implements Initializable {
             });
 
         }
-        Button valider=new Button("Commande le panier");
+        
+        Button valider = new Button("Commande le panier");
         valider.setContentDisplay(ContentDisplay.RIGHT);
         valider.setStyle("-fx-background-color: f67777");
         
+        
         valider.setOnAction((c) -> {
+          
+            
             try {
-                System.out.println(Session.getCurrentSession());
                 ps.CommanderPanier(Session.getCurrentSession());
             } catch (SQLException ex) {
                 Logger.getLogger(PanierController.class.getName()).log(Level.SEVERE, null, ex);

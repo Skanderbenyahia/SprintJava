@@ -218,5 +218,23 @@ public class ProduitService {
         pre.executeUpdate();
 
     }
+    
+   public  float totalpanier(int id) throws SQLException
+    {
+        float total = 0;
+        String description = "";
+
+        String req1 = "select SUM(l.prix*l.quantite) as total from ligne l where l.idClient='" + id + "'";
+        PreparedStatement pre1 = con.prepareStatement(req1);
+        ResultSet r1 = pre1.executeQuery();
+        while (r1.next()) {
+            total = r1.getFloat(1);
+        }
+        return total;
+    }
+   
+   
+    
+    
 
 }
