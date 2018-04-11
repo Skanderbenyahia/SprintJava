@@ -111,10 +111,24 @@ public class InscriptionController implements Initializable {
                 alert.showAndWait();
          return false;
          }
+         if(!(email.getText().contains("@")))
+         {
+            Alert alert= new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Validation Champs");
+                alert.setHeaderText(null);
+                alert.setContentText("Veuillez vérifier le champ email !");
+                alert.showAndWait();
+         return false;  
+         }
   
         return true;
-     
      }
-    
-    
+
+    @FXML
+    private void BackButton(ActionEvent event) throws IOException {
+         FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/Start.fxml"));
+        Parent root=loader.load();
+        username.getScene().setRoot(root);
+    }
+
 }

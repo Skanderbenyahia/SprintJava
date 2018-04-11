@@ -139,4 +139,28 @@ public class ReservationPetsitterService {
         return  reservationExistante;
           }
       
+            public List<ReservationPetsitter> AfficherReservationUser(int id)throws SQLException
+    {
+        String req="SELECT * FROM reservation_petsitter where idPetsitter='"+id+"'";
+        ResultSet r =ste.executeQuery(req);
+        List<ReservationPetsitter> reservationP =new ArrayList<>();
+        while(r.next())
+        {
+             reservationP.add(new ReservationPetsitter(r.getInt("id"),r.getDate("dateD"),r.getDate("dateF"),r.getDouble("prix"),r.getDouble("encaisser"),r.getInt("idPetsitter"),r.getInt("iduser")));
+        }
+        return reservationP;
+    }
+          
+          public ObservableList<ReservationPetsitter> getReservation (int id) throws SQLException
+        {
+           
+          ObservableList<ReservationPetsitter> Listreservations = FXCollections.observableArrayList();
+          List<ReservationPetsitter> reservations =  AfficherReservationUser(id);
+             for (ReservationPetsitter   r : reservations)
+               {
+                 Listreservations.add(r);
+               }
+                 return Listreservations;    
+        }
+
 }

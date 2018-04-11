@@ -104,6 +104,8 @@ public class Back_ServicePageController implements Initializable {
     private ObservableList dataR= FXCollections.observableArrayList();
     @FXML
     private JFXTextField searchR;
+    @FXML
+    private Button Back_admin;
   
   
 

@@ -9,12 +9,17 @@ import Entity.CentreDressage;
 import Entity.Ligne;
 import Entity.Produit;
 import Entity.Session;
+import Entity.User;
 import Services.CentreDressageService;
 import Services.ProduitService;
+import Services.UserService;
+import Technique.DataSource;
 import com.jfoenix.controls.JFXPopup;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -61,18 +66,41 @@ public class PanierController implements Initializable {
     public static double total=0; 
     static String lib = "";
     static String desc = "";
-    public String pathImage = "C:\\Users\\bn-sk\\Desktop\\Git\\SprintJava\\src\\Ressources\\Images\\";
-    public String pathButton = "C:\\Users\\bn-sk\\Desktop\\Git\\SprintJava\\src\\Ressources\\Images\\minus.png";
+    public String pathImage = "C:\\Users\\jabou\\Desktop\\SprintJava\\src\\Ressources\\Images\\";
+    public String pathButton = "C:\\Users\\jabou\\Desktop\\SprintJava\\src\\Ressources\\Images\\minus.png";
     @FXML
     private AnchorPane anp;
     @FXML
     private ScrollPane srolle;
+    @FXML
+    private Label bienvenue;
+    private Connection con = DataSource.getInstance().getConnexion();
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        List currentUser = new ArrayList();
+        String req = "select nom,prenom from user where id=(?)";
+        try {
+            PreparedStatement prepared = con.prepareStatement(req);
+            prepared.setInt(1, Session.getCurrentSession());
+            ResultSet resultat = prepared.executeQuery();
+
+            while (resultat.next()) {
+                String nom = resultat.getString(1);
+                String prenom = resultat.getString(2);
+                currentUser.add(nom);
+                currentUser.add(prenom);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        bienvenue.setText("Connecté en tant que : " + currentUser.get(0) + " " + currentUser.get(1));
+        ///////////////////////Panier////////////////////
         ProduitService ps = new ProduitService();
         try {
             AffichagePanier();
@@ -178,15 +206,33 @@ public class PanierController implements Initializable {
 
         }
         
-        Button valider = new Button("Commande le panier");
+        total=ps.totalpanier(Session.getCurrentSession());
+        Label tot=new Label();
+        tot.setText("Total Panier : " +total+" DT");
+        tot.setTextFill(Color.web("f67777"));
+        Font font = new Font("Arial",24);
+        tot.setStyle("-fx-font-weight: bold");
+        tot.setFont(font);
+        tot.setLayoutX(1000);
+        tot.setLayoutY(150);
+        
+        Button valider = new Button();
+        valider.setPrefHeight(40);
+        valider.setPrefWidth(150);
+        valider.setLayoutX(850);
+        valider.setLayoutY(250);
+        Label re=new Label();
+        re.setText("Commander");
+        re.setTextFill(Color.web("ffffff"));
+        valider.setGraphic(re);
+
         valider.setContentDisplay(ContentDisplay.RIGHT);
         valider.setStyle("-fx-background-color: f67777");
-        
-        
+         
         valider.setOnAction((c) -> {
           
             try {
-                
+
                 total=ps.totalpanier(Session.getCurrentSession());
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/Stripe.fxml"));
@@ -201,9 +247,61 @@ public class PanierController implements Initializable {
                 Logger.getLogger(PanierController.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
-        f.getChildren().add(valider);
+        f.getChildren().addAll(valider,tot);
         srolle.setContent(f);
 
+    }
+
+    @FXML
+    private void eventPage(ActionEvent event) {
+    }
+
+    @FXML
+    private void ventePage(ActionEvent event) throws IOException {
+           FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/Ventes.fxml"));
+        Parent root = loader.load();
+        bienvenue.getScene().setRoot(root);
+    }
+
+    @FXML
+    private void homePage(ActionEvent event) throws IOException {
+          FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/home.fxml"));
+        Parent root = loader.load();
+        bienvenue.getScene().setRoot(root);
+    }
+
+    @FXML
+    private void adoptionPage(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/Adoption.fxml"));
+        Parent root = loader.load();
+        bienvenue.getScene().setRoot(root);
+    }
+
+    @FXML
+    private void servicePage(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/Service.fxml"));
+        Parent root = loader.load();
+        bienvenue.getScene().setRoot(root);
+    }
+
+    @FXML
+    private void soinPage(ActionEvent event) {
+    }
+
+    @FXML
+    private void panierPage(ActionEvent event) throws IOException {
+          FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/Panier.fxml"));
+        Parent root = loader.load();
+        bienvenue.getScene().setRoot(root);     
+    }
+
+    @FXML
+    private void logout(ActionEvent event) throws IOException {
+        UserService us = new UserService();
+        us.Desactivate(Session.getCurrentSession());
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/Start.fxml"));
+        Parent root = loader.load();
+        bienvenue.getScene().setRoot(root);
     }
 
 }

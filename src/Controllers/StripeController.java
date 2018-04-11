@@ -30,10 +30,15 @@ import javafx.stage.Stage;
 import javax.mail.MessagingException;
 import Entity.User;
 import Services.ProduitService;
+import java.io.File;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 /**
  * FXML Controller class
@@ -42,41 +47,62 @@ import javafx.event.ActionEvent;
  */
 public class StripeController implements Initializable {
 
-    /**
-     * Initializes the controller class.
-     */
+    public String pathButtonback = "C:\\Users\\bn-sk\\Desktop\\GitGroup\\SprintJava\\src\\Ressources\\Images\\back.png";
+    
     public static User client = null;
     @FXML
     private JFXTextField name, cc, cvv, exp_y, exp_m;
-    
+    @FXML
+    private Button retour;
 
     public void initialize(URL url, ResourceBundle rb) {
         
+            File fileimage = new File(pathButtonback);
+            Image preimage = new Image(fileimage.toURI().toString());
+            ImageView image = new ImageView(preimage);
+            image.setLayoutX(120);
+            image.setLayoutY(37);
+            image.setFitWidth(150);
+            image.setFitHeight(180);
+            retour.setGraphic(image);
     }
-
-    
 
     @FXML
     private void createPayment(ActionEvent event) {
-        
-        PaymentOrder payment = new PaymentOrder(cc.getText(), cvv.getText(), exp_m.getText(), exp_y.getText(),total);
-            try {
-                Charge charge = payment.createCharge("sk_test_iPtaJ5udtTjyX6WXdtUjomIp", payment.getAmmount(), payment.getName(), payment.getCardnumber(), payment.getExp_month(), payment.getExp_year(), payment.getCvv());
-                System.out.println("charge : " + charge.getStatus());
-                if (charge.getStatus().equalsIgnoreCase("succeeded")) {
-                    System.out.println("success");
-                    ProduitService ps=new ProduitService();
-                    ps.CommanderPanier(Session.getCurrentSession());
-                    
-                }
 
-            } catch (AuthenticationException | InvalidRequestException | APIConnectionException | CardException | APIException ex) {
-                if (ex.getMessage() != null || !(ex.getMessage().equals(""))) {
-                    System.out.println("error");
+        PaymentOrder payment = new PaymentOrder(cc.getText(), cvv.getText(), exp_m.getText(), exp_y.getText(), total);
+        try {
+            Charge charge = payment.createCharge("sk_test_iPtaJ5udtTjyX6WXdtUjomIp", payment.getAmmount(), payment.getName(), payment.getCardnumber(), payment.getExp_month(), payment.getExp_year(), payment.getCvv());
+            System.out.println("charge : " + charge.getStatus());
+            if (charge.getStatus().equalsIgnoreCase("succeeded")) {
+                ProduitService ps = new ProduitService();
+                ps.CommanderPanier(Session.getCurrentSession());
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Information Dialog");
+                alert.setHeaderText(null);
+                alert.setContentText("Commande éffectué avec succées !");
+                alert.showAndWait();
 
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(StripeController.class.getName()).log(Level.SEVERE, null, ex);
             }
+
+        } catch (AuthenticationException | InvalidRequestException | APIConnectionException | CardException | APIException ex) {
+            if (ex.getMessage() != null || !(ex.getMessage().equals(""))) {
+               Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Information Dialog");
+                alert.setHeaderText(null);
+                alert.setContentText("Commande Erroné ! Veuillez vérifier vos coordonées bancaires");
+                alert.showAndWait();
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(StripeController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void retour(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/Panier.fxml"));
+        Parent root = loader.load();
+        retour.getScene().setRoot(root); 
     }
 }

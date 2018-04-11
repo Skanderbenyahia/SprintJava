@@ -24,13 +24,13 @@
                   <Font name="System Bold" size="41.0" />
                </font>
             </Label>
-            <Button fx:id="BackButton" layoutX="-6.0" layoutY="-1.0" mnemonicParsing="false" onAction="#Back_adminLayout" opacity="0.0" prefHeight="59.0" prefWidth="87.0" text="Button" />
-            <Button layoutX="1071.0" layoutY="11.0" mnemonicParsing="false" onAction="#Logout" opacity="0.0" prefHeight="36.0" prefWidth="125.0" text="Button" />
             <Label layoutX="1087.0" layoutY="16.0" text="Déconnexion" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
+            <Button fx:id="BackButton" layoutX="-6.0" layoutY="-1.0" mnemonicParsing="false" onAction="#Back_adminLayout" opacity="0.0" prefHeight="59.0" prefWidth="87.0" text="Button" />
+            <Button layoutX="1071.0" layoutY="11.0" mnemonicParsing="false" onAction="#Logout" opacity="0.0" prefHeight="36.0" prefWidth="125.0" text="Button" />
          </children></Pane>
       <ImageView fitHeight="60.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
          <image>

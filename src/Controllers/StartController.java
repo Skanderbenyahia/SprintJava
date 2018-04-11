@@ -30,6 +30,8 @@ import javafx.stage.Stage;
  *
  * @author bn-sk
  */
+
+
 public class StartController implements Initializable {
 
     @FXML
@@ -49,18 +51,18 @@ public class StartController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     @FXML
     private void inscription(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/inscription.fxml"));
-        Parent root=loader.load();
+        Parent root = loader.load();
         username.getScene().setRoot(root);
     }
 
     @FXML
     private void login(ActionEvent event) throws IOException {
-         int roles = 0;
+        int roles = 0;
         UserService us = new UserService();
         User u = new User();
         u.setUsername(username.getText());
@@ -68,15 +70,14 @@ public class StartController implements Initializable {
         roles = us.VerificationUtilisateur(u);
         Stage stage;
 
-        
-        if (roles == 1 ) {
-         
-          //  Session.start(u.getId());
-            System.out.println("user id is : "+u.getId());
-             
-                 Session.start(u.getId());
-                System.out.println( Session.getCurrentSession());
-                us.loggin(u,Session.getCurrentSession());
+        if (roles == 1) {
+
+            //  Session.start(u.getId());
+            System.out.println("user id is : " + u.getId());
+
+            Session.start(u.getId());
+            System.out.println(Session.getCurrentSession());
+            us.loggin(u, Session.getCurrentSession());
             System.out.println("Role from login! : member");
 
             Parent page2 = FXMLLoader.load(getClass().getResource("../GUI/home.fxml"));
@@ -85,18 +86,15 @@ public class StartController implements Initializable {
             stage.setScene(scene);
             stage.setUserData(u);
             stage.show();
-         
-              
-         
-          /* */
-        } 
-        if(roles==0)
-        {
-                System.out.println("user id is : "+u.getId());
-             
-                 Session.start(u.getId());
-                System.out.println( Session.getCurrentSession());
-                us.loggin(u,Session.getCurrentSession());
+
+            /* */
+        }
+        if (roles == 0) {
+            System.out.println("user id is : " + u.getId());
+
+            Session.start(u.getId());
+            System.out.println(Session.getCurrentSession());
+            us.loggin(u, Session.getCurrentSession());
             System.out.println("Role from login! : admin");
 
             Parent page2 = FXMLLoader.load(getClass().getResource("../GUI/adminLayout.fxml"));
@@ -105,10 +103,10 @@ public class StartController implements Initializable {
             stage.setScene(scene);
             stage.setUserData(u);
             stage.show();
-         
+
         }
-       
-                if (roles!=0 && roles!=1) {
+
+        if (roles != 0 && roles != 1) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Could not login");
@@ -117,5 +115,4 @@ public class StartController implements Initializable {
         }
     }
 
-   
 }

@@ -27,7 +27,7 @@ import javafx.scene.control.Label;
  *
  * @author jabou
  */
-public class Back_AjouterCategoriePageController implements Initializable,VenteControllerClass {
+public class Back_AjouterCategoriePageController implements Initializable, VenteControllerClass {
 
     @FXML
     private JFXTextField libelle;
@@ -41,71 +41,61 @@ public class Back_AjouterCategoriePageController implements Initializable,VenteC
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     @FXML
     private void AjouterCategorie(ActionEvent event) throws SQLException, IOException {
-                
-        CategorieService cs= new CategorieService();
-        if(ValidateFields())
-        {
-         if(c!=null)
-        {
-          updateProduit();
-          cs.ModifierCategorie(c);
+
+        CategorieService cs = new CategorieService();
+        if (ValidateFields()) {
+            if (c != null) {
+                updateProduit();
+                cs.ModifierCategorie(c);
+            } else {
+                Categorie c = new Categorie();
+                c.setLibelle(libelle.getText());
+                cs.AjouterCategorie(c);
+            }
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/Back_VentePage.fxml"));
+            Parent root = loader.load();
+            libelle.getScene().setRoot(root);
         }
-         else
-         {
-            Categorie c= new Categorie();
-            c.setLibelle(libelle.getText());
-            cs.AjouterCategorie(c);
-         }
-        FXMLLoader loader= new FXMLLoader(getClass().getResource("../GUI/Back_VentePage.fxml"));
-        Parent root =loader.load();
-        libelle.getScene().setRoot(root);
-        }  
     }
 
     @FXML
     private void Back_adminLayout(ActionEvent event) throws IOException {
-        FXMLLoader loader= new FXMLLoader(getClass().getResource("../GUI/adminLayout.fxml"));
-        Parent root =loader.load();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/adminLayout.fxml"));
+        Parent root = loader.load();
         libelle.getScene().setRoot(root);
     }
-    
-   @Override
+
+    @Override
     public void preloadData(Categorie c) {
-        this.c=c;
+        this.c = c;
         this.libelle.setText(c.getLibelle());
         this.titre.setText("Modifier Categorie");
     }
-    
-     public void updateProduit()
-    {
-      c.setLibelle(libelle.getText());
+
+    public void updateProduit() {
+        c.setLibelle(libelle.getText());
     }
-    
-       private boolean ValidateFields()
-     {
-         if(libelle.getText().isEmpty() )
-         {
-                Alert alert= new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Validation Champs");
-                alert.setHeaderText(null);
-                alert.setContentText("Veuillez remplir tout les champs !");
-                alert.showAndWait();
-         return false;
-         }
-         
-         
+
+    private boolean ValidateFields() {
+        if (libelle.getText().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Validation Champs");
+            alert.setHeaderText(null);
+            alert.setContentText("Veuillez remplir tout les champs !");
+            alert.showAndWait();
+            return false;
+        }
+
         return true;
-     
-     }
-     
+
+    }
+
     @Override
     public void preloadData(Produit p) {
     }
-
-    
 
 }

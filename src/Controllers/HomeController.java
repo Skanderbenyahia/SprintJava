@@ -47,11 +47,12 @@ public class HomeController implements Initializable {
     @FXML
     private Button panier;
     @FXML
-    private Button location;
-    @FXML
-    private Button deconnexion;
-    @FXML
     private Label bienvenue;
+    @FXML
+    private Label reservations;
+    @FXML
+    private Button ReservationPage;
+    private boolean petsitter=false;
 
     /**
      * Initializes the controller class.
@@ -59,7 +60,7 @@ public class HomeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         List currentUser = new ArrayList();
-        String req = "select nom,prenom from user where id=(?)";
+        String req = "select nom,prenom,roles from user where id=(?)";
         try {
             PreparedStatement prepared = con.prepareStatement(req);
             prepared.setInt(1, Session.getCurrentSession());
@@ -68,8 +69,19 @@ public class HomeController implements Initializable {
             while (resultat.next()) {
                 String nom = resultat.getString(1);
                 String prenom = resultat.getString(2);
+                String roles=resultat.getString(3);
                 currentUser.add(nom);
                 currentUser.add(prenom);
+                
+                if(roles.equals("ROLE_PETSITTER"))
+                    {
+                         petsitter=true;
+                    }
+            }
+            
+               if(petsitter==false)
+            {
+              reservations.setOpacity(0);
             }
 
         } catch (SQLException ex) {
@@ -114,9 +126,15 @@ public class HomeController implements Initializable {
     private void afficherEvents(ActionEvent event) {
     }
 
+    private void affichePanier(ActionEvent event) throws SQLException, IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/Panier.fxml"));
+        Parent root = loader.load();
+        bienvenue.getScene().setRoot(root);
+    }
+
     @FXML
-    private void deconnexion(ActionEvent event) throws IOException {
-        UserService us = new UserService();
+    private void logout(ActionEvent event) throws IOException {
+         UserService us = new UserService();
         us.Desactivate(Session.getCurrentSession());
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/Start.fxml"));
         Parent root = loader.load();
@@ -124,9 +142,16 @@ public class HomeController implements Initializable {
     }
 
     @FXML
-    private void affichePanier(ActionEvent event) throws SQLException, IOException {
+    private void PanierPage(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/Panier.fxml"));
         Parent root = loader.load();
+        bienvenue.getScene().setRoot(root);
+    }
+
+    @FXML
+    private void ReservationPage(ActionEvent event) throws IOException {
+         FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/ListeReservationPetsitter.fxml"));
+        Parent root=loader.load();
         bienvenue.getScene().setRoot(root);
     }
 

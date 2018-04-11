@@ -3,13 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/bn-sk/Desktop/GitGroup/SprintJava/src/Controllers/StripeController.java</file>
-            <file>file:/C:/Users/bn-sk/Desktop/GitGroup/SprintJava/src/Controllers/PanierController.java</file>
-            <file>file:/C:/Users/bn-sk/Desktop/GitGroup/SprintJava/src/GUI/Stripe.fxml</file>
-            <file>file:/C:/Users/bn-sk/Desktop/GitGroup/SprintJava/src/Services/ProduitService.java</file>
-            <file>file:/C:/Users/bn-sk/Desktop/GitGroup/SprintJava/src/Entity/PaymentOrder.java</file>
-            <file>file:/C:/Users/bn-sk/Desktop/GitGroup/SprintJava/src/Controllers/StartController.java</file>
-            <file>file:/C:/Users/bn-sk/Desktop/GitGroup/SprintJava/src/Controllers/HomeController.java</file>
+            <file>file:/C:/Users/jabou/Desktop/SprintJava/src/Controllers/Back_VentePageController.java</file>
+            <file>file:/C:/Users/jabou/Desktop/SprintJava/src/Controllers/Back_AjouterCategoriePageController.java</file>
         </group>
     </open-files>
 </project-private>

@@ -68,8 +68,8 @@ public class VentesController implements Initializable {
     @FXML
     private Button panier;
 
-    public String pathImage = "C:\\Users\\bn-sk\\Desktop\\Git\\SprintJava\\src\\Ressources\\Images\\";
-    public String pathButton = "C:\\Users\\bn-sk\\Desktop\\Git\\SprintJava\\src\\Ressources\\Images\\add-square-button.png";
+    public String pathImage = "C:\\Users\\jabou\\Desktop\\SprintJava\\src\\Ressources\\Images\\";
+    public String pathButton = "C:\\Users\\jabou\\Desktop\\SprintJava\\src\\Ressources\\Images\\add-square-button.png";
     @FXML
     private AnchorPane an;
     @FXML
@@ -118,6 +118,13 @@ public class VentesController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/Start.fxml"));
         Parent root = loader.load();
         bienvenue.getScene().setRoot(root);
+    }
+
+    @FXML
+    private void retour(ActionEvent event) throws IOException {
+      FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/home.fxml"));
+        Parent root = loader.load();
+        bienvenue.getScene().setRoot(root);  
     }
 
     /**
