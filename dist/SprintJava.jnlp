@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="SprintJava.jar" size="2733136" download="eager" />
+    <jar href="SprintJava.jar" size="2844862" download="eager" />
     <jar href="lib\GMapsFX-2.0.8-SNAPSHOT-javadoc.jar" size="604183" download="eager" />
     <jar href="lib\GMapsFX-2.0.8-SNAPSHOT.jar" size="137318" download="eager" />
     <jar href="lib\GMapsFX-2.12.0.jar" size="207618" download="eager" />
