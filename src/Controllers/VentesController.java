@@ -11,7 +11,6 @@ import Entity.User;
 import Services.ProduitService;
 import Services.UserService;
 import Technique.DataSource;
-import com.jfoenix.controls.JFXButton;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -32,25 +31,15 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
-import javafx.scene.control.Pagination;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Separator;
 import javafx.scene.image.Image;
-
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-
-import javafx.scene.paint.Paint;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.StrokeType;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
@@ -62,6 +51,7 @@ import org.controlsfx.control.Notifications;
  */
 public class VentesController implements Initializable {
 
+    static int notif = 0;
     private Connection con = DataSource.getInstance().getConnexion();
     @FXML
     private Label bienvenue;
@@ -77,7 +67,7 @@ public class VentesController implements Initializable {
 
     @FXML
     private void Afficherpanier(ActionEvent event) throws IOException {
-             FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/Panier.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/Panier.fxml"));
         Parent root = loader.load();
         bienvenue.getScene().setRoot(root);
     }
@@ -92,7 +82,7 @@ public class VentesController implements Initializable {
 
     @FXML
     private void ServicePage(ActionEvent event) throws IOException {
-              FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/Service.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/Service.fxml"));
         Parent root = loader.load();
         bienvenue.getScene().setRoot(root);
     }
@@ -113,7 +103,7 @@ public class VentesController implements Initializable {
 
     @FXML
     private void Logout(ActionEvent event) throws IOException {
-         UserService us = new UserService();
+        UserService us = new UserService();
         us.Desactivate(Session.getCurrentSession());
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/Start.fxml"));
         Parent root = loader.load();
@@ -122,9 +112,9 @@ public class VentesController implements Initializable {
 
     @FXML
     private void retour(ActionEvent event) throws IOException {
-      FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/home.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/home.fxml"));
         Parent root = loader.load();
-        bienvenue.getScene().setRoot(root);  
+        bienvenue.getScene().setRoot(root);
     }
 
     /**
@@ -230,30 +220,30 @@ public class VentesController implements Initializable {
             while (r.next()) {
                 Produit p = new Produit(r.getInt(1), r.getInt(2), r.getString(3), r.getString(4), r.getInt(5), r.getString(6), r.getString(7), 1);
                 ajoutButton.setOnAction(e -> {
-                    
+
                     try {
                         System.out.println(p.toString());
                         ps.ajoutpanier(p, Session.getCurrentSession());
-
+                        notif = notif + 1;
                     } catch (SQLException ex) {
                         Logger.getLogger(VentesController.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    
-                    Notifications notif = Notifications.create()
-                .title("Ajout Produit avec succées !")
-                .text("Produit : "+p.getLibelle())
-                .graphic(new ImageView(preimage))
-                .hideAfter(Duration.seconds(5))
-                .position(Pos.BOTTOM_RIGHT)
-                .onAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("test");
-            }
 
-        }
-        );
-        notif.showInformation();
+                    Notifications notif = Notifications.create()
+                            .title("Ajout Produit avec succées !")
+                            .text("Produit : " + p.getLibelle())
+                            .graphic(new ImageView(preimage))
+                            .hideAfter(Duration.seconds(5))
+                            .position(Pos.BOTTOM_RIGHT)
+                            .onAction(new EventHandler<ActionEvent>() {
+                                @Override
+                                public void handle(ActionEvent event) {
+                                    System.out.println("test");
+                                }
+
+                            }
+                            );
+                    notif.showInformation();
 
                 });
             }

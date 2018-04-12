@@ -5,16 +5,12 @@
  */
 package Controllers;
 
-import Entity.CentreDressage;
 import Entity.Ligne;
-import Entity.Produit;
 import Entity.Session;
 import Entity.User;
-import Services.CentreDressageService;
 import Services.ProduitService;
 import Services.UserService;
 import Technique.DataSource;
-import com.jfoenix.controls.JFXPopup;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -24,20 +20,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -46,16 +38,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.scene.web.WebEngine;
-import javafx.scene.web.WebView;
-import javafx.stage.Popup;
-import javafx.stage.Stage;
-import javafx.util.Duration;
-import org.controlsfx.control.NotificationPane;
-import org.controlsfx.control.Notifications;
 
 /**
  * FXML Controller class
@@ -75,13 +61,20 @@ public class PanierController implements Initializable {
     @FXML
     private Label bienvenue;
     private Connection con = DataSource.getInstance().getConnexion();
+    @FXML
+    private Label count;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        ProduitService ps=new ProduitService();
+        try {
+            count.setText(String.valueOf(ps.countpanier(Session.getCurrentSession())));
+        } catch (SQLException ex) {
+            Logger.getLogger(PanierController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         List currentUser = new ArrayList();
         String req = "select nom,prenom from user where id=(?)";
         try {
@@ -101,7 +94,7 @@ public class PanierController implements Initializable {
         }
         bienvenue.setText("Connecté en tant que : " + currentUser.get(0) + " " + currentUser.get(1));
         ///////////////////////Panier////////////////////
-        ProduitService ps = new ProduitService();
+        
         try {
             AffichagePanier();
         } catch (SQLException ex) {
@@ -174,7 +167,7 @@ public class PanierController implements Initializable {
             suppressonButton.setPrefWidth(30);
             suppressonButton.setPrefHeight(20);
             suppressonButton.setGraphic(imagebutton);
-
+            suppressonButton.setTranslateX(200);
             vbox.setSpacing(30.0);
             separtor.setLayoutX(3.0);
             separtor.setLayoutY(55.0);
@@ -213,8 +206,7 @@ public class PanierController implements Initializable {
         Font font = new Font("Arial",24);
         tot.setStyle("-fx-font-weight: bold");
         tot.setFont(font);
-        tot.setLayoutX(1000);
-        tot.setLayoutY(150);
+        tot.setTranslateX(650);
         
         Button valider = new Button();
         valider.setPrefHeight(40);
@@ -225,10 +217,11 @@ public class PanierController implements Initializable {
         re.setText("Commander");
         re.setTextFill(Color.web("ffffff"));
         valider.setGraphic(re);
-
+        valider.setAlignment(Pos.BOTTOM_CENTER);
         valider.setContentDisplay(ContentDisplay.RIGHT);
         valider.setStyle("-fx-background-color: f67777");
-         
+        valider.setTranslateX(450);
+        
         valider.setOnAction((c) -> {
           
             try {

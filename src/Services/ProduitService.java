@@ -5,20 +5,15 @@
  */
 package Services;
 
-import Entity.Categorie;
 import Entity.Commande;
 import Entity.Ligne;
 import Entity.Produit;
-import Entity.Session;
-import Entity.User;
 import Technique.DataSource;
-import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -29,7 +24,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.image.Image;
 
 /**
  *
@@ -232,6 +226,19 @@ public class ProduitService {
         }
         return total;
     }
+   
+   public int countpanier(int id) throws SQLException
+   {
+       int total = 0;
+       String req1 = "select SUM(quantite) from ligne l where l.idClient='" + id + "'";
+        PreparedStatement pre1 = con.prepareStatement(req1);
+        ResultSet r1 = pre1.executeQuery();
+        while (r1.next()) {
+            total = r1.getInt(1);
+        }
+        return total;
+       
+   }
    
    
     

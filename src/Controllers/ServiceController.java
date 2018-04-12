@@ -160,9 +160,15 @@ public class ServiceController implements Initializable {
         
         while (rs.next()) {
             id=rs.getInt(1);
-            JFXButton buttonmap = new JFXButton("Localisation");
-            buttonmap.setLayoutX(800);
-            buttonmap.setLayoutY(40);
+            JFXButton buttonmap = new JFXButton();
+            Label location=new Label("Localisation");
+            location.setTextFill(Color.web("ffffff"));
+            buttonmap.setGraphic(location);
+            buttonmap.setPrefHeight(40);
+            buttonmap.setPrefWidth(150);
+            buttonmap.setLayoutX(850);
+            buttonmap.setLayoutY(150);
+           
             buttonmap.setOnAction((e) -> {
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/MapCentreD.fxml"));
