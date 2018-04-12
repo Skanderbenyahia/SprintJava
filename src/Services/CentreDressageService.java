@@ -101,9 +101,25 @@ public class CentreDressageService
     {
         ResultSet result = null;
        
-        String req = "SELECT * FROM centre_dressage";
+        String req = "SELECT * FROM centre_dressage ";
         try {
             PreparedStatement ste = con.prepareStatement(req);
+            result = ste.executeQuery();
+        } catch (SQLException ex) {
+            Logger.getLogger(Produit.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return result;
+    }
+      
+      
+      public ResultSet selectCentreDdistinct(int id) 
+    {
+        ResultSet result = null;
+       
+        String req = "SELECT * FROM centre_dressage where id=? ";
+        try {
+            PreparedStatement ste = con.prepareStatement(req);
+            ste.setInt(1,id );
             result = ste.executeQuery();
         } catch (SQLException ex) {
             Logger.getLogger(Produit.class.getName()).log(Level.SEVERE, null, ex);

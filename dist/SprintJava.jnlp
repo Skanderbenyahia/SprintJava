@@ -8,10 +8,8 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="SprintJava.jar" size="2844862" download="eager" />
-    <jar href="lib\GMapsFX-2.0.8-SNAPSHOT-javadoc.jar" size="604183" download="eager" />
+    <jar href="SprintJava.jar" size="2847337" download="eager" />
     <jar href="lib\GMapsFX-2.0.8-SNAPSHOT.jar" size="137318" download="eager" />
-    <jar href="lib\GMapsFX-2.12.0.jar" size="207618" download="eager" />
     <jar href="lib\controlsfx-8.40.14.jar" size="1215643" download="eager" />
     <jar href="lib\gson-2.8.2.jar" size="232932" download="eager" />
     <jar href="lib\itextpdf-5.1.0.jar" size="1614453" download="eager" />
