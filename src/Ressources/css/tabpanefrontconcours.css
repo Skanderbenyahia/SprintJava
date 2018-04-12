@@ -54,8 +54,8 @@
 /*TablPane styling*/
 .tab{
     -fx-background-color: -fx-primary;
-    -fx-pref-width :600;
-    -fx-pref-height : 62;
+    -fx-pref-width : 600;
+    -fx-pref-height : 60;
 }
 
 .tab-header-background{

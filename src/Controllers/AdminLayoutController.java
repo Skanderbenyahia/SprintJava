@@ -117,5 +117,14 @@ public class AdminLayoutController implements Initializable {
          window.setScene(CentreDPage);
          window.show();
     }
+
+    @FXML
+    private void eventShow(ActionEvent event) throws IOException {
+        Parent vente= FXMLLoader.load((getClass().getResource("/GUI/Back_eventPage.fxml")));
+         Scene ventePage= new Scene (vente);
+         Stage window=(Stage) ((Node)event.getSource()).getScene().getWindow();
+         window.setScene(ventePage);
+         window.show();
+    }
     
 }

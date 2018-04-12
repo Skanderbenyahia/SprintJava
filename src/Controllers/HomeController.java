@@ -1,5 +1,7 @@
 package Controllers;
 
+
+
 import Entity.Session;
 import Entity.User;
 import Services.UserService;
@@ -123,7 +125,10 @@ public class HomeController implements Initializable {
     }
 
     @FXML
-    private void afficherEvents(ActionEvent event) {
+    private void afficherEvents(ActionEvent event) throws IOException {
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/Front_events.fxml"));
+        Parent root = loader.load();
+        bienvenue.getScene().setRoot(root);
     }
 
     private void affichePanier(ActionEvent event) throws SQLException, IOException {

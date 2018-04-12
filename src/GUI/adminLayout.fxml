@@ -54,7 +54,7 @@
                   <Font size="23.0" />
                </font>
             </Label>
-            <Button fx:id="event_button" layoutX="986.0" mnemonicParsing="false" opacity="0.0" prefHeight="60.0" prefWidth="214.0" text="Evènements" textFill="WHITE">
+            <Button fx:id="event_button" layoutX="986.0" mnemonicParsing="false" onAction="#eventShow" opacity="0.0" prefHeight="60.0" prefWidth="214.0" text="Evènements" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>

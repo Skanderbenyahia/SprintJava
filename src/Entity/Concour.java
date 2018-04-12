@@ -25,7 +25,6 @@ public class Concour {
     public Concour(int id, String description, int nbredeplaces, Date date) {
         this.id = id;
         this.description = description;
-        this.description = description;
         this.nbredeplaces = nbredeplaces;
         this.date = date;
     }

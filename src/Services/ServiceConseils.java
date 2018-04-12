@@ -5,7 +5,10 @@
  */
 package Services;
 
+import Entity.CentreDressage;
+import Entity.Concour;
 import Entity.Conseils;
+import Entity.Produit;
 import Technique.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,6 +17,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 
 /**
@@ -43,19 +50,26 @@ public class ServiceConseils {
     }
     public List<Conseils> AfficherListeConseils () throws SQLException
     {
-        ResultSet req=statement.executeQuery("SELECT * FROM Conseils");
-        List<Conseils> liste= new ArrayList<>();
-        while(req.next())
+       String req="SELECT * FROM conseils";
+        ResultSet r =statement.executeQuery(req);
+        List<Conseils> conseil =new ArrayList<>();
+        while(r.next())
         {
-          int id =req.getInt(1);
-            String titre=req.getString(2);
-           
-            String text=req.getString(3);
-            String type=req.getString(4);
-            liste.add(new Conseils(id,titre,text,type));
+             conseil.add(new Conseils(r.getInt("id"),r.getString("titre"),r.getString("text"),r.getString("type")));
         }
-        return liste;
+        return conseil;
     }
+    
+    public ObservableList<Conseils> getObservableConseils () throws SQLException
+        {
+          ObservableList<Conseils> ListConseil = FXCollections.observableArrayList();
+          List<Conseils> conseil=AfficherListeConseils();
+             for (Conseils   c : conseil)
+               {
+                 ListConseil.add(c);
+               }
+                 return ListConseil;    
+        }
     public void supprimerConseils(int id) throws SQLException
     {
         String req="Delete From Conseils where id=(?)";
@@ -64,15 +78,29 @@ public class ServiceConseils {
             prepared.executeUpdate();
         
     }
-    public void modifierConseils(int id,Conseils p) throws SQLException
+    public void modifierConseils(Conseils p) throws SQLException
     {
-            String req="update Conseils set titre=(?),text=(?),type=(?) where id='"+id+"'";
+            String req="update Conseils set titre=(?),text=(?),type=(?) where id=(?)";
             PreparedStatement prepared= con.prepareStatement(req);
-          
             prepared.setString(1,p.getTitre());
             prepared.setString(2,p.getTexte());
-             prepared.setString(3,p.getType());
+            prepared.setString(3,p.getType());
+            prepared.setInt(4, p.getId());
             prepared.executeUpdate();
         
+    }
+    
+    public ResultSet selectConseil() 
+    {
+        ResultSet result = null;
+       
+        String req = "SELECT * FROM conseils";
+        try {
+            PreparedStatement ste = con.prepareStatement(req);
+            result = ste.executeQuery();
+        } catch (SQLException ex) {
+            Logger.getLogger(Produit.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return result;
     }
 }
