@@ -62,8 +62,8 @@ import java.util.Date;
  */
 public class AdoptionController implements Initializable {
 
-    public String pathImage = "C:\\Users\\Skeez\\Desktop\\GitRogue\\SprintJava\\src\\Ressources\\Images\\";
-    public String pathButton = "C:\\Users\\Skeez\\Desktop\\GitRogue\\SprintJava\\src\\Ressources\\Images\\add-square-button.png";
+    public String pathImage = "C:\\Users\\jabou\\Desktop\\GitFinal\\SprintJava\\src\\Ressources\\Images\\";
+    public String pathButton = "C:\\Users\\jabou\\Desktop\\GitFinal\\SprintJava\\src\\Ressources\\Images\\add-square-button.png";
     @FXML
     private ScrollPane scroll;
     @FXML
@@ -362,11 +362,17 @@ public class AdoptionController implements Initializable {
     }
 
     @FXML
-    private void soinPage(ActionEvent event) {
+    private void soinPage(ActionEvent event) throws IOException {
+         FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/Front_HygienePage.fxml"));
+        Parent root = loader.load();
+        bienvenue.getScene().setRoot(root);
     }
 
     @FXML
-    private void eventPage(ActionEvent event) {
+    private void eventPage(ActionEvent event) throws IOException {
+         FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/Front_events.fxml"));
+        Parent root = loader.load();
+        bienvenue.getScene().setRoot(root);
     }
 
     @FXML

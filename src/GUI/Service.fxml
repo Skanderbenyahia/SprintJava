@@ -11,36 +11,42 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="611.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ServiceController">
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ServiceController">
    <children>
-      <Pane prefHeight="60.0" prefWidth="1200.0" style="-fx-background-color: cfbfa6;">
+      <Pane prefHeight="75.0" prefWidth="1202.0" style="-fx-background-color: cfbfa6;">
          <children>
-            <Label fx:id="bienvenue" layoutX="91.0" layoutY="13.0" text="Label" textFill="WHITE">
+            <Label fx:id="bienvenue" layoutX="91.0" layoutY="20.0" text="Label" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="18.0" />
+                  <Font name="System Bold" size="20.0" />
                </font></Label>
-            <Label layoutX="1066.0" layoutY="18.0" text="Déconnexion" textFill="WHITE">
+            <Label layoutX="1102.0" layoutY="29.0" text="Déconnexion" textFill="WHITE">
                <font>
                   <Font size="15.0" />
                </font></Label>
-            <Button layoutX="1044.0" layoutY="8.0" mnemonicParsing="false" onAction="#logout" opacity="0.0" prefHeight="38.0" prefWidth="112.0" text="Button" />
+            <Button layoutX="1080.0" layoutY="19.0" mnemonicParsing="false" onAction="#logout" opacity="0.0" prefHeight="38.0" prefWidth="112.0" text="Button" />
          </children>
       </Pane>
-      <Pane layoutY="60.0" prefHeight="61.0" prefWidth="1200.0" style="-fx-background-color: f67777;">
+      <Pane layoutY="75.0" prefHeight="75.0" prefWidth="1202.0" style="-fx-background-color: f67777;">
          <children>
-            <ImageView fitHeight="60.0" fitWidth="70.0" layoutX="17.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="60.0" fitWidth="70.0" layoutX="17.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Ressources/Images/dog%20(1).png" />
                </image>
             </ImageView>
-            <Label layoutX="461.0" layoutY="-36.0" prefHeight="131.0" prefWidth="345.0" text="PETMYPET" textFill="#f2edda">
+            <Label layoutX="583.0" layoutY="9.0" text="PET MY PET" textFill="WHITE">
                <font>
-                  <Font name="TOYZARUX" size="40.0" />
+                  <Font name="System Bold" size="40.0" />
                </font>
             </Label>
+            <ImageView fitHeight="50.0" fitWidth="30.0" layoutX="1135.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Ressources/Images/shopping-cart.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="1109.0" layoutY="11.0" mnemonicParsing="false" onAction="#panierPage" opacity="0.0" prefHeight="58.0" prefWidth="81.0" text="Button" />
          </children>
       </Pane>
-      <Pane layoutY="121.0" prefHeight="580.0" prefWidth="85.0" style="-fx-background-color: f67777;">
+      <Pane layoutY="148.0" prefHeight="580.0" prefWidth="87.0" style="-fx-background-color: f67777;">
          <children>
             <ImageView fitHeight="36.0" fitWidth="28.0" layoutX="29.0" layoutY="64.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -80,7 +86,7 @@
             <Button layoutX="5.0" layoutY="369.0" mnemonicParsing="false" onAction="#afficherSoins" opacity="0.0" prefHeight="58.0" prefWidth="81.0" text="Button" />
          </children>
       </Pane>
-      <JFXTabPane layoutX="87.0" layoutY="140.0" prefHeight="549.0" prefWidth="1137.0" stylesheets="@../Ressources/css/tabpane_back.css">
+      <JFXTabPane layoutX="86.0" layoutY="150.0" prefHeight="549.0" prefWidth="1082.0" stylesheets="@../Ressources/css/tabpane_back.css">
          <tabs>
             <Tab text="Centre Dressage">
               <content>
@@ -93,8 +99,7 @@
                         </ScrollPane>
                         <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="161.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" />
                         <AnchorPane fx:id="an" layoutX="115.0" layoutY="45.0" prefHeight="489.0" prefWidth="1082.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                     </children>
-                  </AnchorPane>
+                     </children></AnchorPane>
               </content>
             </Tab>
             <Tab text="Petsitter">
@@ -107,8 +112,7 @@
                            </content>
                         </ScrollPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
-                     </children>
-                  </AnchorPane>
+                     </children></AnchorPane>
               </content>
             </Tab>
          </tabs>

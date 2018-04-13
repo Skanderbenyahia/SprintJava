@@ -58,8 +58,8 @@ public class VentesController implements Initializable {
     @FXML
     private Button panier;
 
-    public String pathImage = "C:\\Users\\jabou\\Desktop\\SprintJava\\src\\Ressources\\Images\\";
-    public String pathButton = "C:\\Users\\jabou\\Desktop\\SprintJava\\src\\Ressources\\Images\\add-square-button.png";
+    public String pathImage = "C:\\Users\\jabou\\Desktop\\GitFinal\\SprintJava\\src\\Ressources\\Images\\";
+    public String pathButton = "C:\\Users\\jabou\\Desktop\\GitFinal\\SprintJava\\src\\Ressources\\Images\\add-square-button.png";
     @FXML
     private AnchorPane an;
     @FXML
@@ -73,11 +73,17 @@ public class VentesController implements Initializable {
     }
 
     @FXML
-    private void EventPage(ActionEvent event) {
+    private void EventPage(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/Front_events.fxml"));
+        Parent root = loader.load();
+        bienvenue.getScene().setRoot(root);
     }
 
     @FXML
-    private void SoinPage(ActionEvent event) {
+    private void SoinPage(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/Front_HygienePage.fxml"));
+        Parent root = loader.load();
+        bienvenue.getScene().setRoot(root);
     }
 
     @FXML

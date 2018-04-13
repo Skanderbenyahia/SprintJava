@@ -5,6 +5,8 @@
  */
 package Controllers;
 
+import Chat.ChatClient;
+import Chat.ChatServer;
 import Entity.ReservationPetsitter;
 import Entity.Session;
 import Entity.User;
@@ -61,6 +63,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -71,7 +74,7 @@ public class ServiceController implements Initializable {
     
     @FXML
     private Label bienvenue;
-    public String pathImage = "C:\\Users\\jabou\\Desktop\\SprintJava\\src\\Ressources\\Images\\";
+    public String pathImage = "C:\\Users\\jabou\\Desktop\\GitFinal\\SprintJava\\src\\Ressources\\Images\\";
     private Connection con = DataSource.getInstance().getConnexion();
     @FXML
     private AnchorPane an;
@@ -117,16 +120,26 @@ public class ServiceController implements Initializable {
     }
     
     @FXML
-    private void afficherEvents(ActionEvent event) {
+    private void afficherEvents(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/Front_events.fxml"));
+        Parent root = loader.load();
+        bienvenue.getScene().setRoot(root);
     }
     
     @FXML
-    private void afficherAcceuil(ActionEvent event) {
+    private void afficherAcceuil(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/home.fxml"));
+        Parent root = loader.load();
+        bienvenue.getScene().setRoot(root);
     }
     
     @FXML
-    private void afficherAdoption(ActionEvent event) {
+    private void afficherAdoption(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/Adoption.fxml"));
+        Parent root = loader.load();
+        bienvenue.getScene().setRoot(root);
     }
+    
     
     @FXML
     private void afficherVentes(ActionEvent event) throws IOException {
@@ -136,11 +149,17 @@ public class ServiceController implements Initializable {
     }
     
     @FXML
-    private void afficherServices(ActionEvent event) {
+    private void afficherServices(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/Service.fxml"));
+        Parent root = loader.load();
+        bienvenue.getScene().setRoot(root);
     }
     
     @FXML
-    private void afficherSoins(ActionEvent event) {
+    private void afficherSoins(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/Front_HygienePage.fxml"));
+        Parent root = loader.load();
+        bienvenue.getScene().setRoot(root);
     }
     
     @FXML
@@ -185,7 +204,7 @@ public class ServiceController implements Initializable {
             Separator separtor = new Separator();
             VBox vbox = new VBox();
             
-            File fileimage = new File(pathImage + rs.getString(8));
+            File fileimage = new File(rs.getString(8));
             Image preimage = new Image(fileimage.toURI().toString());
             ImageView image = new ImageView(preimage);
             image.setLayoutX(140);
@@ -237,140 +256,180 @@ public class ServiceController implements Initializable {
     }
     
     public void AffichageRservationP() throws SQLException {
-        FlowPane f = new FlowPane();
-        
-        ReservationPetsitterService ps = new ReservationPetsitterService();
-        List<User> petsitter = ps.ListPetsitter();
-        
-        for (User rs : petsitter) {
-            
-            AnchorPane anchorpane1 = new AnchorPane();
-            anchorpane1.setPrefHeight(250.0);
-            anchorpane1.setPrefWidth(504.0);
-            Separator separtor = new Separator();
-            VBox vbox = new VBox();
-            
-            File fileimage = new File(pathImage + rs.getId() + ".jpeg");
-            Image preimage = new Image(fileimage.toURI().toString());
-            ImageView image = new ImageView(preimage);
-            image.setLayoutX(120);
-            image.setLayoutY(37);
-            image.setFitWidth(150);
-            image.setFitHeight(180);
-            
-            Label nom = new Label(rs.getNom());
-            Font font = new Font("Arial", 24);
-            nom.setStyle("-fx-font-weight: bold");
-            nom.setFont(font);
-            nom.setTextFill(Color.web("cfbfa6"));
-            nom.setLayoutX(290);
-            nom.setLayoutY(48);
-            
-            Label prenom = new Label(rs.getPrenom());
-            Font font6 = new Font("Arial", 24);
-            prenom.setStyle("-fx-font-weight: bold");
-            prenom.setFont(font6);
-            prenom.setTextFill(Color.web("cfbfa6"));
-            prenom.setLayoutX(450);
-            prenom.setLayoutY(48);
-            
-            Label adresse = new Label("Ce est un petsitter habite à " + rs.getAdresse());
-            Font font2 = new Font("Arial", 18);
-            adresse.setFont(font2);
-            adresse.setLayoutX(290);
-            adresse.setLayoutY(90);
-            
-            Label tel = new Label("Numero: " + String.valueOf(rs.getTel()));
-            tel.setTextFill(Color.web("f67777"));
-            Font font3 = new Font("Arial", 16);
-            tel.setStyle("-fx-font-weight: bold");
-            tel.setFont(font3);
-            tel.setLayoutX(290);
-            tel.setLayoutY(130);
-            
-            DatePicker dateD = new DatePicker();
-            dateD.setLayoutX(290);
-            dateD.setLayoutY(170);
-            
-            DatePicker dateF = new DatePicker();
-            dateF.setLayoutX(550);
-            dateF.setLayoutY(170);
-            
-            Button reserver = new Button();
-            reserver.setPrefHeight(40);
-            reserver.setPrefWidth(150);
-            reserver.setLayoutX(850);
-            Label re = new Label();
-            re.setText("Réserver");
-            re.setTextFill(Color.web("ffffff"));
-            reserver.setLayoutY(150);
-            reserver.setGraphic(re);
-            
-            reserver.setOnAction((e) -> {
-                try {
-                    float prix = 0;
-                    float encaisser = 0;
-                    prix = rs.getId() * 10;
-                    encaisser = (float) (prix * 0.2);
-                    idUser = Session.getCurrentSession();
-                    
-                    LocalDate Dated = dateD.getValue();
-                    Instant i = Instant.from(Dated.atStartOfDay(ZoneId.systemDefault()));
-                    java.util.Date date = Date.from(i);
-                    java.sql.Date dsql = new java.sql.Date(date.getTime());
-                    
-                    LocalDate Datef = dateF.getValue();
-                    Instant i2 = Instant.from(Datef.atStartOfDay(ZoneId.systemDefault()));
-                    java.util.Date date2 = Date.from(i2);
-                    java.sql.Date fsql = new java.sql.Date(date2.getTime());
-                    
-                    ReservationPetsitter r = new ReservationPetsitter(dsql, fsql, prix, encaisser, rs.getId(), idUser);
-                    
-                    List<ReservationPetsitter> existe = ps.existance(dsql, rs.getId());
-                    if (fsql.before(dsql)) {
-                        Alert alert = new Alert(Alert.AlertType.WARNING);
-                        alert.setTitle("Warning Dialog");
-                        alert.setHeaderText(null);
-                        alert.setContentText("Date Debut doit etre supérieur à la date fin ");
-                        alert.showAndWait();
-                    } else if (existe.isEmpty() == true) {
-                        ps.ReserverPetsitter(r);
-                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                        alert.setTitle("Confirmation Dialog");
-                        alert.setHeaderText(null);
-                        alert.setContentText("Votre réservation à été faites");
-                        alert.showAndWait();
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/Service.fxml"));
-                        Parent root = loader.load();
-                        bienvenue.getScene().setRoot(root);
-                    } else {
-                        Alert alert = new Alert(Alert.AlertType.WARNING);
-                        alert.setTitle("Warning Dialog");
-                        alert.setHeaderText(null);
-                        alert.setContentText("La date est déja prise choisir une autre date");
-                        alert.showAndWait();
-                        
-                    }
-                } catch (SQLException ex) {
-                    Logger.getLogger(ServiceController.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (IOException ex) {
-                    Logger.getLogger(ServiceController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                
-            });
-            
-            vbox.setSpacing(30.0);
-            separtor.setLayoutX(3.0);
-            separtor.setLayoutY(55.0);
-            separtor.setPrefHeight(4.0);
-            separtor.setPrefWidth(1213.0);
-            
-            anchorpane1.getChildren().addAll(image, nom, prenom, adresse, tel, dateD, dateF, reserver);
-            vbox.getChildren().add(anchorpane1);
-            f.getChildren().addAll(vbox);
-        }
-        //scrollP.setContent(f);
-        anP.getChildren().addAll(f);
+       FlowPane f = new FlowPane();
+              
+              ReservationPetsitterService ps= new ReservationPetsitterService();
+              List<User> petsitter= ps.ListPetsitter();
+              
+              
+             for(User rs:petsitter)
+              {
+                  
+                  AnchorPane anchorpane1 = new AnchorPane();
+                  anchorpane1.setPrefHeight(250.0);
+                  anchorpane1.setPrefWidth(504.0);
+                  Separator separtor = new Separator();
+                  VBox vbox = new VBox();
+                  
+                 File fileimage=new File(pathImage+rs.getId()+".jpeg");
+                 Image preimage=new Image(fileimage.toURI().toString());
+                 ImageView image=new ImageView(preimage);
+                 image.setLayoutX(120);
+                 image.setLayoutY(37);
+                 image.setFitWidth(150);
+                 image.setFitHeight(180);
+                 
+                 Label nom=new Label(rs.getNom());
+                 Font font = new Font("Arial",24);
+                 nom.setStyle("-fx-font-weight: bold");
+                 nom.setFont(font);
+                 nom.setTextFill(Color.web("cfbfa6"));
+                 nom.setLayoutX(290);
+                 nom.setLayoutY(48);
+                 
+                 Label prenom=new Label(rs.getPrenom());
+                 Font font6 = new Font("Arial",24);
+                 prenom.setStyle("-fx-font-weight: bold");
+                 prenom.setFont(font6);
+                 prenom.setTextFill(Color.web("cfbfa6"));
+                 prenom.setLayoutX(450);
+                 prenom.setLayoutY(48);
+                 
+                 Label adresse=new Label("Ce est un petsitter habite à "+rs.getAdresse());
+                 Font font2 = new Font("Arial",18);
+                 adresse.setFont(font2);
+                 adresse.setLayoutX(290);
+                 adresse.setLayoutY(90);
+                 
+                 Label tel=new Label("Numero: "+String.valueOf(rs.getTel()));
+                 tel.setTextFill(Color.web("f67777"));
+                 Font font3 = new Font("Arial",16);
+                 tel.setStyle("-fx-font-weight: bold");
+                 tel.setFont(font3);
+                 tel.setLayoutX(290);
+                 tel.setLayoutY(130);
+                 
+                  DatePicker dateD=new DatePicker();
+                  dateD.setLayoutX(290);
+                  dateD.setLayoutY(170);
+                  
+                  DatePicker dateF=new DatePicker();
+                  dateF.setLayoutX(550);
+                  dateF.setLayoutY(170);
+                  
+                  Button chat=new Button();
+                  chat.setPrefHeight(40);
+                  chat.setPrefWidth(150);
+                  chat.setLayoutX(850);
+                  chat.setLayoutY(90);
+                  Label ch=new Label();
+                  ch.setText("Contactez");
+                  ch.setTextFill(Color.web("ffffff"));
+                  chat.setGraphic(ch);
+                  
+                  chat.setOnAction(e->{
+                      try {
+                          ChatServer cs=new ChatServer();
+                          Stage stage1=new Stage();
+                          cs.init();
+                          cs.start(stage1);
+                          Stage stage2=new Stage();
+                          ChatClient cc=new ChatClient();
+                          cc.init();
+                          cc.start(stage2);
+                          
+                      } catch (Exception ex) {
+                          Logger.getLogger(ServiceController.class.getName()).log(Level.SEVERE, null, ex);
+                      }
+                  
+                  });
+                  
+                  Button reserver= new Button();
+                  reserver.setPrefHeight(40);
+                  reserver.setPrefWidth(150);
+                  reserver.setLayoutX(850);
+                  reserver.setLayoutY(150);
+                  Label re=new Label();
+                  re.setText("Réserver");
+                  re.setTextFill(Color.web("ffffff"));
+                  reserver.setGraphic(re);
+
+                  reserver.setOnAction((e) -> {
+                      try {
+                          float prix=0;
+                          float encaisser=0;
+                          prix = rs.getId()*10;
+                          encaisser=(float) (prix*0.2);
+                          idUser=Session.getCurrentSession();
+
+                          LocalDate Dated=dateD.getValue();
+                          Instant i= Instant.from(Dated.atStartOfDay(ZoneId.systemDefault()));
+                          java.util.Date date=Date.from(i);
+                          java.sql.Date dsql = new java.sql.Date(date.getTime());
+                          
+                          LocalDate Datef=dateF.getValue();
+                          Instant i2= Instant.from(Datef.atStartOfDay(ZoneId.systemDefault()));
+                          java.util.Date date2=Date.from(i2);
+                          java.sql.Date fsql = new java.sql.Date(date2.getTime());
+                          
+                          ReservationPetsitter r= new ReservationPetsitter(dsql, fsql,prix,encaisser, rs.getId(),idUser);
+
+                          List<ReservationPetsitter> existe=ps.existance(dsql, rs.getId());
+                         if(fsql.before(dsql))
+                                {
+                                     Alert alert= new Alert(Alert.AlertType.WARNING);
+                                     alert.setTitle("Warning Dialog");
+                                     alert.setHeaderText(null);
+                                     alert.setContentText("Date Debut doit etre supérieur à la date fin ");
+                                     alert.showAndWait();  
+                                }
+
+                         else if(existe.isEmpty()==true)
+                          {
+                                    ps.ReserverPetsitter(r);
+                                    Alert alert= new Alert(Alert.AlertType.CONFIRMATION);
+                                    alert.setTitle("Confirmation Dialog");
+                                    alert.setHeaderText(null);
+                                    alert.setContentText("Votre réservation à été faites");
+                                    alert.showAndWait();
+                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/Service.fxml"));
+                                    Parent root=loader.load();
+                                    bienvenue.getScene().setRoot(root);             
+                          }
+                          else{
+                              Alert alert= new Alert(Alert.AlertType.WARNING);
+                              alert.setTitle("Warning Dialog");
+                              alert.setHeaderText(null);
+                              alert.setContentText("La date est déja prise choisir une autre date");
+                              alert.showAndWait();
+                              
+                          }
+                      } catch (SQLException ex) {
+                          Logger.getLogger(ServiceController.class.getName()).log(Level.SEVERE, null, ex);
+                      } catch (IOException ex) {
+                          Logger.getLogger(ServiceController.class.getName()).log(Level.SEVERE, null, ex);
+                      }
+                      
+                  });
+
+                 vbox.setSpacing(30.0);
+                 separtor.setLayoutX(3.0);
+                 separtor.setLayoutY(55.0);
+                 separtor.setPrefHeight(4.0);
+                 separtor.setPrefWidth(1213.0);
+                 
+                  anchorpane1.getChildren().addAll(image,nom,prenom,adresse,tel,dateD,dateF,reserver,chat);
+                  vbox.getChildren().add(anchorpane1);
+                  f.getChildren().addAll(vbox);
+              }
+             anP.getChildren().addAll(f);
+    }
+
+    @FXML
+    private void panierPage(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/Panier.fxml"));
+        Parent root = loader.load();
+        bienvenue.getScene().setRoot(root);
     }
     
 }

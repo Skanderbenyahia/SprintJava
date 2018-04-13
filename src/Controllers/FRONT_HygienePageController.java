@@ -99,7 +99,7 @@ public class FRONT_HygienePageController implements Initializable {
     private List<centreToilettage> listeCentreT;
 
     centreToilettageServices centreSRV = new centreToilettageServices();
-    private String pathImage = "C:\\Users\\jabou\\Desktop\\emna\\SprintJava\\src\\Ressources\\Images\\15.jpeg";
+    private String pathImage = "C:\\Users\\jabou\\Desktop\\GitFinal\\SprintJava\\src\\Ressources\\Images\\15.jpeg";
     @FXML
     private JFXListView<Label> ListView_Commentaire;
     @FXML
