@@ -2,10 +2,10 @@
 -- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: Apr 03, 2018 at 12:06 AM
--- Server version: 5.7.19
--- PHP Version: 5.6.31
+-- Hôte : 127.0.0.1:3306
+-- Généré le :  ven. 13 avr. 2018 à 00:27
+-- Version du serveur :  5.7.19
+-- Version de PHP :  5.6.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,38 +19,47 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `pidev`
+-- Base de données :  `pidev`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `animal`
+-- Structure de la table `animal`
 --
 
 DROP TABLE IF EXISTS `animal`;
 CREATE TABLE IF NOT EXISTS `animal` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_refuge` int(11) DEFAULT NULL,
-  `taille` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `nom` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `description` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `race` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `espece` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `sexe` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `demande` int(11) NOT NULL,
-  `region` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `race` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `age` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `sexe` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `taille` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `region` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `description` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `etat` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `image` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `demande` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_6AAB231FDBDE2A6A` (`id_refuge`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Déchargement des données de la table `animal`
+--
+
+INSERT INTO `animal` (`id`, `id_refuge`, `nom`, `espece`, `race`, `age`, `sexe`, `taille`, `region`, `description`, `etat`, `image`, `demande`) VALUES
+(3, NULL, 'kiki', 'chat', 'chat', 'junior', 'male', 'petit', 'tunis', '\ndfsdfsd', 'nonadopte', 'dfdf', 1),
+(4, NULL, 'ragnar', 'chien', 'berger', 'junior', 'male', 'grand', 'tunis', '\naaaaaaaaaaaa', 'nonadopte', 'dog1.jpeg', 1),
+(5, NULL, 'floki', 'chien', 'caniche', 'junior', 'femelle', 'petit', 'la marsa ', 'Floki FLOKIFLOKIFLOKIFLOKIFLOKIFLOKIFLOKIFLOKIFLOKI', 'nonadopte', 'dog1.jpeg', 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categorie`
+-- Structure de la table `categorie`
 --
 
 DROP TABLE IF EXISTS `categorie`;
@@ -58,20 +67,22 @@ CREATE TABLE IF NOT EXISTS `categorie` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `libelle` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `categorie`
+-- Déchargement des données de la table `categorie`
 --
 
 INSERT INTO `categorie` (`id`, `libelle`) VALUES
 (5, 'Aliments'),
-(7, 'Accessoires');
+(7, 'Accessoires'),
+(8, 'Test'),
+(9, 'aa');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `centre_dressage`
+-- Structure de la table `centre_dressage`
 --
 
 DROP TABLE IF EXISTS `centre_dressage`;
@@ -84,13 +95,25 @@ CREATE TABLE IF NOT EXISTS `centre_dressage` (
   `lng` double DEFAULT NULL,
   `description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `image` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `ville` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `gouvernerat` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `code_postal` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Déchargement des données de la table `centre_dressage`
+--
+
+INSERT INTO `centre_dressage` (`id`, `libelle`, `adresse`, `tel`, `lat`, `lng`, `description`, `image`, `ville`, `gouvernerat`, `code_postal`) VALUES
+(1, 'ok', 'ok', 21456789, 36.800899505615234, 10.185356140136719, 'djqidjq', 'jsdfihfdsq', 'tunis', 'tunis', 2048),
+(3, 'alo', 'alo', 21212121, 36.89911651611328, 10.273933410644531, 'alo', 'alo', 'aloo', 'aloo', 2554),
+(4, 'aoaoaoao', 'aoaoaoao', 21212121, 36.82440185546875, 9.839973449707031, 'aiaoaiaiai', 'aoaiaiaoiao', 'oallao', 'aolalao', 2014);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `centre_toilettage`
+-- Structure de la table `centre_toilettage`
 --
 
 DROP TABLE IF EXISTS `centre_toilettage`;
@@ -102,36 +125,65 @@ CREATE TABLE IF NOT EXISTS `centre_toilettage` (
   `description` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `image` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=72 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Déchargement des données de la table `centre_toilettage`
+--
+
+INSERT INTO `centre_toilettage` (`id`, `libelle`, `adresse`, `tel`, `description`, `image`) VALUES
+(63, 'xxxooobbbbobobo', 'xxxooo', 78, 'kais', 'file:/C:/Users/Mimouna/Documents/vet.jpg'),
+(70, 'ga', 'gg', 44, 'gf', 'file:/C:/Users/Mimouna/Desktop/3.jpg');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `commandes`
+-- Structure de la table `commandes`
 --
 
 DROP TABLE IF EXISTS `commandes`;
 CREATE TABLE IF NOT EXISTS `commandes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `payment_instruction_id` int(11) DEFAULT NULL,
-  `amount` decimal(10,5) NOT NULL,
+  `amount` float DEFAULT NULL,
   `description` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `date_commande` date NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_35D4282C8789B572` (`payment_instruction_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `commandes`
+-- Déchargement des données de la table `commandes`
 --
 
 INSERT INTO `commandes` (`id`, `payment_instruction_id`, `amount`, `description`, `date_commande`) VALUES
-(16, 12, '25.00000', '1*Croquette', '2018-03-02');
+(2, NULL, 190083, '1*adaqd', '2018-04-09'),
+(3, NULL, 63325, '1*test', '2018-04-12'),
+(4, NULL, 126633, '2*test', '2018-04-12');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `concours`
+-- Structure de la table `commentaire`
+--
+
+DROP TABLE IF EXISTS `commentaire`;
+CREATE TABLE IF NOT EXISTS `commentaire` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `contenu` varchar(255) NOT NULL,
+  `nbrSignal` int(11) DEFAULT NULL,
+  `idUser` int(11) DEFAULT NULL,
+  `idCentre` int(11) DEFAULT NULL,
+  `date_com` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idUser` (`idUser`),
+  KEY `idCentre` (`idCentre`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `concours`
 --
 
 DROP TABLE IF EXISTS `concours`;
@@ -141,22 +193,19 @@ CREATE TABLE IF NOT EXISTS `concours` (
   `nbredeplaces` int(11) NOT NULL,
   `date` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `concours`
+-- Déchargement des données de la table `concours`
 --
 
 INSERT INTO `concours` (`id`, `description`, `nbredeplaces`, `date`) VALUES
-(2, 'azeasqdsd', 4874, '2018-04-11'),
-(3, 'kdbvkdb', 45, '2018-04-19'),
-(11, 'l', 4, '2018-04-12'),
-(12, 'jbjvjv', 4, '2018-04-12');
+(1, 'okii', 45, '2018-04-12');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `conseils`
+-- Structure de la table `conseils`
 --
 
 DROP TABLE IF EXISTS `conseils`;
@@ -169,16 +218,16 @@ CREATE TABLE IF NOT EXISTS `conseils` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `conseils`
+-- Déchargement des données de la table `conseils`
 --
 
 INSERT INTO `conseils` (`id`, `titre`, `text`, `type`) VALUES
-(1, 'bhhh', 'hh', 'Dogs');
+(1, 'aloo', 'nn', 'nn');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `credits`
+-- Structure de la table `credits`
 --
 
 DROP TABLE IF EXISTS `credits`;
@@ -202,7 +251,7 @@ CREATE TABLE IF NOT EXISTS `credits` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `financial_transactions`
+-- Structure de la table `financial_transactions`
 --
 
 DROP TABLE IF EXISTS `financial_transactions`;
@@ -224,19 +273,12 @@ CREATE TABLE IF NOT EXISTS `financial_transactions` (
   PRIMARY KEY (`id`),
   KEY `IDX_1353F2D9CE062FF9` (`credit_id`),
   KEY `IDX_1353F2D94C3A3BB` (`payment_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `financial_transactions`
---
-
-INSERT INTO `financial_transactions` (`id`, `credit_id`, `payment_id`, `extended_data`, `processed_amount`, `reason_code`, `reference_number`, `requested_amount`, `response_code`, `state`, `created_at`, `updated_at`, `tracking_id`, `transaction_type`) VALUES
-(12, NULL, 13, NULL, '25.00000', 'none', '6LA37385752920931', '25.00000', 'success', 5, '2018-03-02 08:47:36', '2018-03-02 08:48:18', NULL, 2);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `genj_faq_category`
+-- Structure de la table `genj_faq_category`
 --
 
 DROP TABLE IF EXISTS `genj_faq_category`;
@@ -256,7 +298,7 @@ CREATE TABLE IF NOT EXISTS `genj_faq_category` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `genj_faq_question`
+-- Structure de la table `genj_faq_question`
 --
 
 DROP TABLE IF EXISTS `genj_faq_question`;
@@ -279,7 +321,7 @@ CREATE TABLE IF NOT EXISTS `genj_faq_question` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `genj_faq_search`
+-- Structure de la table `genj_faq_search`
 --
 
 DROP TABLE IF EXISTS `genj_faq_search`;
@@ -297,7 +339,33 @@ CREATE TABLE IF NOT EXISTS `genj_faq_search` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ligne`
+-- Structure de la table `jaime`
+--
+
+DROP TABLE IF EXISTS `jaime`;
+CREATE TABLE IF NOT EXISTS `jaime` (
+  `id_jaime` int(10) NOT NULL AUTO_INCREMENT,
+  `id_user` int(10) DEFAULT NULL,
+  `id_centre` int(10) DEFAULT NULL,
+  `etat` int(11) NOT NULL,
+  `etat2` int(11) NOT NULL,
+  PRIMARY KEY (`id_jaime`),
+  KEY `id_user` (`id_user`),
+  KEY `id_centre` (`id_centre`)
+) ENGINE=InnoDB AUTO_INCREMENT=185 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `jaime`
+--
+
+INSERT INTO `jaime` (`id_jaime`, `id_user`, `id_centre`, `etat`, `etat2`) VALUES
+(182, 20, 70, 0, 1),
+(184, 20, 63, 1, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `ligne`
 --
 
 DROP TABLE IF EXISTS `ligne`;
@@ -310,12 +378,12 @@ CREATE TABLE IF NOT EXISTS `ligne` (
   `produit` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_57F0DB8329A5EC27` (`produit`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `message`
+-- Structure de la table `message`
 --
 
 DROP TABLE IF EXISTS `message`;
@@ -333,7 +401,7 @@ CREATE TABLE IF NOT EXISTS `message` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `message_metadata`
+-- Structure de la table `message_metadata`
 --
 
 DROP TABLE IF EXISTS `message_metadata`;
@@ -350,7 +418,7 @@ CREATE TABLE IF NOT EXISTS `message_metadata` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `participation`
+-- Structure de la table `participation`
 --
 
 DROP TABLE IF EXISTS `participation`;
@@ -361,12 +429,25 @@ CREATE TABLE IF NOT EXISTS `participation` (
   PRIMARY KEY (`id`),
   KEY `IDX_AB55E24F6D6DB7FC` (`idc`),
   KEY `IDX_AB55E24FE9D3F622` (`idp`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Déchargement des données de la table `participation`
+--
+
+INSERT INTO `participation` (`id`, `idc`, `idp`) VALUES
+(1, 1, 13),
+(2, 1, 13),
+(3, 1, 13),
+(4, 1, 13),
+(5, 1, 13),
+(6, 1, 13),
+(7, 1, 13);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `payments`
+-- Structure de la table `payments`
 --
 
 DROP TABLE IF EXISTS `payments`;
@@ -391,19 +472,12 @@ CREATE TABLE IF NOT EXISTS `payments` (
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_65D29B328789B572` (`payment_instruction_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `payments`
---
-
-INSERT INTO `payments` (`id`, `payment_instruction_id`, `approved_amount`, `approving_amount`, `credited_amount`, `crediting_amount`, `deposited_amount`, `depositing_amount`, `expiration_date`, `reversing_approved_amount`, `reversing_credited_amount`, `reversing_deposited_amount`, `state`, `target_amount`, `attention_required`, `expired`, `created_at`, `updated_at`) VALUES
-(13, 12, '25.00000', '0.00000', '0.00000', '0.00000', '25.00000', '0.00000', NULL, '0.00000', '0.00000', '0.00000', 8, '25.00000', 0, 0, '2018-03-02 08:47:36', '2018-03-02 08:48:18');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `payment_instructions`
+-- Structure de la table `payment_instructions`
 --
 
 DROP TABLE IF EXISTS `payment_instructions`;
@@ -426,19 +500,12 @@ CREATE TABLE IF NOT EXISTS `payment_instructions` (
   `state` smallint(6) NOT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `payment_instructions`
---
-
-INSERT INTO `payment_instructions` (`id`, `amount`, `approved_amount`, `approving_amount`, `created_at`, `credited_amount`, `crediting_amount`, `currency`, `deposited_amount`, `depositing_amount`, `extended_data`, `payment_system_name`, `reversing_approved_amount`, `reversing_credited_amount`, `reversing_deposited_amount`, `state`, `updated_at`) VALUES
-(12, '25.00000', '25.00000', '0.00000', '2018-03-02 08:47:35', '0.00000', '0.00000', 'EUR', '25.00000', '0.00000', 'a:5:{s:10:\"return_url\";a:3:{i:0;s:74:\"http://localhost/PIDEV/PETMYPET/web/app_dev.php/commande/16/payment/create\";i:1;b:1;i:2;b:1;}s:10:\"cancel_url\";a:3:{i:0;s:74:\"http://localhost/PIDEV/PETMYPET/web/app_dev.php/commande/16/payment/cancel\";i:1;b:1;i:2;b:1;}s:10:\"useraction\";a:3:{i:0;s:6:\"commit\";i:1;b:1;i:2;b:1;}s:22:\"express_checkout_token\";a:3:{i:0;s:20:\"EC-86603357HX559842B\";i:1;b:1;i:2;b:1;}s:15:\"paypal_payer_id\";a:3:{i:0;s:13:\"GHV7STW5GXGBJ\";i:1;b:1;i:2;b:1;}}', 'paypal_express_checkout', '0.00000', '0.00000', '0.00000', 4, '2018-03-02 08:48:18');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `produit`
+-- Structure de la table `produit`
 --
 
 DROP TABLE IF EXISTS `produit`;
@@ -453,38 +520,70 @@ CREATE TABLE IF NOT EXISTS `produit` (
   `quantite` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_29A5EC27497DD634` (`categorie`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `produit`
+-- Déchargement des données de la table `produit`
 --
 
 INSERT INTO `produit` (`id`, `categorie`, `libelle`, `description`, `prix`, `animal`, `Image`, `quantite`) VALUES
-(11, 5, 'Croquette', 'Gout Poisson', 25, 'Chat', '593d1cc7f109c9bc0890149c99c9ec12.jpeg', 50);
+(11, 5, 'Croquette', 'Gout Poisson', 25, 'Chat', 'ultima.jpeg', 50),
+(12, 5, 'test', 'test', 63254, 'chat', 'aliment.jpeg', 50),
+(13, 7, 'emn', 'mimoun', 200, 'wael kleb', 'file:/C:/Users/bn-sk/Pictures/sousse/DSC_0004.JPG', 13);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `refuge`
+-- Structure de la table `rating`
+--
+
+DROP TABLE IF EXISTS `rating`;
+CREATE TABLE IF NOT EXISTS `rating` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `idc` int(11) NOT NULL,
+  `note` float NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idc` (`idc`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `rating`
+--
+
+INSERT INTO `rating` (`id`, `idc`, `note`) VALUES
+(1, 1, 4);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `refuge`
 --
 
 DROP TABLE IF EXISTS `refuge`;
 CREATE TABLE IF NOT EXISTS `refuge` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `image` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `description` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `libelle` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `adresse` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `num` int(11) NOT NULL,
+  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `region` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `adresse` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `description` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `image` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Déchargement des données de la table `refuge`
+--
+
+INSERT INTO `refuge` (`id`, `libelle`, `num`, `email`, `region`, `adresse`, `description`, `image`) VALUES
+(2, 'libelle', 456, 'image', 'adresse', 'email', '\ndescription', 'ultima.jpeg'),
+(3, 'libelle', 25674524, 'email', 'region', 'adresse', '\ndescription', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `reservation_petsitter`
+-- Structure de la table `reservation_petsitter`
 --
 
 DROP TABLE IF EXISTS `reservation_petsitter`;
@@ -504,7 +603,7 @@ CREATE TABLE IF NOT EXISTS `reservation_petsitter` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `reservation_veterinaire`
+-- Structure de la table `reservation_veterinaire`
 --
 
 DROP TABLE IF EXISTS `reservation_veterinaire`;
@@ -518,12 +617,41 @@ CREATE TABLE IF NOT EXISTS `reservation_veterinaire` (
   PRIMARY KEY (`id`),
   KEY `IDX_25B5BFE479F37AE5` (`id_user_id`),
   KEY `IDX_25B5BFE438AEB422` (`id_veterinaire_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Déchargement des données de la table `reservation_veterinaire`
+--
+
+INSERT INTO `reservation_veterinaire` (`id`, `id_user_id`, `id_veterinaire_id`, `date_debut`, `date_fin`, `description`) VALUES
+(42, 20, 10, '2018-04-27 12:00:00', '2018-04-27 13:30:00', 'operation'),
+(43, 20, 10, '2018-04-27 13:31:00', '2018-04-27 15:01:00', 'operation'),
+(44, 20, 10, '2018-07-11 18:20:00', '2018-07-11 19:50:00', 'operation'),
+(45, 20, 24, '2018-09-13 12:05:00', '2018-09-13 12:35:00', 'consultation'),
+(46, 17, 17, '2018-04-14 04:34:00', '2018-04-14 05:04:00', 'consultation'),
+(47, 17, 17, '2018-04-14 06:01:00', '2018-04-14 06:31:00', 'consultation');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `thread`
+-- Structure de la table `signaler`
+--
+
+DROP TABLE IF EXISTS `signaler`;
+CREATE TABLE IF NOT EXISTS `signaler` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `cause` varchar(50) NOT NULL,
+  `iduser` int(11) NOT NULL,
+  `idcom` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `iduser_fk` (`iduser`),
+  KEY `idcom_fk` (`idcom`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `thread`
 --
 
 DROP TABLE IF EXISTS `thread`;
@@ -540,7 +668,7 @@ CREATE TABLE IF NOT EXISTS `thread` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `thread_metadata`
+-- Structure de la table `thread_metadata`
 --
 
 DROP TABLE IF EXISTS `thread_metadata`;
@@ -559,7 +687,7 @@ CREATE TABLE IF NOT EXISTS `thread_metadata` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Structure de la table `user`
 --
 
 DROP TABLE IF EXISTS `user`;
@@ -585,119 +713,148 @@ CREATE TABLE IF NOT EXISTS `user` (
   `ville` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `gouvernerat` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `code_postal` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `UNIQ_8D93D64992FC23A8` (`username_canonical`),
-  UNIQUE KEY `UNIQ_8D93D649A0D96FBF` (`email_canonical`),
-  UNIQUE KEY `UNIQ_8D93D649C05FB297` (`confirmation_token`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `user`
+-- Déchargement des données de la table `user`
 --
 
 INSERT INTO `user` (`id`, `username`, `username_canonical`, `email`, `email_canonical`, `enabled`, `salt`, `password`, `last_login`, `confirmation_token`, `password_requested_at`, `roles`, `nom`, `prenom`, `adresse`, `telephone`, `latitude`, `longitude`, `ville`, `gouvernerat`, `code_postal`) VALUES
-(11, 'skan', 'skan', 'skander.benyahia@esprit.tn', 'skander.benyahia@esprit.tn', 1, NULL, '$2y$13$eHKg4I3MqlbLACZlbyS7SueqsXgg2/raONaECENBfi74sDywB67lG', '2018-03-02 08:45:52', NULL, NULL, 'a:2:{i:0;s:11:\"ROLE_CLIENT\";i:1;s:10:\"ROLE_ADMIN\";}', 'BEN YAHIA', 'Skander', 'Tunis, Tunisie', 50419220, NULL, NULL, NULL, NULL, NULL),
-(12, 'membre', 'membre', 'bn.skander@gmail.com', 'bn.skander@gmail.com', 1, NULL, '$2y$13$.oCM0WGAiQZS4mOD9QVnye3ud3Fhd9G.JdOYd6.VpUiKu7SeE64pi', '2018-03-02 08:47:29', NULL, NULL, 'a:1:{i:0;s:11:\"ROLE_CLIENT\";}', 'membre', 'membre', 'Tunis, Tunisie', 45455454, NULL, NULL, NULL, NULL, NULL),
 (13, 'test', NULL, 'test@gmail.com', NULL, 0, NULL, 'test', NULL, NULL, NULL, 'ROLE_CLIENT', 'test', 'test', 'test', 54547545, NULL, NULL, NULL, NULL, NULL),
-(14, 'admin', NULL, 'admin', NULL, 1, NULL, 'admin', NULL, NULL, NULL, 'ROLE_ADMIN', 'admin', 'admin', 'admin', 0, NULL, NULL, NULL, NULL, NULL);
+(15, 'tazou', NULL, 'moataz', NULL, 1, NULL, 'love', NULL, NULL, NULL, 'ROLE_CLIENT', 'moataz', 'moataz', 'moataz', 214254, NULL, NULL, NULL, NULL, NULL),
+(16, 'saly', NULL, 'saly', NULL, 0, NULL, 'saly', NULL, NULL, NULL, 'ROLE_CLIENT', 'saly', 'saly', 'saly', 123456789, NULL, NULL, NULL, NULL, NULL),
+(17, 'vet', NULL, 'bn.skander@gmail.com', NULL, 0, NULL, 'vet', NULL, NULL, NULL, 'ROLE_VETERINAIRE', 'vet', 'vet', 'vet', 21231545, NULL, NULL, NULL, NULL, NULL),
+(18, 'a', NULL, 'bn.skander@gmail.com', NULL, 0, NULL, 'a', NULL, NULL, NULL, 'ROLE_CLIENT', 'aaa', 'aaa', 'aaa', 21458784, NULL, NULL, NULL, NULL, NULL),
+(19, 'az', NULL, 'bn.skander@gmail.com', NULL, 0, NULL, '$2y$13$Zk5pGMv5yZiZB1xC.B7EW.kPqPSBsqReyBSyoHuRiepFNs9UDj5yi', NULL, NULL, NULL, 'ROLE_CLIENT', 'bb', 'bb', 'b', 21454544, NULL, NULL, NULL, NULL, NULL),
+(20, 'admin', NULL, 'bn.skander@gmail.com', NULL, 0, NULL, '$2y$13$hxHt3IbHZ3jmaH8DYzJdv.V2O9gjXOVc3FdFrmLwEPqP7OAPRadlC', NULL, NULL, NULL, 'ROLE_ADMIN', 'Ben Yahia', 'Skander', 'tunis', 50419220, NULL, NULL, NULL, NULL, NULL),
+(21, 'membre', NULL, 'bn.skander@gmail.com', NULL, 1, NULL, '$2y$13$MXwQsgc0BbygZ3IEE57ui.I808X9ABx2k4iqfP7SANcDlVm4bQJJS', NULL, NULL, NULL, 'ROLE_CLIENT', 'membre', 'membre', 'tunis', 21456789, NULL, NULL, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
 
 --
--- Constraints for dumped tables
+-- Structure de la table `wishlist`
+--
+
+DROP TABLE IF EXISTS `wishlist`;
+CREATE TABLE IF NOT EXISTS `wishlist` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_client` int(11) NOT NULL,
+  `id_animal` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `wishlist`
+--
+
+INSERT INTO `wishlist` (`id`, `id_client`, `id_animal`) VALUES
+(8, 13, 3);
+
+--
+-- Contraintes pour les tables déchargées
 --
 
 --
--- Constraints for table `animal`
---
-ALTER TABLE `animal`
-  ADD CONSTRAINT `FK_6AAB231FDBDE2A6A` FOREIGN KEY (`id_refuge`) REFERENCES `refuge` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `commandes`
+-- Contraintes pour la table `commandes`
 --
 ALTER TABLE `commandes`
   ADD CONSTRAINT `FK_35D4282C8789B572` FOREIGN KEY (`payment_instruction_id`) REFERENCES `payment_instructions` (`id`);
 
 --
--- Constraints for table `credits`
+-- Contraintes pour la table `commentaire`
+--
+ALTER TABLE `commentaire`
+  ADD CONSTRAINT `commentaire_ibfk_1` FOREIGN KEY (`idUser`) REFERENCES `user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `commentaire_ibfk_2` FOREIGN KEY (`idCentre`) REFERENCES `centre_toilettage` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `credits`
 --
 ALTER TABLE `credits`
   ADD CONSTRAINT `FK_4117D17E4C3A3BB` FOREIGN KEY (`payment_id`) REFERENCES `payments` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `FK_4117D17E8789B572` FOREIGN KEY (`payment_instruction_id`) REFERENCES `payment_instructions` (`id`) ON DELETE CASCADE;
 
 --
--- Constraints for table `financial_transactions`
+-- Contraintes pour la table `financial_transactions`
 --
 ALTER TABLE `financial_transactions`
   ADD CONSTRAINT `FK_1353F2D94C3A3BB` FOREIGN KEY (`payment_id`) REFERENCES `payments` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `FK_1353F2D9CE062FF9` FOREIGN KEY (`credit_id`) REFERENCES `credits` (`id`) ON DELETE CASCADE;
 
 --
--- Constraints for table `genj_faq_question`
+-- Contraintes pour la table `genj_faq_question`
 --
 ALTER TABLE `genj_faq_question`
   ADD CONSTRAINT `FK_375D163F12469DE2` FOREIGN KEY (`category_id`) REFERENCES `genj_faq_category` (`id`);
 
 --
--- Constraints for table `ligne`
+-- Contraintes pour la table `ligne`
 --
 ALTER TABLE `ligne`
   ADD CONSTRAINT `FK_57F0DB8329A5EC27` FOREIGN KEY (`produit`) REFERENCES `produit` (`id`);
 
 --
--- Constraints for table `message`
+-- Contraintes pour la table `message`
 --
 ALTER TABLE `message`
   ADD CONSTRAINT `FK_B6BD307FE2904019` FOREIGN KEY (`thread_id`) REFERENCES `thread` (`id`),
   ADD CONSTRAINT `FK_B6BD307FF624B39D` FOREIGN KEY (`sender_id`) REFERENCES `user` (`id`);
 
 --
--- Constraints for table `message_metadata`
+-- Contraintes pour la table `message_metadata`
 --
 ALTER TABLE `message_metadata`
   ADD CONSTRAINT `FK_4632F005537A1329` FOREIGN KEY (`message_id`) REFERENCES `message` (`id`),
   ADD CONSTRAINT `FK_4632F0059D1C3019` FOREIGN KEY (`participant_id`) REFERENCES `user` (`id`);
 
 --
--- Constraints for table `participation`
+-- Contraintes pour la table `participation`
 --
 ALTER TABLE `participation`
   ADD CONSTRAINT `FK_AB55E24F6D6DB7FC` FOREIGN KEY (`idc`) REFERENCES `concours` (`id`),
   ADD CONSTRAINT `FK_AB55E24FE9D3F622` FOREIGN KEY (`idp`) REFERENCES `user` (`id`);
 
 --
--- Constraints for table `payments`
+-- Contraintes pour la table `payments`
 --
 ALTER TABLE `payments`
   ADD CONSTRAINT `FK_65D29B328789B572` FOREIGN KEY (`payment_instruction_id`) REFERENCES `payment_instructions` (`id`) ON DELETE CASCADE;
 
 --
--- Constraints for table `produit`
+-- Contraintes pour la table `produit`
 --
 ALTER TABLE `produit`
   ADD CONSTRAINT `FK_29A5EC27497DD634` FOREIGN KEY (`categorie`) REFERENCES `categorie` (`id`);
 
 --
--- Constraints for table `reservation_petsitter`
+-- Contraintes pour la table `rating`
+--
+ALTER TABLE `rating`
+  ADD CONSTRAINT `rating_ibfk_1` FOREIGN KEY (`idc`) REFERENCES `concours` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `reservation_petsitter`
 --
 ALTER TABLE `reservation_petsitter`
   ADD CONSTRAINT `FK_8471FEE562DCB42C` FOREIGN KEY (`idPetsitter`) REFERENCES `user` (`id`),
   ADD CONSTRAINT `FK_8471FEE5FE6E88D7` FOREIGN KEY (`idUser`) REFERENCES `user` (`id`);
 
 --
--- Constraints for table `reservation_veterinaire`
+-- Contraintes pour la table `signaler`
 --
-ALTER TABLE `reservation_veterinaire`
-  ADD CONSTRAINT `FK_25B5BFE438AEB422` FOREIGN KEY (`id_veterinaire_id`) REFERENCES `user` (`id`),
-  ADD CONSTRAINT `FK_25B5BFE479F37AE5` FOREIGN KEY (`id_user_id`) REFERENCES `user` (`id`);
+ALTER TABLE `signaler`
+  ADD CONSTRAINT `idcom_fk` FOREIGN KEY (`idcom`) REFERENCES `commentaire` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `iduser_fk` FOREIGN KEY (`iduser`) REFERENCES `user` (`id`) ON DELETE CASCADE;
 
 --
--- Constraints for table `thread`
+-- Contraintes pour la table `thread`
 --
 ALTER TABLE `thread`
   ADD CONSTRAINT `FK_31204C83B03A8386` FOREIGN KEY (`created_by_id`) REFERENCES `user` (`id`);
 
 --
--- Constraints for table `thread_metadata`
+-- Contraintes pour la table `thread_metadata`
 --
 ALTER TABLE `thread_metadata`
   ADD CONSTRAINT `FK_40A577C89D1C3019` FOREIGN KEY (`participant_id`) REFERENCES `user` (`id`),
