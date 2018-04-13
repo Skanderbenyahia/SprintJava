@@ -7,12 +7,16 @@
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Back_AdoptionPageController">
    <children>
-      <JFXTabPane layoutX="-10.0" layoutY="9.0" prefHeight="701.0" prefWidth="1125.0" stylesheets="@../Ressources/css/tabpane_moataz.css">
+      <JFXTabPane layoutX="-27.0" layoutY="58.0" prefHeight="675.0" prefWidth="1200.0" stylesheets="@../Ressources/css/tabpane_moataz.css">
          <tabs>
             <Tab text="Animal">
               <content>
@@ -29,13 +33,16 @@
                               <TableColumn fx:id="Column_etat" minWidth="120.0" prefWidth="75.0" text="Etat" />
                            </columns>
                         </TableView>
-                        <Label layoutX="423.0" layoutY="136.0" prefHeight="38.0" prefWidth="184.0" text="Liste des Animaux" />
-                        <HBox layoutX="160.0" layoutY="465.0" prefHeight="66.0" prefWidth="860.0" spacing="10.0">
+                        <Label layoutX="478.0" layoutY="60.0" prefHeight="49.0" prefWidth="311.0" text="Liste des Animaux" textFill="#cfbfa6">
+                           <font>
+                              <Font name="System Bold" size="33.0" />
+                           </font></Label>
+                        <HBox layoutX="223.0" layoutY="462.0" prefHeight="66.0" prefWidth="860.0" spacing="10.0">
                            <children>
                               <Button fx:id="AjouterAnimal" mnemonicParsing="false" onAction="#AjouterAnimal" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: cfbfa6;" text="Ajouter un animal" />
                               <Button fx:id="ModifierAnimal" mnemonicParsing="false" onAction="#ModifierAnimal" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: cfbfa6;" text="Modifier un animal" />
                               <Button fx:id="SupprimerAnimal1" mnemonicParsing="false" onAction="#SupprimerAnimal" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: cfbfa6;" text="Supprimer un animal" />
-                              <Button fx:id="ChangerEtat" mnemonicParsing="false" onAction="#ChangerEtat" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: cfbfa6;" text="Changer etat" />
+                              <Button fx:id="changerEtatt" mnemonicParsing="false" onAction="#ChangerEtat" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: cfbfa6;" text="Changer Etat" />
                            </children>
                            <opaqueInsets>
                               <Insets />
@@ -63,8 +70,11 @@
                               <TableColumn fx:id="Column_image_refuge" minWidth="51.0" prefWidth="63.0" text="Image" />
                            </columns>
                         </TableView>
-                        <Label layoutX="529.0" layoutY="135.0" prefHeight="38.0" prefWidth="184.0" text="Liste des Refuges" />
-                        <HBox layoutX="160.0" layoutY="465.0" prefHeight="66.0" prefWidth="860.0" spacing="10.0">
+                        <Label layoutX="507.0" layoutY="70.0" prefHeight="49.0" prefWidth="317.0" text="Liste des Refuges" textFill="#cfbfa6">
+                           <font>
+                              <Font name="System Bold" size="33.0" />
+                           </font></Label>
+                        <HBox layoutX="314.0" layoutY="458.0" prefHeight="66.0" prefWidth="860.0" spacing="10.0">
                            <children>
                               <Button fx:id="AjouterRefuge" mnemonicParsing="false" onAction="#AjouterRefuge" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: cfbfa6;" text="Ajouter un Refuge" />
                               <Button fx:id="ModifierRefuge" mnemonicParsing="false" onAction="#ModifierRefuge" prefHeight="40.0" prefWidth="215.0" style="-fx-background-color: cfbfa6;" text="Modifier un Refuge" />
@@ -83,5 +93,26 @@
             </Tab>
          </tabs>
       </JFXTabPane>
+      <Pane prefHeight="60.0" prefWidth="1200.0" style="-fx-background-color: cfbfa6;">
+         <children>
+            <Button layoutX="1059.0" layoutY="12.0" mnemonicParsing="false" onAction="#logout" opacity="0.0" prefHeight="31.0" prefWidth="114.0" text="Button" />
+            <Label layoutX="1071.0" layoutY="19.0" prefHeight="25.0" prefWidth="100.0" text="Déconnexion" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="456.0" layoutY="2.0" text="Adoption Page" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="41.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <ImageView fitHeight="60.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Ressources/Images/dog%20(1).png" />
+         </image>
+      </ImageView>
+      <Button layoutX="4.0" mnemonicParsing="false" onAction="#Back_admin" opacity="0.0" prefHeight="60.0" prefWidth="60.0" text="Button" />
    </children>
 </AnchorPane>

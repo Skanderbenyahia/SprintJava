@@ -11,9 +11,16 @@ import Entity.Session;
 import Services.CentreDressageService;
 import Services.ReservationPetsitterService;
 import Services.UserService;
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
 import com.jfoenix.controls.JFXTabPane;
 import com.jfoenix.controls.JFXTextField;
 import com.sun.deploy.util.SearchPath;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
@@ -46,6 +53,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javax.swing.JOptionPane;
 
 /**
  * FXML Controller class
@@ -105,7 +113,7 @@ public class Back_ServicePageController implements Initializable {
     @FXML
     private JFXTextField searchR;
     @FXML
-    private Button Back_admin;
+    private Button pdfBTN;
   
   
 
@@ -306,5 +314,35 @@ public class Back_ServicePageController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/Start.fxml"));
         Parent root=loader.load();
         CentreDressageView.getScene().setRoot(root);
+    }
+
+    @FXML
+    private void creation_pdf(ActionEvent event) throws DocumentException, FileNotFoundException {
+        CentreDressage selectedCentre=this.CentreDressageView.getSelectionModel().getSelectedItem();
+        com.itextpdf.text.Document document = new com.itextpdf.text.Document();
+        PdfWriter.getInstance(document, new FileOutputStream("C:\\Users\\bn-sk\\Desktop\\GitFinal\\SprintJava\\PDF.pdf"));
+        document.open();
+        document.add(new Paragraph(new java.util.Date().toString()));
+        com.itextpdf.text.pdf.PdfPTable table = new com.itextpdf.text.pdf.PdfPTable(2);
+        com.itextpdf.text.pdf.PdfPCell cell = new com.itextpdf.text.pdf.PdfPCell(new Paragraph("Centre de toilettage info"));
+        cell.setColspan(4);
+        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        cell.setBackgroundColor(BaseColor.GREEN);
+        table.addCell(cell);
+
+        table.addCell("libelle");
+        table.addCell(selectedCentre.getLibelle());
+        table.addCell("adresse");
+        table.addCell(selectedCentre.getAdresse());
+        table.addCell("telephone");
+        table.addCell(selectedCentre.getTel()+"");
+        table.addCell("description");
+        table.addCell(selectedCentre.getDescription());
+
+        table.addCell("email");
+
+        document.add(table);
+        document.close();
+        JOptionPane.showMessageDialog(null, " données exportées en pdf evec succés ");
     }
 }

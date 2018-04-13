@@ -5,6 +5,7 @@
  */
 package Services;
 
+import Entity.User;
 import Technique.DataSource;
 import Entity.centreToilettage;
 import java.sql.Connection;
@@ -16,6 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -67,6 +70,17 @@ public class centreToilettageServices
         return centresT ;
     }
       
+      public ObservableList<centreToilettage> getObservableC () throws SQLException
+        {
+          ObservableList<centreToilettage> ListCentreT = FXCollections.observableArrayList();
+          List<centreToilettage> cen =afficherCentreT();
+                  for (centreToilettage   c : cen)
+               {
+                 ListCentreT.add(c);
+               }
+                 return ListCentreT;    
+        }
+      
       public void supprimerCentreT (int idd) throws SQLException
       {
           String req = "DELETE FROM centre_toilettage where id='" + idd + "' ";
@@ -74,9 +88,9 @@ public class centreToilettageServices
           pre.execute();
 
       }
-      public void modifierCentreT (centreToilettage c , int id ) throws SQLException 
+      public void modifierCentreT (centreToilettage c,int id) throws SQLException 
       {
-          String req = "UPDATE centre_toilettage set libelle=(?),adresse=(?),tel=(?),description=(?),image=(?) WHERE id= '"+id+"'";
+          String req = "UPDATE centre_toilettage set libelle=(?),adresse=(?),tel=(?),description=(?),image=(?) WHERE id= (?)";
         
          PreparedStatement pre = con.prepareStatement(req);
 

@@ -8,6 +8,7 @@ package Controllers;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -16,6 +17,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import java.util.*;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javax.mail.*;
 import javax.mail.internet.*;
 import javax.mail.internet.MimeMessage;
@@ -54,17 +57,19 @@ public class Formulaire_AdoptionController implements Initializable {
     }    
 
     @FXML
-    private void EnvoyerMail(ActionEvent event) {
+    private void EnvoyerMail(ActionEvent event) throws IOException {
          try{
             String host ="smtp.gmail.com" ;
             String user = "motaz.pro@gmail.com";
             String pass = "motaz25671527";
-            String to = "";
+            String to = "moatez.souid@esprit.tn";
             String from = "motaz.pro@gmail.com";
-            String subject = "This is confirmation number for your expertprogramming account. Please insert this number to activate your account.";
-            String messageText = "Your Is Test Email :";
+            String subject = "";
+            
+            
+            String messageText = "Nom: "+nom.getText()+" Prenom: "+prenom.getText()+" Motivation: "+description.getText();
             boolean sessionDebug = false;
-
+             subject = "Demande d'adoption";
             Properties props = System.getProperties();
 
             props.put("mail.smtp.starttls.enable", "true");
@@ -87,7 +92,10 @@ public class Formulaire_AdoptionController implements Initializable {
            transport.connect(host, user, pass);
            transport.sendMessage(msg, msg.getAllRecipients());
            transport.close();
-           System.out.println("message send successfully");
+           System.out.println("message sent successfully");
+           FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/Wishlist.fxml"));
+        Parent root = loader.load();
+        adresse.getScene().setRoot(root);
         }catch(MessagingException ex)
         {
             System.out.println(ex);

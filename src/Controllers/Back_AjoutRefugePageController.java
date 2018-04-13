@@ -19,6 +19,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 
 /**
@@ -56,6 +57,7 @@ public class Back_AjoutRefugePageController implements Initializable,ControllerC
 
     @FXML
     private void AjouterRefuge(ActionEvent event) throws SQLException, IOException {
+       // if(ValidateFields()){
            RefugeService fs= new RefugeService();
         if(a!=null)
         {
@@ -73,7 +75,8 @@ public class Back_AjoutRefugePageController implements Initializable,ControllerC
          FXMLLoader loader= new FXMLLoader(getClass().getResource("../GUI/Back_AdoptionPage.fxml"));
         Parent root =loader.load();
         refuge_libelle.getScene().setRoot(root);
-    }
+    //}
+    } 
     
     @Override
     public void preloadData(Refuge a) {
@@ -104,6 +107,38 @@ public class Back_AjoutRefugePageController implements Initializable,ControllerC
 
     @Override
     public void preloadData(Animal c) {
+    }
+    
+    /* private boolean ValidateFields()
+     {
+         if(refuge_libelle.getText().isEmpty() | refuge_adresse.getText().isEmpty() | refuge_num.getText().isEmpty() | refuge_region.getText().isEmpty() | email.getText().isEmpty() | refuge_description.getText().isEmpty() | refuge_image.getText().isEmpty())
+         {
+                Alert alert= new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Validation Champs");
+                alert.setHeaderText(null);
+                alert.setContentText("Veuillez remplir tout les champs !");
+                alert.showAndWait();
+         return false;
+         }
+        if((Integer.parseInt(refuge_num.getText()))<0)
+         {
+                Alert alert= new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Validation Champs");
+                alert.setHeaderText(null);
+                alert.setContentText("Veuillez Vérifier le numéro de téléphone !");
+                alert.showAndWait();
+         return false;
+         }
+        return true;
+     
+     } */
+
+    @FXML
+    private void back_admin(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/Back_AdoptionPage.fxml"));
+        Parent root=loader.load();
+        refuge_num.getScene().setRoot(root);
+
     }
     }
     

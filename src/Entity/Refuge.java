@@ -13,7 +13,7 @@ import java.util.Objects;
  */
 public class Refuge {
 
-    public Refuge(String libelle, int num ,String email ,String region,  String adresse, String description, String image) {
+    public Refuge(String libelle, int num, String email ,String region,  String adresse, String description, String image) {
         this.libelle = libelle;
         this.adresse = adresse;
         this.num = num;

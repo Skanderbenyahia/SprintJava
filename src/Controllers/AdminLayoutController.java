@@ -126,5 +126,14 @@ public class AdminLayoutController implements Initializable {
          window.setScene(ventePage);
          window.show();
     }
+
+    @FXML
+    private void HygienePage(ActionEvent event) throws IOException {
+         Parent service= FXMLLoader.load((getClass().getResource("../GUI/Back_SoinPage.fxml")));
+         Scene CentreDPage= new Scene (service);
+         Stage window=(Stage) ((Node)event.getSource()).getScene().getWindow();
+         window.setScene(CentreDPage);
+         window.show();
+    }
     
 }

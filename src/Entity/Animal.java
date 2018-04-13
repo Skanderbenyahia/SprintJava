@@ -12,20 +12,33 @@ import java.util.Objects;
  * @author Skeez
  */
 public class Animal {
+
     private int id;
-     private String nom;
+    private String nom;
+    private String espece;
     private String race;
-    private String sexe;
     private String age;
-    private String etat;
-    private String image;
-    private String description;
-    private int demande;
+    private String sexe;
     private String taille;
     private String region;
-    private String espece;
-    
-    public Animal() {
+    private String description;
+    private String etat;
+    private String image;
+    private int demande;
+
+    public Animal(int id, String nom, String espece, String race, String age, String sexe, String taille, String region, String description, String etat, String image, int demande) {
+        this.id = id;
+        this.nom = nom;
+        this.espece = espece;
+        this.race = race;
+        this.age = age;
+        this.sexe = sexe;
+        this.taille = taille;
+        this.region = region;
+        this.description = description;
+        this.etat = etat;
+        this.image = image;
+        this.demande = demande;
     }
 
     public Animal(String nom, String espece, String race, String age, String sexe, String taille, String region, String description, String etat, String image, int demande) {
@@ -39,27 +52,12 @@ public class Animal {
         this.description = description;
         this.etat = etat;
         this.image = image;
-        this.demande = demande;   
-    }
-   
-
-    public Animal(int id, String nom, String espece, String race, String age, String sexe, String taille, String region, String description, String etat, String image, int demande) {
-        this.id = id;
-        this.nom = nom;
-        this.race = race;
-        this.sexe = sexe;
-        this.age = age;
-        this.etat = etat;
-        this.image = image;
-        this.description = description;
         this.demande = demande;
-        this.taille = taille;
-        this.region = region;
-        this.espece = espece;
     }
 
-    public Animal(String string, String string0) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+
+    public Animal() {
     }
 
     public int getId() {
@@ -198,7 +196,5 @@ public class Animal {
     public void setEspece(String espece) {
         this.espece = espece;
     }
-    
-    
-    
+
 }

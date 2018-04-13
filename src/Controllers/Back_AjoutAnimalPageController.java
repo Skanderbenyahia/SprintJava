@@ -19,6 +19,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 
 /**
@@ -26,7 +27,7 @@ import javafx.scene.control.Label;
  *
  * @author Skeez
  */
-public class Back_AjoutAnimalPageController implements Initializable,ControllerClassAdoption {
+public class Back_AjoutAnimalPageController implements Initializable, ControllerClassAdoption {
 
     @FXML
     private JFXTextField nom;
@@ -45,12 +46,10 @@ public class Back_AjoutAnimalPageController implements Initializable,ControllerC
     @FXML
     private Label titre;
     @FXML
-    private JFXTextField refuge;
-    @FXML
     private JFXTextField taille;
     @FXML
     private JFXTextArea description;
-    
+
     private Animal a;
 
     /**
@@ -59,33 +58,32 @@ public class Back_AjoutAnimalPageController implements Initializable,ControllerC
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     @FXML
     private void AjouterAnimal(ActionEvent event) throws SQLException, IOException {
-        
-        AnimalService fs= new AnimalService();
-        if(a!=null)
-        {
-            updateCentre();
-            fs.ModifierAnimal(a);
+        if (ValidateFields()) {
+            AnimalService fs = new AnimalService();
+            if (a != null) {
+                updateCentre();
+                fs.ModifierAnimal(a);
+            } else {
+
+                String etat = "nonadopte";
+                int demande = 0;
+                Animal f = new Animal(nom.getText(), espece.getText(),race.getText(), age.getText(), sexe.getText(), taille.getText(), region.getText(), description.getText(),etat, image.getText(),  demande);
+                fs.AjouterAnimal(f);
+            }
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/Back_AdoptionPage.fxml"));
+            Parent root = loader.load();
+            nom.getScene().setRoot(root);
         }
-        else
-        {
-       
-          String etat="nonadopte";
-        int demande= 0;
-        Animal f=new Animal(nom.getText(), espece.getText(), race.getText(), age.getText(), sexe.getText(), taille.getText(), region.getText(), description.getText(),etat, image.getText(), demande );
-        fs.AjouterAnimal(f);
-        }
-         FXMLLoader loader= new FXMLLoader(getClass().getResource("../GUI/Back_AdoptionPage.fxml"));
-        Parent root =loader.load();
-        nom.getScene().setRoot(root);
     }
-    
+
     @Override
     public void preloadData(Animal a) {
-        this.a=a;
+        this.a = a;
+
         this.nom.setText(a.getNom());
         this.espece.setText(a.getEspece());
         this.race.setText(a.getRace());
@@ -97,22 +95,42 @@ public class Back_AjoutAnimalPageController implements Initializable,ControllerC
         this.description.setText(a.getDescription());
         this.titre.setText("Modifier Un Animal");
     }
-    
-     public void updateCentre()
-    {
-    a.setNom(nom.getText());
-    a.setRace(race.getText());
-    a.setEspece(espece.getText());
-    a.setAge(age.getText());
-    a.setTaille(taille.getText());
-    a.setImage(image.getText());
-    a.setRegion(region.getText());
-    a.setSexe(sexe.getText());
-    a.setDescription(description.getText());
- 
+
+    public void updateCentre() {
+        a.setNom(nom.getText());
+        a.setRace(race.getText());
+        a.setEspece(espece.getText());
+        a.setAge(age.getText());
+        a.setTaille(taille.getText());
+        a.setImage(image.getText());
+        a.setRegion(region.getText());
+        a.setSexe(sexe.getText());
+        a.setDescription(description.getText());
+
     }
 
     @Override
     public void preloadData(Refuge c) {
+    }
+
+    private boolean ValidateFields() {
+        if (nom.getText().isEmpty() | race.getText().isEmpty() | description.getText().isEmpty() | image.getText().isEmpty() | sexe.getText().isEmpty() | region.getText().isEmpty() | espece.getText().isEmpty() | taille.getText().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Validation Champs");
+            alert.setHeaderText(null);
+            alert.setContentText("Veuillez remplir tout les champs !");
+            alert.showAndWait();
+            return false;
+        }
+
+        return true;
+
+    }
+
+    @FXML
+    private void back_buton(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/Back_AdoptionPage.fxml"));
+        Parent root = loader.load();
+        description.getScene().setRoot(root);
     }
 }

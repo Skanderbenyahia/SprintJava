@@ -20,6 +20,7 @@ public class User {
     private String password;
     private String roles;
     private int etat;
+    private double stat;
 
     public User(int id, String nom, String prenom, String adresse, String email, int tel, String username, String password, String roles, int etat) {
         this.id = id;
@@ -34,9 +35,21 @@ public class User {
         this.etat = etat;
     }
 
+    public double getStat() {
+        return stat;
+    }
+
+    public void setStat(double stat) {
+        this.stat = stat;
+    }
+
     public User() {
     }
 
+    public User(String username, double stat) {
+        this.username=username;
+        this.stat=stat;
+    }
     public User(String nom, String prenom, String adresse, String email, int tel, String username, String password, String roles, int etat) {
         this.nom = nom;
         this.prenom = prenom;

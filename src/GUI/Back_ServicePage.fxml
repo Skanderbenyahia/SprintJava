@@ -59,6 +59,7 @@
                               <Button fx:id="ajouterD" mnemonicParsing="false" onAction="#AjouterCentreDressage" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: cfbfa6;" text="Ajouter un centre" />
                               <Button fx:id="modifierD" mnemonicParsing="false" onAction="#ModifierCentreDressage" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: cfbfa6;" text="Modifier un centre" />
                               <Button fx:id="supprimerD" mnemonicParsing="false" onAction="#supprimerCentreDressage" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: cfbfa6;" text="Supprimer un centre" />
+                              <Button fx:id="pdfBTN" mnemonicParsing="false" onAction="#creation_pdf" style="-fx-background-color: cfbfa6;" text="Exporter en PDF" />
                            </children>
                            <opaqueInsets>
                               <Insets />

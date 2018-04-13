@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Formulaire_RefugeController">
+    <children>
+      <Pane fx:id="motivation" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: ffffff;">
+         <children>
+            <JFXTextField fx:id="espece" layoutX="204.0" layoutY="153.0" promptText="Espece de l'animal" />
+            <JFXTextField fx:id="region" layoutX="204.0" layoutY="225.0" promptText="La region " />
+            <JFXTextField fx:id="adresse" layoutX="204.0" layoutY="339.0" promptText="Adresse" />
+            <JFXTextField fx:id="etat" layoutX="204.0" layoutY="288.0" promptText="L'animal est il blessé?" />
+            <JFXTextField fx:id="num" layoutX="204.0" layoutY="408.0" promptText="Votre numéro" />
+            <JFXButton fx:id="enoyer" layoutX="587.0" layoutY="526.0" onAction="#Envoyez" style="-fx-background-color: f67777;" text="Envoyer" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXButton>
+            <Label fx:id="titre" layoutX="221.0" layoutY="57.0" text="Envoyer votre demande" textFill="#f67777">
+               <font>
+                  <Font name="System Bold" size="28.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="60.0" fitWidth="70.0" layoutX="14.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Ressources/Images/dog%20(1).png" />
+               </image>
+            </ImageView>
+            <Label layoutX="122.0" layoutY="17.0" prefHeight="46.0" prefWidth="82.0" text="Admin" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <JFXTextArea fx:id="description" layoutX="415.0" layoutY="178.0" prefHeight="74.0" prefWidth="285.0" promptText="Motivation" text="&#10;" />
+            <Label fx:id="email" layoutX="257.0" layoutY="125.0" opacity="0.0" text="Label" />
+         </children>
+      </Pane>
+      <Pane layoutY="96.0" prefHeight="505.0" prefWidth="103.0" style="-fx-background-color: f67777;">
+         <children>
+            <ImageView fitHeight="30.0" fitWidth="50.0" layoutX="37.0" layoutY="361.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Ressources/Images/walking-with-dog.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="50.0" layoutX="37.0" layoutY="142.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Ressources/Images/animal-paw-print.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="50.0" layoutX="37.0" layoutY="208.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Ressources/Images/dog-dish.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="50.0" layoutX="37.0" layoutY="286.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Ressources/Images/syringe.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="50.0" layoutX="37.0" layoutY="428.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Ressources/Images/election-event-on-a-calendar-with-star-symbol.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="18.0" layoutY="133.0" mnemonicParsing="false" opacity="0.0" prefHeight="60.0" prefWidth="68.0" text="Button" />
+            <Button layoutX="18.0" layoutY="208.0" mnemonicParsing="false" opacity="0.0" prefHeight="60.0" prefWidth="68.0" text="Button" />
+            <Button layoutX="15.0" layoutY="286.0" mnemonicParsing="false" opacity="0.0" prefHeight="60.0" prefWidth="75.0" text="Button" />
+            <Button layoutX="18.0" layoutY="355.0" mnemonicParsing="false" opacity="0.0" prefHeight="60.0" prefWidth="75.0" text="Button" />
+            <Button layoutX="19.0" layoutY="428.0" mnemonicParsing="false" opacity="0.0" prefHeight="60.0" prefWidth="75.0" text="Button" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

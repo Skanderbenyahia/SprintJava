@@ -67,7 +67,7 @@ public class StartController implements Initializable {
         User u = new User();
         u.setUsername(username.getText());
         u.setPassword(password.getText());
-        roles = us.VerificationUtilisateur(u);
+        roles = us.VerificationUtilisateur(u,password.getText());
         Stage stage;
 
         if (roles == 1) {

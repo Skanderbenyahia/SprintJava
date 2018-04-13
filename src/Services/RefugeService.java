@@ -39,28 +39,30 @@ public class RefugeService {
     
     }
      public void ajouterRefuge(Refuge a) throws SQLException {
-        String req = "INSERT INTO Refuge(libelle, adresse, num, region, email, description) VALUES(?,?,?,?,?,?)";
+        String req = "INSERT INTO Refuge(libelle, num, email, region, adresse, description, image) VALUES(?,?,?,?,?,?,?)";
         PreparedStatement pre = con.prepareStatement(req);
         pre.setString(1, a.getLibelle());
-        pre.setString(2, a.getAdresse());
-        pre.setInt(3, a.getNum());
+        pre.setInt(2, a.getNum());
+        pre.setString(3, a.getEmail());
         pre.setString(4, a.getRegion());
-        pre.setString(5, a.getEmail());
+        pre.setString(5, a.getAdresse());
         pre.setString(6, a.getDescription());
+        pre.setString(7, a.getImage());
         pre.executeUpdate();
         System.out.println("Refuge Ajoutée");
     }
      
      public void ModifierRefuge(Refuge a) throws SQLException {
-        String req = "UPDATE refuge SET libelle=(?),adresse=(?),num=(?),region=(?),email=(?),description=(?) WHERE id=(?)";
+        String req = "UPDATE refuge SET libelle=(?),num=(?), email=(?), region=(?),adresse=(?),description=(?), image=(?) WHERE id=(?)";
        PreparedStatement pre = con.prepareStatement(req);
-       pre.setString(1, a.getLibelle());
-        pre.setString(2, a.getAdresse());
-        pre.setInt(3, a.getNum());
+        pre.setString(1, a.getLibelle());
+        pre.setInt(2, a.getNum());
+        pre.setString(3, a.getEmail());
         pre.setString(4, a.getRegion());
-        pre.setString(5, a.getEmail());
+        pre.setString(5, a.getAdresse());
         pre.setString(6, a.getDescription());
-        pre.setInt(7, a.getId());
+        pre.setString(7, a.getImage());
+        pre.setInt(8, a.getId());
         pre.executeUpdate();
     }
      
@@ -71,7 +73,7 @@ public class RefugeService {
         List<Refuge> Refuges =new ArrayList<>();
         while(r.next())
         {
-             Refuges.add(new Refuge(r.getString(2), r.getInt(3), r.getString(4), r.getString(5), r.getString(6),r.getString(7), r.getString(8)));
+             Refuges.add(new Refuge(r.getInt(1),r.getString(2), r.getInt(3), r.getString(4), r.getString(5), r.getString(6),r.getString(7), r.getString(8)));
         }
         return Refuges;
     }
@@ -90,11 +92,28 @@ public class RefugeService {
     
     public void SupprimerRefuge(int id) throws SQLException   
     {
-           String req="DELETE FROM refuge WHERE id='"+id+"' ";
-           PreparedStatement pre = con.prepareStatement(req);
-           pre.executeUpdate();    
+           String req="DELETE FROM refuge WHERE id='"+ id +"' ";
+           ste.execute(req);
+        
+            
     }
     
+     public List<Refuge> selectRefuges() {
+        ResultSet rs = null;
+        List<Refuge> refuge = new ArrayList<Refuge>();
+        String req = "SELECT * FROM refuge";
+        try {
+            PreparedStatement ste = con.prepareStatement(req);
+            rs = ste.executeQuery();
+            while (rs.next()) {
+                Refuge p = new Refuge(rs.getString(2),rs.getInt(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8));
+                refuge.add(p);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Refuge.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return refuge;
+    }
   
 }
 

@@ -93,7 +93,10 @@ public class HomeController implements Initializable {
     }
 
     @FXML
-    private void afficherAcceuil(ActionEvent event) {
+    private void afficherAcceuil(ActionEvent event) throws IOException {
+         FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/home.fxml"));
+        Parent root = loader.load();
+        bienvenue.getScene().setRoot(root);
     }
 
     @FXML
@@ -121,7 +124,10 @@ public class HomeController implements Initializable {
     }
 
     @FXML
-    private void afficherSoins(ActionEvent event) {
+    private void afficherSoins(ActionEvent event) throws IOException {
+         FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/FRONT_HygienePage.fxml"));
+        Parent root = loader.load();
+        bienvenue.getScene().setRoot(root);
     }
 
     @FXML
@@ -157,6 +163,13 @@ public class HomeController implements Initializable {
     private void ReservationPage(ActionEvent event) throws IOException {
          FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/ListeReservationPetsitter.fxml"));
         Parent root=loader.load();
+        bienvenue.getScene().setRoot(root);
+    }
+
+    @FXML
+    private void afficherWishList(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/Wishlist.fxml"));
+        Parent root = loader.load();
         bienvenue.getScene().setRoot(root);
     }
 
