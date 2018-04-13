@@ -33,11 +33,16 @@ import com.lynden.gmapsfx.javascript.object.Marker;
 import com.lynden.gmapsfx.javascript.object.MarkerOptions;
 import com.lynden.gmapsfx.util.MarkerImageFactory;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
+import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.FileChooser;
 import netscape.javascript.JSObject;
 
 /**
@@ -58,7 +63,6 @@ public class Back_AjouterCDPageController implements Initializable,ControllerCla
     @FXML
     private JFXTextField description;
 
-    @FXML
     private JFXTextField image;
     
     private CentreDressage d;
@@ -83,6 +87,11 @@ public class Back_AjouterCDPageController implements Initializable,ControllerCla
     private JFXTextField id_lng;
     @FXML
     private JFXTextField villeTXT;
+    @FXML
+    private Button loadBTN;
+    @FXML
+    private ImageView imageviewcentre;
+     String path="";
     
     /**
      * Initializes the controller class.
@@ -111,7 +120,7 @@ public class Back_AjouterCDPageController implements Initializable,ControllerCla
         d.setLibelle(libelle.getText());
         d.setAdresse(adresse.getText());
         d.setDescription(description.getText());
-        d.setImage(image.getText());
+        d.setImage(path);
         d.setTel(Integer.parseInt(tel.getText()));
         d.setLat(Float.parseFloat(id_lat.getText()));
         d.setLng(Float.parseFloat(id_lng.getText()));
@@ -138,7 +147,6 @@ public class Back_AjouterCDPageController implements Initializable,ControllerCla
         this.gouverneratTXT.setText(d.getGouvernerat());
         this.codepostalTXT.setText(Integer.toString(d.getCode_psotale()));
         this.description.setText(d.getDescription());
-        this.image.setText(d.getImage());
         this.titre.setText("Modifier Un Centre de dressage");
     }
     
@@ -153,13 +161,12 @@ public class Back_AjouterCDPageController implements Initializable,ControllerCla
     d.setGouvernerat(gouverneratTXT.getText());
     d.setCode_psotale(Integer.parseInt(codepostalTXT.getText()));
     d.setDescription(description.getText());
-    d.setImage(image.getText());
     }
 
      private boolean ValidateFields()
      {
          if(libelle.getText().isEmpty() | adresse.getText().isEmpty() | description.getText().isEmpty() 
-                 | image.getText().isEmpty() |tel.getText().isEmpty())
+                 |tel.getText().isEmpty())
          {
                 Alert alert= new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Validation Champs");
@@ -284,5 +291,19 @@ public class Back_AjouterCDPageController implements Initializable,ControllerCla
         FXMLLoader loader= new FXMLLoader(getClass().getResource("../GUI/adminLayout.fxml"));
         Parent root =loader.load();
         libelle.getScene().setRoot(root);
+    }
+
+    @FXML
+    private void load(ActionEvent event) throws MalformedURLException {
+         FileChooser fileChooser = new FileChooser();
+        File file = fileChooser.showOpenDialog(imageviewcentre.getScene().getWindow());
+        if (file != null) 
+        {
+            Image img = new Image(file.toURI().toString(), 388 , 309, true, true);
+            imageviewcentre.imageProperty().unbind();
+            imageviewcentre.setImage(img);
+            
+        }
+        path = file.toURI().toURL().toString();
     }
 }

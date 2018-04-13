@@ -88,7 +88,7 @@ public class centreToilettageServices
           pre.execute();
 
       }
-      public void modifierCentreT (centreToilettage c,int id) throws SQLException 
+      public void modifierCentreT (centreToilettage c) throws SQLException 
       {
           String req = "UPDATE centre_toilettage set libelle=(?),adresse=(?),tel=(?),description=(?),image=(?) WHERE id= (?)";
         
@@ -99,7 +99,7 @@ public class centreToilettageServices
         pre.setInt(3, c.getTel());
         pre.setString(4, c.getDescription());
         pre.setString(5, c.getImage());
-        
+        pre.setInt(6, c.getId());
         pre.executeUpdate();
           
       }

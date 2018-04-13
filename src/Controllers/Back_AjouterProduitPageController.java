@@ -184,6 +184,13 @@ public class Back_AjouterProduitPageController implements Initializable,VenteCon
         }
         path = file.toURI().toURL().toString();
     }
+
+    @FXML
+    private void back(ActionEvent event) throws IOException {
+        FXMLLoader loader= new FXMLLoader(getClass().getResource("../GUI/Back_VentePage.fxml"));
+        Parent root =loader.load();
+        libelle.getScene().setRoot(root);
+    }
     
     
     }

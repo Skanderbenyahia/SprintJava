@@ -31,7 +31,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Button>
-            <JFXButton fx:id="loadBTN" layoutX="467.0" layoutY="342.0" onAction="#load" text="Charger image" />
+            <JFXButton fx:id="loadBTN" layoutX="467.0" layoutY="342.0" onAction="#load" style="-fx-background-color: f67777;" text="Charger image" textFill="WHITE" />
             <ImageView fx:id="imageviewcentre" fitHeight="133.0" fitWidth="135.0" layoutX="626.0" layoutY="299.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Pane>
@@ -40,11 +40,11 @@
             <Image url="@../Ressources/Images/dog%20(1).png" />
          </image>
       </ImageView>
-      <Button fx:id="Back_button" layoutX="3.0" layoutY="-1.0" mnemonicParsing="false" opacity="0.0" prefHeight="80.0" prefWidth="70.0" text="Button" />
       <Label layoutX="73.0" layoutY="19.0" text="Admin" textFill="WHITE">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
+      <Button fx:id="Back_button" layoutX="3.0" layoutY="-1.0" mnemonicParsing="false" onAction="#back" opacity="0.0" prefHeight="80.0" prefWidth="70.0" text="Button" />
    </children>
 </AnchorPane>

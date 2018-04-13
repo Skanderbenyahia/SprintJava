@@ -29,9 +29,10 @@
                   <Font size="16.0" />
                </font>
             </Label>
+            <Button layoutX="1077.0" layoutY="13.0" mnemonicParsing="false" onAction="#logout" opacity="0.0" prefHeight="35.0" prefWidth="126.0" text="Button" />
          </children>
       </Pane>
-      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="60.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fitHeight="60.0" fitWidth="70.0" layoutX="7.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Ressources/Images/dog%20(1).png" />
@@ -103,5 +104,6 @@
             </Tab>
          </tabs>
       </JFXTabPane>
+      <Button layoutY="1.0" mnemonicParsing="false" onAction="#back" opacity="0.0" prefHeight="59.0" prefWidth="74.0" text="Button" />
    </children>
 </AnchorPane>

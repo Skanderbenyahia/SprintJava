@@ -324,7 +324,7 @@ public class Back_SoinPageController implements Initializable {
         c=this.listeViewVeterinaire.getSelectionModel().getSelectedItem();
         ModifierT.setDisable(false);
         SupprimerT.setDisable(false);
-        destinataire.setText(c.getEmail());
+       //destinataire.setText(c.getEmail());
     }
 
     @FXML

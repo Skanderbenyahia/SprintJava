@@ -108,7 +108,7 @@ public class AjoutCentreToiController implements Initializable,SoinControllerCla
         if(c!=null)
         {
         updateCentre();
-        //cs.modifierCentreT(c,);
+        cs.modifierCentreT(c);
         }
         else 
         {

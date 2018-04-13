@@ -9,6 +9,7 @@ import Entity.Concour;
 import Entity.Conseils;
 import Services.ServiceConcour;
 import Services.ServiceConseils;
+import Services.UserService;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
@@ -223,6 +224,23 @@ public class Back_eventPageController implements Initializable {
     private void selectedConseil(MouseEvent event) {
         modifierConseil.setDisable(false);
         SupprimerConseilButton.setDisable(false);
+    }
+
+    @FXML
+    private void logout(ActionEvent event) throws IOException {
+          UserService us = new UserService();
+        us.Desactivate(Entity.Session.getCurrentSession());
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/Start.fxml"));
+        Parent root=loader.load();
+        SupprimerConseilButton.getScene().setRoot(root);
+        
+    }
+
+    @FXML
+    private void back(ActionEvent event) throws IOException {
+       FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/adminLayout.fxml"));
+        Parent root=loader.load();
+        SupprimerConseilButton.getScene().setRoot(root);
     }
     
 }
